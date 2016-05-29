@@ -20,6 +20,30 @@ const DemoItem = (props) => (
   </div>
 );
 
+class ChangingProgressbar extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      percentage: 0,
+    };
+  }
+
+  componentDidMount() {
+    setInterval(() => {
+      if (this.state.percentage < 100) {
+        this.setState({
+          percentage: Math.min(this.state.percentage + 20, 100)
+        });
+      }
+    }, 1000);
+  }
+
+  render() {
+    return <CircularProgressbar percentage={this.state.percentage} />;
+  }
+}
+
 class Demo extends React.Component {
   render() {
     return (
@@ -35,7 +59,7 @@ class Demo extends React.Component {
 
         <div className="row m-b-3">
           <div className="col-xs-6 offset-xs-3 col-md-2 offset-md-5">
-            <CircularProgressbar percentage={50} />
+            <ChangingProgressbar />
           </div>
         </div>
 
