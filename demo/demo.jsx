@@ -35,7 +35,7 @@ class Demo extends React.Component {
 
         <div className="row m-b-3">
           <div className="col-xs-6 offset-xs-3 col-md-2 offset-md-5">
-            <CircularProgressbar />
+            <CircularProgressbar percentage={50} />
           </div>
         </div>
 
