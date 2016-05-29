@@ -40,7 +40,7 @@ class ChangingProgressbar extends React.Component {
   }
 
   render() {
-    return <CircularProgressbar percentage={this.state.percentage} />;
+    return <CircularProgressbar {...this.props} percentage={this.state.percentage} />;
   }
 }
 
@@ -60,6 +60,10 @@ class Demo extends React.Component {
         <div className="row m-b-3">
           <div className="col-xs-6 offset-xs-3 col-md-2 offset-md-5">
             <ChangingProgressbar />
+
+            <ChangingProgressbar
+              classForPercentage={(percentage) => (percentage < 50 ? 'low' : 'high')}
+            />
           </div>
         </div>
 

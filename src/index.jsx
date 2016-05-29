@@ -21,7 +21,7 @@ class CircularProgressbar extends React.Component {
 
     return (
       <svg
-        className="CircularProgressbar"
+        className={`CircularProgressbar ${this.props.classForPercentage ? this.props.classForPercentage(this.percentage) : ''}`}
         viewBox="0 0 100 100"
       >
         <path
