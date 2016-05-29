@@ -34,7 +34,7 @@ class Demo extends React.Component {
         </div>
 
         <div className="row m-b-3">
-          <div className="col-xs-12 col-md-6">
+          <div className="col-xs-12 col-md-2 offset-md-5">
             <CircularProgressbar />
           </div>
         </div>
