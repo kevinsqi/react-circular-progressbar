@@ -3,3 +3,7 @@
  *
  * All of the styles in this file are optional and configurable!
  */
+
+.CircularProgressbar path {
+  stroke: #ccc;
+}

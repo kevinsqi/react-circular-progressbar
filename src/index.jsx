@@ -6,7 +6,7 @@ class CircularProgressbar extends React.Component {
   }
 
   render() {
-    const radius = 50;
+    const radius = (50 - this.props.strokeWidth / 2);
     const pathDescription = `
       M 50,50 m 0,-${radius}
       a ${radius},${radius} 0 1 1 0,${2 * radius}
@@ -19,8 +19,7 @@ class CircularProgressbar extends React.Component {
       >
         <path
           d={pathDescription}
-          stroke="#cccccc"
-          strokeWidth={10}
+          strokeWidth={this.props.strokeWidth}
           fillOpacity="0"
         />
         <text>Hello</text>
@@ -34,7 +33,7 @@ CircularProgressbar.propTypes = {
 };
 
 CircularProgressbar.defaultProps = {
-
+  strokeWidth: 8,
 };
 
 export default CircularProgressbar;
