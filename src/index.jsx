@@ -39,7 +39,13 @@ class CircularProgressbar extends React.Component {
           style={progressStyle}
         />
 
-        <text>Hello</text>
+        <text
+          className="CircularProgressbar-text"
+          x={50}
+          y={50}
+        >
+          {this.props.textForPercentage(this.props.percentage)}
+        </text>
       </svg>
     );
   }
@@ -51,6 +57,7 @@ CircularProgressbar.propTypes = {
 
 CircularProgressbar.defaultProps = {
   strokeWidth: 8,
+  textForPercentage: (percentage) => `${percentage}%`,
 };
 
 export default CircularProgressbar;
