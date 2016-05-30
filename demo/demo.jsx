@@ -98,9 +98,30 @@ class Demo extends React.Component {
           </Example>
 
           <Example
-            description="Show animation upon mounting"
+            description="Show animation on initial mount."
           >
             <CircularProgressbar percentage={100} initialAnimation={true} />
+          </Example>
+
+          <Example
+            description="Configure text formatting, optionally based on percentage."
+          >
+            <ChangingProgressbar
+              percentages={[0, 25, 50, 75, 100]}
+              textForPercentage={(percentage) => {
+                if (percentage === 0) {
+                  return 'zilch..';
+                } else if (percentage < 50) {
+                  return 'hmm..';
+                } else if (percentage < 75) {
+                  return 'okay..';
+                } else if (percentage < 100) {
+                  return 'yeah!';
+                } else {
+                  return 'WOO!';
+                }
+              }}
+            />
           </Example>
         </div>
 
