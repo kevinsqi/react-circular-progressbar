@@ -3,6 +3,26 @@ import React, { PropTypes } from 'react';
 class CircularProgressbar extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      percentage: props.initialAnimation ? 0 : props.percentage,
+    };
+  }
+
+  componentDidMount() {
+    if (this.props.initialAnimation) {
+      setTimeout(() => {
+        this.setState({
+          percentage: this.props.percentage,
+        });
+      }, 10);
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      percentage: this.props.percentage,
+    });
   }
 
   render() {
@@ -16,7 +36,7 @@ class CircularProgressbar extends React.Component {
     const diameter = Math.PI * 2 * radius;
     const progressStyle = {
       strokeDasharray: `${diameter}px ${diameter}px`,
-      strokeDashoffset: `${((100 - this.props.percentage) / 100 * diameter)}px`,
+      strokeDashoffset: `${((100 - this.state.percentage) / 100 * diameter)}px`,
     };
 
     return (
@@ -58,6 +78,7 @@ CircularProgressbar.propTypes = {
 CircularProgressbar.defaultProps = {
   strokeWidth: 8,
   textForPercentage: (percentage) => `${percentage}%`,
+  initialAnimation: false,
 };
 
 export default CircularProgressbar;

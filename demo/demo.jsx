@@ -20,6 +20,17 @@ const DemoItem = (props) => (
   </div>
 );
 
+const Example = (props) => (
+  <div className="col-xs-12 col-md-4">
+    <div className="row">
+      <div className="col-xs-6 offset-xs-3">
+        {props.children}
+      </div>
+    </div>
+    <p>{props.description}</p>
+  </div>
+);
+
 class ChangingProgressbar extends React.Component {
   constructor(props) {
     super(props);
@@ -73,20 +84,24 @@ class Demo extends React.Component {
         </div>
 
         <hr />
+
         <div className="row">
-          <div className="col-xs-12 col-md-4">
-            <div className="row">
-              <div className="col-xs-6 offset-xs-3">
-                <ChangingProgressbar
-                  percentages={[75, 100]}
-                  classForPercentage={(percentage) => {
-                    return percentage === 100 ? 'complete' : 'incomplete';
-                  }}
-                />
-              </div>
-            </div>
-            <p>Configure color/styling based on percentage using plain old CSS classes.</p>
-          </div>
+          <Example
+            description="Configure color/styling based on percentage using plain old CSS classes."
+          >
+            <ChangingProgressbar
+              percentages={[75, 100]}
+              classForPercentage={(percentage) => {
+                return percentage === 100 ? 'complete' : 'incomplete';
+              }}
+            />
+          </Example>
+
+          <Example
+            description="Show animation upon mounting"
+          >
+            <CircularProgressbar percentage={100} initialAnimation={true} />
+          </Example>
         </div>
 
         <hr />
