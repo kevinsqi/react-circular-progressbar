@@ -2,6 +2,8 @@
 
 A circular progress indicator component, built with SVG. Easily customizable with CSS.
 
+[![Build Status](https://travis-ci.org/iqnivek/react-circular-progressbar.svg?branch=master)](https://travis-ci.org/iqnivek/react-circular-progressbar)
+
 ## Installation
 
 Install the npm module:

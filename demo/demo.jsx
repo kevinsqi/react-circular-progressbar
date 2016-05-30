@@ -6,28 +6,28 @@ console.log(`react-circular-progressbar v${COMPONENT_VERSION}`);
 
 const githubURL = 'https://github.com/iqnivek/react-circular-progressbar';
 
-const DemoItem = (props) => (
+const Config = ({ name, example, description, children }) => (
   <div className="row m-b-3">
     <div className="col-xs-12 col-md-6 offset-md-3">
-      <p><code>{props.name}</code><small className="text-muted m-l-1">{props.example ? `e.g. ${props.example}` : null}</small></p>
-      <p>{props.description}</p>
+      <p><code>{name}</code><small className="text-muted m-l-1">{example ? `e.g. ${example}` : null}</small></p>
+      <p>{description}</p>
       <div className="row">
         <div className="col-xs-6 offset-xs-3">
-          {props.children}
+          {children}
         </div>
       </div>
     </div>
   </div>
 );
 
-const Example = (props) => (
+const Example = ({ description, children }) => (
   <div className="col-xs-12 col-md-4">
     <div className="row">
       <div className="col-xs-6 offset-xs-3">
-        {props.children}
+        {children}
       </div>
     </div>
-    <p>{props.description}</p>
+    <p>{description}</p>
   </div>
 );
 
@@ -110,15 +110,15 @@ class Demo extends React.Component {
               percentages={[0, 25, 50, 75, 100]}
               textForPercentage={(percentage) => {
                 if (percentage === 0) {
-                  return 'zilch..';
+                  return `$${percentage}`;
                 } else if (percentage < 50) {
-                  return 'hmm..';
+                  return `${percentage}!`;
                 } else if (percentage < 75) {
-                  return 'okay..';
+                  return `${percentage}`;
                 } else if (percentage < 100) {
-                  return 'yeah!';
+                  return `*${percentage}*`;
                 } else {
-                  return 'WOO!';
+                  return `${percentage}/100`;
                 }
               }}
             />
@@ -127,6 +127,11 @@ class Demo extends React.Component {
 
         <hr />
         <h2 className="text-md-center m-y-3">Configuration</h2>
+
+        <Config
+          name="percentage"
+          description="Percentage to display."
+        />
 
         <hr />
         <div className="text-xs-center m-y-3">
