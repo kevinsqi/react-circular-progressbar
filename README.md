@@ -1,5 +1,7 @@
 # React Circular Progressbar
 
+A circular progress indicator component, built with SVG. Easily customizable with CSS.
+
 ## Installation
 
 Install the npm module:

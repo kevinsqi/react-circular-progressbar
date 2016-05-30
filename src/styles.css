@@ -20,14 +20,3 @@
   dominant-baseline: middle;
   text-anchor: middle;
 }
-
-.CircularProgressbar.incomplete .CircularProgressbar-path {
-  stroke: #f66;
-}
-.CircularProgressbar.incomplete .CircularProgressbar-text {
-  fill: #f66;
-}
-.CircularProgressbar.complete .CircularProgressbar-path {
-}
-.CircularProgressbar.complete .CircularProgressbar-text {
-}
