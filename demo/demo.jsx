@@ -25,21 +25,24 @@ class ChangingProgressbar extends React.Component {
     super(props);
 
     this.state = {
-      percentage: 0,
+      currentPercentageIndex: 0,
     };
   }
 
   componentDidMount() {
     setInterval(() => {
       this.setState({
-        percentage: (this.state.percentage + 20) % 120
+        currentPercentageIndex: (this.state.currentPercentageIndex + 1) % this.props.percentages.length
       });
-    }, 1000);
+    }, this.props.interval);
   }
 
   render() {
-    return <CircularProgressbar {...this.props} percentage={this.state.percentage} />;
+    return <CircularProgressbar {...this.props} percentage={this.props.percentages[this.state.currentPercentageIndex]} />;
   }
+}
+ChangingProgressbar.defaultProps = {
+  interval: 1000,
 }
 
 class Demo extends React.Component {
@@ -57,8 +60,9 @@ class Demo extends React.Component {
 
         <div className="row m-b-3">
           <div className="col-xs-6 offset-xs-3 col-md-2 offset-md-5">
-            <ChangingProgressbar />
-
+            <ChangingProgressbar
+              percentages={[0, 20, 40, 60, 80, 100]}
+            />
           </div>
         </div>
 
@@ -71,12 +75,17 @@ class Demo extends React.Component {
         <hr />
         <div className="row">
           <div className="col-xs-12 col-md-4">
-            <ChangingProgressbar
-              classForPercentage={(percentage) => {
-                return percentage < 50 ? 'low' : 'high';
-              }}
-            />
-            <p>Configure it to change based on percentage. Using plain old CSS classes.</p>
+            <div className="row">
+              <div className="col-xs-6 offset-xs-3">
+                <ChangingProgressbar
+                  percentages={[75, 100]}
+                  classForPercentage={(percentage) => {
+                    return percentage === 100 ? 'complete' : 'incomplete';
+                  }}
+                />
+              </div>
+            </div>
+            <p>Configure color/styling based on percentage using plain old CSS classes.</p>
           </div>
         </div>
 

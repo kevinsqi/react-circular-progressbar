@@ -21,15 +21,13 @@
   text-anchor: middle;
 }
 
-.CircularProgressbar.low .CircularProgressbar-path {
-  stroke: #00f;
+.CircularProgressbar.incomplete .CircularProgressbar-path {
+  stroke: #f66;
 }
-.CircularProgressbar.low .CircularProgressbar-text {
-  fill: #00f;
+.CircularProgressbar.incomplete .CircularProgressbar-text {
+  fill: #f66;
 }
-.CircularProgressbar.high .CircularProgressbar-path {
-  stroke: #f00;
+.CircularProgressbar.complete .CircularProgressbar-path {
 }
-.CircularProgressbar.high .CircularProgressbar-text {
-  fill: #f00;
+.CircularProgressbar.complete .CircularProgressbar-text {
 }
