@@ -18,6 +18,14 @@ Import the component:
 import CircularProgressbar from 'react-circular-progressbar';
 ```
 
+..and use the component in your JSX:
+
+```javascript
+<CircularProgressbar percentage={60} />
+```
+
+See [demo.jsx](demo/demo.jsx) for more usage examples.
+
 ## Development
 
 To run demo locally on localhost:8080:
