@@ -21,7 +21,7 @@ class CircularProgressbar extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     this.setState({
-      percentage: this.props.percentage,
+      percentage: nextProps.percentage,
     });
   }
 
