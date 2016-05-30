@@ -27,7 +27,7 @@
 .CircularProgressbar.low .CircularProgressbar-text {
   fill: #00f;
 }
-.CircularProgressbar.low .CircularProgressbar-path {
+.CircularProgressbar.high .CircularProgressbar-path {
   stroke: #f00;
 }
 .CircularProgressbar.high .CircularProgressbar-text {

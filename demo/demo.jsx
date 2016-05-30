@@ -31,11 +31,9 @@ class ChangingProgressbar extends React.Component {
 
   componentDidMount() {
     setInterval(() => {
-      if (this.state.percentage < 100) {
-        this.setState({
-          percentage: Math.min(this.state.percentage + 20, 100)
-        });
-      }
+      this.setState({
+        percentage: (this.state.percentage + 20) % 120
+      });
     }, 1000);
   }
 
@@ -61,9 +59,6 @@ class Demo extends React.Component {
           <div className="col-xs-6 offset-xs-3 col-md-2 offset-md-5">
             <ChangingProgressbar />
 
-            <ChangingProgressbar
-              classForPercentage={(percentage) => (percentage < 50 ? 'low' : 'high')}
-            />
           </div>
         </div>
 
@@ -71,6 +66,18 @@ class Demo extends React.Component {
           <p>Install with npm:</p>
           <p className="m-b-3"><code>npm install {COMPONENT_NAME}</code></p>
           <a className="btn btn-info btn-lg" href={githubURL}>View project on Github</a>
+        </div>
+
+        <hr />
+        <div className="row">
+          <div className="col-xs-12 col-md-4">
+            <ChangingProgressbar
+              classForPercentage={(percentage) => {
+                return percentage < 50 ? 'low' : 'high';
+              }}
+            />
+            <p>Configure it to change based on percentage. Using plain old CSS classes.</p>
+          </div>
         </div>
 
         <hr />
