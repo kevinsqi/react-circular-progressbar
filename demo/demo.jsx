@@ -12,7 +12,7 @@ const Config = ({ name, example, description, children }) => (
       <p><code>{name}</code><small className="text-muted m-l-1">{example ? `e.g. ${example}` : null}</small></p>
       <p>{description}</p>
       <div className="row">
-        <div className="col-xs-6 offset-xs-3">
+        <div className="col-xs-4 offset-xs-4">
           {children}
         </div>
       </div>
@@ -124,7 +124,12 @@ class Demo extends React.Component {
           name="initialAnimation"
           example="false"
           description="Toggle whether to animate progress starting from 0% on initial mount."
-        />
+        >
+          <CircularProgressbar
+            percentage={50}
+            initialAnimation={true}
+          />
+        </Config>
         <Config
           name="classForPercentage"
           example="(pct) => pct < 100 ? 'incomplete' : 'complete'"

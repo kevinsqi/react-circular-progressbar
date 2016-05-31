@@ -12,10 +12,12 @@ class CircularProgressbar extends React.Component {
   componentDidMount() {
     if (this.props.initialAnimation) {
       setTimeout(() => {
-        this.setState({
-          percentage: this.props.percentage,
+        window.requestAnimationFrame(() => {
+          this.setState({
+            percentage: this.props.percentage,
+          });
         });
-      }, 10);
+      }, 0);
     }
   }
 
