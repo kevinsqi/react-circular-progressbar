@@ -6,10 +6,11 @@
   "main": "./build/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/patientslikeme/react-circular-progressbar.git"
+    "url": "https://github.com/iqnivek/react-circular-progressbar.git"
   },
   "license": "MIT",
   "keywords": [
+    "progressbar",
     "react",
     "react-component",
     "svg"
