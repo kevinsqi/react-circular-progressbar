@@ -1,8 +1,11 @@
 # React Circular Progressbar
 
-A circular progress indicator component, built with SVG. Easily customizable with CSS.
+A circular progress indicator component, built with SVG. Easily customizable with CSS. [See a live demo](http://www.kevinqi.com/react-circular-progressbar/).
 
+[![npm version](https://badge.fury.io/js/react-circular-progressbar.svg)](https://badge.fury.io/js/react-circular-progressbar)
 [![Build Status](https://travis-ci.org/iqnivek/react-circular-progressbar.svg?branch=master)](https://travis-ci.org/iqnivek/react-circular-progressbar)
+
+[![react-circular-progressbar animated gif](/assets/react-circular-progressbar.gif?raw=true)](http://www.kevinqi.com/react-circular-progressbar/)
 
 ## Installation
 
@@ -28,7 +31,7 @@ import CircularProgressbar from 'react-circular-progressbar';
 <CircularProgressbar percentage={60} />
 ```
 
-See [demo.jsx](demo/demo.jsx) for more usage examples.
+See the [live demo page](http://www.kevinqi.com/react-circular-progressbar/) for examples and configuration options.
 
 ## Development
 
