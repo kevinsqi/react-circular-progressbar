@@ -1,6 +1,6 @@
 {
   "name": "react-circular-progressbar",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A circular progress indicator component",
   "author": "Kevin Qi <iqnivek@gmail.com>",
   "main": "./build/index.js",
@@ -47,9 +47,5 @@
   },
   "peerDependencies": {
     "react": "^0.14.0 || ^15.0.0"
-  },
-  "dependencies": {
-    "lodash.range": "^3.1.4",
-    "lodash.reduce": "^4.3.0"
   }
 }
