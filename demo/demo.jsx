@@ -21,9 +21,9 @@ const Config = ({ name, example, description, children }) => (
 );
 
 const Example = ({ description, children }) => (
-  <div className="col-xs-12 col-md-4">
+  <div className="col-xs-12 col-sm-6">
     <div className="row">
-      <div className="col-xs-6 offset-xs-3">
+      <div className="col-xs-4 offset-xs-4">
         {children}
       </div>
     </div>
@@ -62,7 +62,7 @@ class Demo extends React.Component {
       <div className="container">
         <div className="row m-y-3">
           <div className="col-xs-12">
-            <div className="text-md-center">
+            <div className="text-xs-center">
               <h1 className="m-b-2">{COMPONENT_NAME}</h1>
               <p>{COMPONENT_DESCRIPTION}</p>
             </div>
@@ -84,8 +84,7 @@ class Demo extends React.Component {
         </div>
 
         <hr />
-
-        <div className="row">
+        <div className="row m-t-3">
           <Example
             description="Configure color/styling based on percentage using plain old CSS classes."
           >
@@ -98,39 +97,43 @@ class Demo extends React.Component {
           </Example>
 
           <Example
-            description="Show animation on initial mount."
+            description="Configure text formatting and stroke width."
           >
-            <CircularProgressbar percentage={100} initialAnimation={true} />
-          </Example>
-
-          <Example
-            description="Configure text formatting, optionally based on percentage."
-          >
-            <ChangingProgressbar
-              percentages={[0, 25, 50, 75, 100]}
-              textForPercentage={(percentage) => {
-                if (percentage === 0) {
-                  return `$${percentage}`;
-                } else if (percentage < 50) {
-                  return `${percentage}!`;
-                } else if (percentage < 75) {
-                  return `${percentage}`;
-                } else if (percentage < 100) {
-                  return `*${percentage}*`;
-                } else {
-                  return `${percentage}/100`;
-                }
-              }}
+            <CircularProgressbar
+              percentage={50}
+              strokeWidth={5}
+              textForPercentage={(percentage) => `$${percentage}`}
             />
           </Example>
         </div>
 
         <hr />
-        <h2 className="text-md-center m-y-3">Configuration</h2>
+        <h2 className="text-xs-center m-y-3">Configuration</h2>
 
         <Config
           name="percentage"
+          example="44"
           description="Percentage to display."
+        />
+        <Config
+          name="strokeWidth"
+          example="10"
+          description="Width of circular line"
+        />
+        <Config
+          name="initialAnimation"
+          example="false"
+          description="Toggle whether to animate progress starting from 0% on initial mount."
+        />
+        <Config
+          name="classForPercentage"
+          example="(pct) => pct < 100 ? 'incomplete' : 'complete'"
+          description="Function which can set an additional class to apply to top-level element, which can be used for coloring/styling percentage ranges differently."
+        />
+        <Config
+          name="textForPercentage"
+          example="(pct) => `${pct}%`"
+          description="Function which sets text formatting given a percentage."
         />
 
         <hr />
