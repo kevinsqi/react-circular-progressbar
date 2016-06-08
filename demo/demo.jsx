@@ -108,7 +108,7 @@ class Demo extends React.Component {
         </div>
 
         <hr />
-        <h2 className="text-xs-center m-y-3">Configuration</h2>
+        <h2 className="text-xs-center m-y-3">Props</h2>
 
         <Config
           name="percentage"
