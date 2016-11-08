@@ -1,3 +1,7 @@
+## 0.1.3
+
+* Fix errors when component is unmounted immediately [#1]
+
 ## 0.1.2
 
 * Tweak initialAnimation behavior
