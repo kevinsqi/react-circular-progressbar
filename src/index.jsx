@@ -46,20 +46,22 @@ class CircularProgressbar extends React.Component {
       strokeDashoffset: `${((100 - this.state.percentage) / 100 * diameter)}px`,
     };
 
+    const className = `${this.props.className} ${this.props.classForPercentage ? this.props.classForPercentage(this.props.percentage) : ''}`;
+
     return (
       <svg
-        className={`CircularProgressbar ${this.props.classForPercentage ? this.props.classForPercentage(this.props.percentage) : ''}`}
+        className={`CircularProgressbar ${className}`}
         viewBox="0 0 100 100"
       >
         <path
-          className="CircularProgressbar-trail"
+          className={`CircularProgressbar-trail ${this.props.classNameTrail}`}
           d={pathDescription}
           strokeWidth={this.props.strokeWidth}
           fillOpacity={0}
         />
 
         <path
-          className="CircularProgressbar-path"
+          className={`CircularProgressbar-path ${this.props.classNamePath}`}
           d={pathDescription}
           strokeWidth={this.props.strokeWidth}
           fillOpacity={0}
@@ -67,7 +69,7 @@ class CircularProgressbar extends React.Component {
         />
 
         <text
-          className="CircularProgressbar-text"
+          className={`CircularProgressbar-text ${this.props.classNameText}`}
           x={50}
           y={50}
         >
