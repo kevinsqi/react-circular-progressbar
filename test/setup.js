@@ -1,3 +1,5 @@
+/* global document */
+
 // https://github.com/airbnb/enzyme/blob/master/docs/guides/jsdom.md#using-enzyme-with-jsdom
 
 const jsdom = require('jsdom').jsdom;
