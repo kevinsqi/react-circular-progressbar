@@ -27,4 +27,25 @@ describe('CircularProgressbar props', () => {
     );
     assert.equal(2, wrapper.find('.CircularProgressbar-path').prop('strokeWidth'));
   });
+
+  it('classForPercentage', () => {
+    function classForPercentage(percentage) {
+      return percentage < 100 ? 'incomplete' : 'done';
+    }
+    const incomplete = shallow(
+      <CircularProgressbar
+        percentage={50}
+        classForPercentage={classForPercentage}
+      />
+    );
+    assert.include(incomplete.find('.CircularProgressbar').prop('className'), 'incomplete', 'should have correct class depending on percentage');
+
+    const done = shallow(
+      <CircularProgressbar
+        percentage={100}
+        classForPercentage={classForPercentage}
+      />
+    );
+    assert.include(done.find('.CircularProgressbar').prop('className'), 'done', 'should have correct class depending on percentage');
+  });
 });
