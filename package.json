@@ -16,9 +16,7 @@
     "svg"
   ],
   "scripts": {
-    "build": "NODE_ENV=production webpack",
-    "build:demo": "NODE_ENV=demo webpack",
-    "deploy:demo": "npm run build:demo && ./scripts/build_ghpages.sh",
+    "build": "NODE_ENV=production webpack && NODE_ENV=demo webpack",
     "clean": "rimraf build",
     "lint": "eslint src test",
     "prepublish": "npm run clean && npm run build",
