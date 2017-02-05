@@ -32,20 +32,41 @@ describe('CircularProgressbar props', () => {
     function classForPercentage(percentage) {
       return percentage < 100 ? 'incomplete' : 'done';
     }
-    const incomplete = shallow(
+    const bar1 = shallow(
       <CircularProgressbar
         percentage={50}
         classForPercentage={classForPercentage}
       />
     );
-    assert.include(incomplete.find('.CircularProgressbar').prop('className'), 'incomplete', 'should have correct class depending on percentage');
+    assert.include(bar1.find('.CircularProgressbar').prop('className'), 'incomplete', 'should have correct class depending on percentage');
 
-    const done = shallow(
+    const bar2 = shallow(
       <CircularProgressbar
         percentage={100}
         classForPercentage={classForPercentage}
       />
     );
-    assert.include(done.find('.CircularProgressbar').prop('className'), 'done', 'should have correct class depending on percentage');
+    assert.include(bar2.find('.CircularProgressbar').prop('className'), 'done', 'should have correct class depending on percentage');
+  });
+
+  it('textForPercentage', () => {
+    function textForPercentage(percentage) {
+      return percentage < 50 ? `meh ${percentage}` : `yey ${percentage}`;
+    }
+    const bar1 = shallow(
+      <CircularProgressbar
+        percentage={25}
+        textForPercentage={textForPercentage}
+      />
+    );
+    assert.equal('meh 25', bar1.find('.CircularProgressbar-text').prop('children'));
+
+    const bar2 = shallow(
+      <CircularProgressbar
+        percentage={80}
+        textForPercentage={textForPercentage}
+      />
+    );
+    assert.equal('yey 80', bar2.find('.CircularProgressbar-text').prop('children'));
   });
 });
