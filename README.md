@@ -53,5 +53,3 @@ npm start
 ```
 
 Keep CI tests passing by running `npm test` and `npm run lint` often.
-
-Deploy updates to the demo page with `npm run deploy:demo`.
