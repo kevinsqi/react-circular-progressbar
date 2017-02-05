@@ -48,7 +48,7 @@ if (nodeEnv === 'development') {
 
 if (nodeEnv === 'demo') {
   webpackConfig.entry['react-circular-progressbar'].push(path.resolve(__dirname, demoDir, 'demo.jsx'));
-  webpackConfig.output.path = path.resolve(__dirname, 'docs');
+  webpackConfig.output.path = path.resolve(__dirname, demoDir);
 }
 
 if (nodeEnv === 'development' || nodeEnv === 'demo') {
