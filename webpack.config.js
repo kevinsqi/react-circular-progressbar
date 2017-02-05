@@ -2,6 +2,7 @@ const webpack = require('webpack');
 const path = require('path');
 const pak = require('./package.json');
 const nodeEnv = process.env.NODE_ENV || 'development';
+const demoDir = 'docs';
 
 const webpackConfig = {
   context: __dirname,
@@ -39,15 +40,15 @@ const webpackConfig = {
 if (nodeEnv === 'development') {
   webpackConfig.devtool = 'source-map';
   webpackConfig.debug = true;
-  webpackConfig.devServer = { contentBase: './demo'};
+  webpackConfig.devServer = { contentBase: path.resolve(__dirname, demoDir) };
   webpackConfig.entry['react-circular-progressbar'].unshift('webpack-dev-server/client?http://0.0.0.0:8080/');
-  webpackConfig.entry['react-circular-progressbar'].push(path.resolve(__dirname, 'demo', 'demo.jsx'));
+  webpackConfig.entry['react-circular-progressbar'].push(path.resolve(__dirname, demoDir, 'demo.jsx'));
   webpackConfig.output.publicPath = '/';
 }
 
 if (nodeEnv === 'demo') {
-  webpackConfig.entry['react-circular-progressbar'].push(path.resolve(__dirname, 'demo', 'demo.jsx'));
-  webpackConfig.output.path = path.resolve(__dirname, 'demo');
+  webpackConfig.entry['react-circular-progressbar'].push(path.resolve(__dirname, demoDir, 'demo.jsx'));
+  webpackConfig.output.path = path.resolve(__dirname, demoDir);
 }
 
 if (nodeEnv === 'development' || nodeEnv === 'demo') {
