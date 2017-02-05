@@ -1,6 +1,13 @@
 {
   "extends": "airbnb",
   "rules": {
+    "comma-dangle": [
+      "error",
+      {
+        "arrays": "always-multiline",
+        "objects": "always-multiline"
+      }
+    ],
     "max-len": 0,
     "react/jsx-filename-extension": 0
   },
