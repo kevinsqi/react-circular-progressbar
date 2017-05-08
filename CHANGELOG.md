@@ -1,3 +1,8 @@
+## 0.1.4
+
+* Fixes React PropTypes import warning by using prop-types package
+* Upgrades devDependencies
+
 ## 0.1.3
 
 * Fix errors when component is unmounted immediately [#1]
