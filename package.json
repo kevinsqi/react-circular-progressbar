@@ -48,6 +48,9 @@
     "webpack": "^1.12.9",
     "webpack-dev-server": "^1.14.1"
   },
+  "dependencies": {
+    "prop-types": "^15.0.0"
+  },
   "peerDependencies": {
     "react": "^0.14.0 || ^15.0.0"
   }
