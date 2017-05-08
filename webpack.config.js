@@ -18,28 +18,30 @@ const webpackConfig = {
     libraryTarget: 'umd'
   },
   resolve: {
-    extensions: ['', '.js', '.jsx'],
-    modulesDirectories: ['node_modules']
+    extensions: ['.js', '.jsx'],
+    modules: ['node_modules']
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.jsx?$/,
         exclude: /(node_modules)/,
-        loader: 'babel'
+        loader: 'babel-loader'
       }
     ]
   },
   plugins: [
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(nodeEnv)
+    }),
+    new webpack.LoaderOptionsPlugin({
+      debug: true
     })
   ]
 };
 
 if (nodeEnv === 'development') {
   webpackConfig.devtool = 'source-map';
-  webpackConfig.debug = true;
   webpackConfig.devServer = { contentBase: path.resolve(__dirname, demoDir) };
   webpackConfig.entry['react-circular-progressbar'].unshift('webpack-dev-server/client?http://0.0.0.0:8080/');
   webpackConfig.entry['react-circular-progressbar'].push(path.resolve(__dirname, demoDir, 'demo.jsx'));
