@@ -36,7 +36,7 @@ import CircularProgressbar from 'react-circular-progressbar';
 | Name | Description |
 | ---- | ----------- |
 | `percentage` | Numeric percentage to display, from 0-100. Required. |
-| `strokeWidth` | Width of circlar line. Default: `false`. |
+| `strokeWidth` | Width of circular line. Default: `8`. |
 | `initialAnimation` | Toggle whether to animate progress starting from 0% on initial mount. Default: `false`. |
 | `classForPercentage` | Function which returns an additional class to apply to top-level svg element, which can be used for coloring/styling percentage ranges differently. Example: `(percent) => percent < 100 ? 'incomplete' : 'complete'`. |
 | `textForPercentage` | Function which returns text to display, can be configured based on percentage. Example: ``(pct) => `${pct}%` ``. |
