@@ -1,3 +1,7 @@
+## 0.1.5
+
+* Fixes 'calling PropTypes validators directly' issue caused by prop-types package by upgrading to 15.5.10+
+
 ## 0.1.4
 
 * Fixes React PropTypes import warning by using prop-types package
