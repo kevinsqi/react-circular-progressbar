@@ -63,6 +63,7 @@ if (nodeEnv === 'development' || nodeEnv === 'demo') {
 
 if (nodeEnv === 'production') {
   webpackConfig.externals = {
+    'prop-types': 'prop-types',
     'react': {
       root: 'React',
       commonjs2: 'react',
