@@ -6624,10 +6624,12 @@ var CircularProgressbar = function (_React$Component) {
         strokeDashoffset: (100 - this.state.percentage) / 100 * diameter + 'px'
       };
 
+      var classForPercentage = this.props.classForPercentage ? this.props.classForPercentage(this.props.percentage) : '';
+
       return _react2.default.createElement(
         'svg',
         {
-          className: 'CircularProgressbar ' + (this.props.classForPercentage ? this.props.classForPercentage(this.props.percentage) : ''),
+          className: 'CircularProgressbar ' + this.props.className + ' ' + classForPercentage,
           viewBox: '0 0 100 100'
         },
         _react2.default.createElement('path', {
@@ -6662,6 +6664,7 @@ var CircularProgressbar = function (_React$Component) {
 CircularProgressbar.propTypes = {
   percentage: _propTypes2.default.number.isRequired,
   strokeWidth: _propTypes2.default.number,
+  className: _propTypes2.default.string,
   initialAnimation: _propTypes2.default.bool,
   classForPercentage: _propTypes2.default.func,
   textForPercentage: _propTypes2.default.func
@@ -10412,7 +10415,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-console.log('react-circular-progressbar v' + "0.1.4");
+console.log('react-circular-progressbar v' + "0.1.5");
 
 var githubURL = 'https://github.com/iqnivek/react-circular-progressbar';
 
@@ -10639,18 +10642,16 @@ var Demo = function (_React$Component2) {
           example: '10',
           description: 'Width of circular line'
         }),
-        _react2.default.createElement(
-          Config,
-          {
-            name: 'initialAnimation',
-            example: 'false',
-            description: 'Toggle whether to animate progress starting from 0% on initial mount.'
-          },
-          _react2.default.createElement(_src2.default, {
-            percentage: 50,
-            initialAnimation: true
-          })
-        ),
+        _react2.default.createElement(Config, {
+          name: 'className',
+          example: '\'your-css-class\'',
+          description: 'Classes to apply to the svg element'
+        }),
+        _react2.default.createElement(Config, {
+          name: 'initialAnimation',
+          example: 'false',
+          description: 'Toggle whether to animate progress starting from 0% on initial mount.'
+        }),
         _react2.default.createElement(Config, {
           name: 'classForPercentage',
           example: '(pct) => pct < 100 ? \'incomplete\' : \'complete\'',

@@ -121,15 +121,15 @@ class Demo extends React.Component {
           description="Width of circular line"
         />
         <Config
+          name="className"
+          example="'your-css-class'"
+          description="Classes to apply to the svg element"
+        />
+        <Config
           name="initialAnimation"
           example="false"
           description="Toggle whether to animate progress starting from 0% on initial mount."
-        >
-          <CircularProgressbar
-            percentage={50}
-            initialAnimation={true}
-          />
-        </Config>
+        />
         <Config
           name="classForPercentage"
           example="(pct) => pct < 100 ? 'incomplete' : 'complete'"
