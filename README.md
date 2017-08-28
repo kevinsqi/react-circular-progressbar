@@ -15,7 +15,7 @@ Install the npm module:
 npm install react-circular-progressbar
 ```
 
-Include the default styles into your CSS by copying [src/styles.css](src/styles.css) into your repo.
+**Important**: you'll also need to copy [src/styles.css](src/styles.css) into your repo to use the default styling!
 
 ## Usage
 
@@ -43,6 +43,28 @@ import CircularProgressbar from 'react-circular-progressbar';
 | `textForPercentage` | Function which returns text to display, can be configured based on percentage. Example: ``(pct) => `${pct}%` ``. |
 
 See the [demo page JSX](docs/demo.jsx) to see code used on the live demo page.
+
+## Customizing styles
+
+Use plain CSS to customize the styling - the [default CSS](src/styles.css) is a good starting point, but you can modify it as needed. There are CSS hooks for the path, trail, and text of the progressbar which you can customize, e.g.:
+
+```css
+.CircularProgressbar-path { stroke: red; }
+.CircularProgressbar-trail { stroke: gray; }
+.CircularProgressbar-text { fill: yellow; }
+```
+
+You can also use the `className` prop to add different classes to the top-level SVG element, and then use that to add different themes to different instances, e.g.:
+
+```javascript
+<CircularProgressbar percentage={25} className="progressbar-red" />
+<CircularProgressbar percentage={25} className="progressbar-blue" />
+```
+
+```css
+.progressbar-red .CircularProgressbar-path { stroke: red; }
+.progressbar-blue .CircularProgressbar-path { stroke: blue; }
+```
 
 ## Development
 
