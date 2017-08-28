@@ -6570,6 +6570,9 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+var MIN_PERCENTAGE = 0;
+var MAX_PERCENTAGE = 100;
+
 var CircularProgressbar = function (_React$Component) {
   _inherits(CircularProgressbar, _React$Component);
 
@@ -6613,18 +6616,31 @@ var CircularProgressbar = function (_React$Component) {
       window.cancelAnimationFrame(this.requestAnimationFrame);
     }
   }, {
+    key: 'getPathDescription',
+    value: function getPathDescription() {
+      var radius = this.getRadius();
+      return '\n      M 50,50 m 0,-' + radius + '\n      a ' + radius + ',' + radius + ' 0 1 1 0,' + 2 * radius + '\n      a ' + radius + ',' + radius + ' 0 1 1 0,-' + 2 * radius + '\n    ';
+    }
+  }, {
+    key: 'getProgressStyle',
+    value: function getProgressStyle() {
+      var diameter = Math.PI * 2 * this.getRadius();
+      var truncatedPercentage = Math.min(Math.max(this.state.percentage, MIN_PERCENTAGE), MAX_PERCENTAGE);
+      return {
+        strokeDasharray: diameter + 'px ' + diameter + 'px',
+        strokeDashoffset: (100 - truncatedPercentage) / 100 * diameter + 'px'
+      };
+    }
+  }, {
+    key: 'getRadius',
+    value: function getRadius() {
+      return 50 - this.props.strokeWidth / 2;
+    }
+  }, {
     key: 'render',
     value: function render() {
-      var radius = 50 - this.props.strokeWidth / 2;
-      var pathDescription = '\n      M 50,50 m 0,-' + radius + '\n      a ' + radius + ',' + radius + ' 0 1 1 0,' + 2 * radius + '\n      a ' + radius + ',' + radius + ' 0 1 1 0,-' + 2 * radius + '\n    ';
-
-      var diameter = Math.PI * 2 * radius;
-      var progressStyle = {
-        strokeDasharray: diameter + 'px ' + diameter + 'px',
-        strokeDashoffset: (100 - this.state.percentage) / 100 * diameter + 'px'
-      };
-
       var classForPercentage = this.props.classForPercentage ? this.props.classForPercentage(this.props.percentage) : '';
+      var pathDescription = this.getPathDescription();
 
       return _react2.default.createElement(
         'svg',
@@ -6643,7 +6659,7 @@ var CircularProgressbar = function (_React$Component) {
           d: pathDescription,
           strokeWidth: this.props.strokeWidth,
           fillOpacity: 0,
-          style: progressStyle
+          style: this.getProgressStyle()
         }),
         _react2.default.createElement(
           'text',
@@ -6672,10 +6688,11 @@ CircularProgressbar.propTypes = {
 
 CircularProgressbar.defaultProps = {
   strokeWidth: 8,
+  className: '',
+  initialAnimation: false,
   textForPercentage: function textForPercentage(percentage) {
     return percentage + '%';
-  },
-  initialAnimation: false
+  }
 };
 
 exports.default = CircularProgressbar;
@@ -10415,7 +10432,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-console.log('react-circular-progressbar v' + "0.1.5");
+console.log('react-circular-progressbar v' + "0.2.0");
 
 var githubURL = 'https://github.com/iqnivek/react-circular-progressbar';
 
