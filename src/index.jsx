@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+const MIN_PERCENTAGE = 0;
+const MAX_PERCENTAGE = 100;
+
 class CircularProgressbar extends React.Component {
   constructor(props) {
     super(props);
@@ -33,21 +36,31 @@ class CircularProgressbar extends React.Component {
     window.cancelAnimationFrame(this.requestAnimationFrame);
   }
 
-  render() {
-    const radius = (50 - this.props.strokeWidth / 2);
-    const pathDescription = `
+  getPathDescription() {
+    const radius = this.getRadius();
+    return `
       M 50,50 m 0,-${radius}
       a ${radius},${radius} 0 1 1 0,${2 * radius}
       a ${radius},${radius} 0 1 1 0,-${2 * radius}
     `;
+  }
 
-    const diameter = Math.PI * 2 * radius;
-    const progressStyle = {
+  getProgressStyle() {
+    const diameter = Math.PI * 2 * this.getRadius();
+    const truncatedPercentage = Math.min(Math.max(this.state.percentage, MIN_PERCENTAGE), MAX_PERCENTAGE);
+    return {
       strokeDasharray: `${diameter}px ${diameter}px`,
-      strokeDashoffset: `${((100 - Math.min(Math.max(this.state.percentage, 0), 100)) / 100 * diameter)}px`,
+      strokeDashoffset: `${((100 - truncatedPercentage) / 100 * diameter)}px`,
     };
+  }
 
+  getRadius() {
+    return (50 - this.props.strokeWidth / 2);
+  }
+
+  render() {
     const classForPercentage = this.props.classForPercentage ? this.props.classForPercentage(this.props.percentage) : '';
+    const pathDescription = this.getPathDescription();
 
     return (
       <svg
@@ -66,7 +79,7 @@ class CircularProgressbar extends React.Component {
           d={pathDescription}
           strokeWidth={this.props.strokeWidth}
           fillOpacity={0}
-          style={progressStyle}
+          style={this.getProgressStyle()}
         />
 
         <text
