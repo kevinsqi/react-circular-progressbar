@@ -1,3 +1,12 @@
+## 0.2.1
+
+* Restrict percentages to be between 0 and 100
+* Fix "undefined" className when it's unset
+
+## 0.2.0
+
+* Adds `className` prop to customize component styles
+
 ## 0.1.5
 
 * Fixes 'calling PropTypes validators directly' issue caused by prop-types package by upgrading to 15.5.10+
