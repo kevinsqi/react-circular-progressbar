@@ -44,7 +44,7 @@ class CircularProgressbar extends React.Component {
     const diameter = Math.PI * 2 * radius;
     const progressStyle = {
       strokeDasharray: `${diameter}px ${diameter}px`,
-      strokeDashoffset: `${((100 - this.state.percentage) / 100 * diameter)}px`,
+      strokeDashoffset: `${((100 - Math.min(Math.max(this.state.percentage, 0), 100)) / 100 * diameter)}px`,
     };
 
     const classForPercentage = this.props.classForPercentage ? this.props.classForPercentage(this.props.percentage) : '';
