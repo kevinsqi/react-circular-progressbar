@@ -53,6 +53,7 @@ class CircularProgressbar extends React.Component {
       <svg
         className={`CircularProgressbar ${this.props.className} ${classForPercentage}`}
         viewBox="0 0 100 100"
+        style={this.props.style}
       >
         <path
           className="CircularProgressbar-trail"
