@@ -69,4 +69,30 @@ describe('CircularProgressbar props', () => {
     );
     assert.equal('yey 80', bar2.find('.CircularProgressbar-text').prop('children'));
   });
+
+  it('className', () => {
+    const wrapper = shallow(
+      <CircularProgressbar
+        percentage={50}
+        className="my-custom-class"
+      />
+    );
+    assert(wrapper.find('svg').prop('className').includes('my-custom-class'));
+  });
+
+  it('percentage', () => {
+    const percentage = 30;
+    const wrapper = shallow(
+      <CircularProgressbar
+        percentage={percentage}
+        strokeWidth={0}
+        className="my-custom-class"
+      />
+    );
+
+    const dashoffset = wrapper.find('.CircularProgressbar-path').prop('style').strokeDashoffset;
+    const expectedDiameter = 2 * 50 * Math.PI;
+    const expectedOffset = (100 - percentage) / 100 * expectedDiameter;
+    assert.equal(dashoffset, `${expectedOffset}px`);
+  });
 });
