@@ -68,9 +68,9 @@ class CircularProgressbar extends React.Component {
         className={`CircularProgressbar ${this.props.className} ${classForPercentage}`}
         viewBox="0 0 100 100"
       >
-      <circle className="CircularProgressbar-background"
-        cx="50" cy="50" r={this.getRadius()}
-      />
+        <circle className="CircularProgressbar-background"
+          cx="50" cy="50" r={this.getRadius()}
+        />
 
         <path
           className="CircularProgressbar-trail"
