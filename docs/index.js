@@ -166,45 +166,43 @@ var emptyFunction = __webpack_require__(8);
 var warning = emptyFunction;
 
 if (true) {
-  (function () {
-    var printWarning = function printWarning(format) {
-      for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-        args[_key - 1] = arguments[_key];
+  var printWarning = function printWarning(format) {
+    for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+      args[_key - 1] = arguments[_key];
+    }
+
+    var argIndex = 0;
+    var message = 'Warning: ' + format.replace(/%s/g, function () {
+      return args[argIndex++];
+    });
+    if (typeof console !== 'undefined') {
+      console.error(message);
+    }
+    try {
+      // --- Welcome to debugging React ---
+      // This error was thrown as a convenience so that you can use this stack
+      // to find the callsite that caused this warning to fire.
+      throw new Error(message);
+    } catch (x) {}
+  };
+
+  warning = function warning(condition, format) {
+    if (format === undefined) {
+      throw new Error('`warning(condition, format, ...args)` requires a warning ' + 'message argument');
+    }
+
+    if (format.indexOf('Failed Composite propType: ') === 0) {
+      return; // Ignore CompositeComponent proptype check.
+    }
+
+    if (!condition) {
+      for (var _len2 = arguments.length, args = Array(_len2 > 2 ? _len2 - 2 : 0), _key2 = 2; _key2 < _len2; _key2++) {
+        args[_key2 - 2] = arguments[_key2];
       }
 
-      var argIndex = 0;
-      var message = 'Warning: ' + format.replace(/%s/g, function () {
-        return args[argIndex++];
-      });
-      if (typeof console !== 'undefined') {
-        console.error(message);
-      }
-      try {
-        // --- Welcome to debugging React ---
-        // This error was thrown as a convenience so that you can use this stack
-        // to find the callsite that caused this warning to fire.
-        throw new Error(message);
-      } catch (x) {}
-    };
-
-    warning = function warning(condition, format) {
-      if (format === undefined) {
-        throw new Error('`warning(condition, format, ...args)` requires a warning ' + 'message argument');
-      }
-
-      if (format.indexOf('Failed Composite propType: ') === 0) {
-        return; // Ignore CompositeComponent proptype check.
-      }
-
-      if (!condition) {
-        for (var _len2 = arguments.length, args = Array(_len2 > 2 ? _len2 - 2 : 0), _key2 = 2; _key2 < _len2; _key2++) {
-          args[_key2 - 2] = arguments[_key2];
-        }
-
-        printWarning.apply(undefined, [format].concat(args));
-      }
-    };
-  })();
+      printWarning.apply(undefined, [format].concat(args));
+    }
+  };
 }
 
 module.exports = warning;
@@ -6572,6 +6570,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var MIN_PERCENTAGE = 0;
 var MAX_PERCENTAGE = 100;
+var BACKGROUND_OFFSET = 7;
 
 var CircularProgressbar = function (_React$Component) {
   _inherits(CircularProgressbar, _React$Component);
@@ -6618,7 +6617,7 @@ var CircularProgressbar = function (_React$Component) {
   }, {
     key: 'getPathDescription',
     value: function getPathDescription() {
-      var radius = this.getRadius();
+      var radius = this.getRadius() - BACKGROUND_OFFSET;
       return '\n      M 50,50 m 0,-' + radius + '\n      a ' + radius + ',' + radius + ' 0 1 1 0,' + 2 * radius + '\n      a ' + radius + ',' + radius + ' 0 1 1 0,-' + 2 * radius + '\n    ';
     }
   }, {
@@ -6648,6 +6647,9 @@ var CircularProgressbar = function (_React$Component) {
           className: 'CircularProgressbar ' + this.props.className + ' ' + classForPercentage,
           viewBox: '0 0 100 100'
         },
+        _react2.default.createElement('circle', { className: 'CircularProgressbar-background',
+          cx: '50', cy: '50', r: this.getRadius()
+        }),
         _react2.default.createElement('path', {
           className: 'CircularProgressbar-trail',
           d: pathDescription,
@@ -6706,18 +6708,11 @@ exports.default = CircularProgressbar;
 
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @typechecks
  */
