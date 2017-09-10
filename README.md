@@ -52,6 +52,7 @@ Use plain CSS to customize the styling - the [default CSS](src/styles.css) is a 
 .CircularProgressbar-path { stroke: red; }
 .CircularProgressbar-trail { stroke: gray; }
 .CircularProgressbar-text { fill: yellow; }
+.CircularProgressbar-background { fill: green; }
 ```
 
 You can also use the `className` prop to add different classes to the top-level SVG element, and then use that to add different themes to different instances, e.g.:
