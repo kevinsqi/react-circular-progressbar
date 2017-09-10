@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 const MIN_PERCENTAGE = 0;
 const MAX_PERCENTAGE = 100;
+const BACKGROUND_OFFSET = 7;
 
 class CircularProgressbar extends React.Component {
   constructor(props) {
@@ -37,7 +38,7 @@ class CircularProgressbar extends React.Component {
   }
 
   getPathDescription() {
-    const radius = this.getRadius();
+    const radius = this.getRadius() - BACKGROUND_OFFSET;
     return `
       M 50,50 m 0,-${radius}
       a ${radius},${radius} 0 1 1 0,${2 * radius}
@@ -67,6 +68,10 @@ class CircularProgressbar extends React.Component {
         className={`CircularProgressbar ${this.props.className} ${classForPercentage}`}
         viewBox="0 0 100 100"
       >
+      <circle className="CircularProgressbar-background"
+        cx="50" cy="50" r={this.getRadius()}
+      />
+
         <path
           className="CircularProgressbar-trail"
           d={pathDescription}

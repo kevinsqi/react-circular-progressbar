@@ -30,3 +30,7 @@
   dominant-baseline: middle;
   text-anchor: middle;
 }
+
+.CircularProgressbar .CircularProgressbar-background {
+  fill: transparent;
+}
