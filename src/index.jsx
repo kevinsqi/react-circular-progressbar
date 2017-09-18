@@ -74,14 +74,14 @@ class CircularProgressbar extends React.Component {
   }
 
   render() {
-    const { percentage, textForPercentage, className, strokeWidth } = this.props;
+    const { percentage, textForPercentage, className, classes, strokeWidth } = this.props;
     const classForPercentage = this.props.classForPercentage ? this.props.classForPercentage(percentage) : '';
     const pathDescription = this.getPathDescription();
     const text = textForPercentage ? textForPercentage(percentage) : null;
 
     return (
       <svg
-        className={`CircularProgressbar ${className} ${classForPercentage}`}
+        className={`${classes.root} ${className} ${classForPercentage}`}
         viewBox="0 0 100 100"
       >
         {
@@ -96,14 +96,14 @@ class CircularProgressbar extends React.Component {
         }
 
         <path
-          className="CircularProgressbar-trail"
+          className={classes.trail}
           d={pathDescription}
           strokeWidth={strokeWidth}
           fillOpacity={0}
         />
 
         <path
-          className="CircularProgressbar-path"
+          className={classes.path}
           d={pathDescription}
           strokeWidth={strokeWidth}
           fillOpacity={0}
@@ -113,7 +113,7 @@ class CircularProgressbar extends React.Component {
         {
           text ? (
             <text
-              className="CircularProgressbar-text"
+              className={classes.text}
               x={50}
               y={50}
             >
@@ -129,6 +129,7 @@ class CircularProgressbar extends React.Component {
 CircularProgressbar.propTypes = {
   percentage: PropTypes.number.isRequired,
   className: PropTypes.string,
+  classes: PropTypes.object,
   strokeWidth: PropTypes.number,
   background: PropTypes.bool,
   backgroundPadding: PropTypes.number,
@@ -140,6 +141,12 @@ CircularProgressbar.propTypes = {
 CircularProgressbar.defaultProps = {
   strokeWidth: 8,
   className: '',
+  classes: {
+    root: 'CircularProgressbar',
+    trail: 'CircularProgressbar-trail',
+    path: 'CircularProgressbar-path',
+    text: 'CircularProgressbar-text',
+  },
   background: false,
   backgroundPadding: null,
   initialAnimation: false,
