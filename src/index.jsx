@@ -74,8 +74,8 @@ class CircularProgressbar extends React.Component {
   }
 
   render() {
-    const {percentage, classForPercentage, textForPercentage, className, strokeWidth} = this.props;
-    const classForPercentage = classForPercentage ? classForPercentage(percentage) : '';
+    const {percentage, textForPercentage, className, strokeWidth} = this.props;
+    const classForPercentage = this.props.classForPercentage ? this.props.classForPercentage(percentage) : '';
     const pathDescription = this.getPathDescription();
     
     const text = textForPercentage ? textForPercentage(percentage) : null;
