@@ -1,3 +1,7 @@
+## 0.2.2
+
+* Allow react 16 as a peerDependency
+
 ## 0.2.1
 
 * Restrict percentages to be between 0 and 100
