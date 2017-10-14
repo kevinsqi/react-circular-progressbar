@@ -58,7 +58,7 @@ class CircularProgressbar extends React.Component {
   getPathRadius() {
     // the radius of the path is defined to be in the middle, so in order for the path to
     // fit perfectly inside the 100x100 viewBox, need to subtract half the strokeWidth
-    return 50 - (this.props.strokeWidth / 2) - this.props.backgroundGutter;
+    return 50 - (this.props.strokeWidth / 2) - this.props.backgroundPadding;
   }
 
   render() {
@@ -108,7 +108,7 @@ CircularProgressbar.propTypes = {
   percentage: PropTypes.number.isRequired,
   strokeWidth: PropTypes.number,
   className: PropTypes.string,
-  backgroundGutter: PropTypes.number,
+  backgroundPadding: PropTypes.number,
   initialAnimation: PropTypes.bool,
   classForPercentage: PropTypes.func,
   textForPercentage: PropTypes.func,
@@ -117,7 +117,7 @@ CircularProgressbar.propTypes = {
 CircularProgressbar.defaultProps = {
   strokeWidth: 8,
   className: '',
-  backgroundGutter: 0,
+  backgroundPadding: 0,
   initialAnimation: false,
   textForPercentage: (percentage) => `${percentage}%`,
 };
