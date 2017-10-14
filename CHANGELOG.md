@@ -1,3 +1,7 @@
+## 0.3.0
+
+* Support custom background colors and added `backgroundPadding` prop [#23]
+
 ## 0.2.2
 
 * Allow react 16 as a peerDependency
