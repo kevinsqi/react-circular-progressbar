@@ -129,7 +129,7 @@ class CircularProgressbar extends React.Component {
 CircularProgressbar.propTypes = {
   percentage: PropTypes.number.isRequired,
   className: PropTypes.string,
-  classes: PropTypes.object,
+  classes: PropTypes.objectOf(PropTypes.string),
   strokeWidth: PropTypes.number,
   background: PropTypes.bool,
   backgroundPadding: PropTypes.number,
