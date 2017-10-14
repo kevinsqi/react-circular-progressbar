@@ -6,7 +6,7 @@ import CircularProgressbar from '../../src';
 
 describe('CircularProgressbar', () => {
   it('should not throw exceptions in base case', () => {
-    assert.doesNotThrow(() => <CircularProgressbar />);
+    assert.doesNotThrow(() => <CircularProgressbar percentage={50} />);
   });
 
   it('should render as an svg', () => {
