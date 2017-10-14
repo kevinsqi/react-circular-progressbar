@@ -1,3 +1,7 @@
+## 0.4.1
+
+* Don't render <text> when textForPercentage is falsy
+
 ## 0.4.0
 
 * Add `background` prop, fix black circle issue for upgrading without new CSS
