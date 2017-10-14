@@ -21,7 +21,7 @@ const Config = ({ name, example, description, children }) => (
 );
 
 const Example = ({ description, children }) => (
-  <div className="col-xs-12 col-sm-6">
+  <div className="col-xs-12 col-sm-4">
     <div className="row mb-1">
       <div className="col-xs-4 offset-xs-4">
         {children}
@@ -97,12 +97,22 @@ class Demo extends React.Component {
           </Example>
 
           <Example
-            description="Configure text formatting and stroke width."
+            description="Customize text formatting and stroke width."
           >
             <CircularProgressbar
               percentage={50}
               strokeWidth={5}
               textForPercentage={(percentage) => `$${percentage}`}
+            />
+          </Example>
+
+          <Example
+            description="Add a background color."
+          >
+            <CircularProgressbar
+              className="background"
+              strokeWidth={10}
+              percentage={33}
             />
           </Example>
         </div>
