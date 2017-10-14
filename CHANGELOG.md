@@ -1,3 +1,7 @@
+## 0.5.0
+
+* Add `classes` prop for customizing svg element classNames [#25]
+
 ## 0.4.1
 
 * Don't render <text> when textForPercentage is falsy
