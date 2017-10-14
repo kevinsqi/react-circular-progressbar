@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 const MIN_PERCENTAGE = 0;
 const MAX_PERCENTAGE = 100;
-const BACKGROUND_OFFSET = 7;
 
 class CircularProgressbar extends React.Component {
   constructor(props) {
@@ -37,6 +36,19 @@ class CircularProgressbar extends React.Component {
     window.cancelAnimationFrame(this.requestAnimationFrame);
   }
 
+  getBackgroundPadding() {
+    if (this.props.background) {
+      // default padding to be the same as strokeWidth
+      // compare to null because 0 is falsy
+      if (this.props.backgroundPadding == null) {
+        return this.props.strokeWidth;
+      }
+      return this.props.backgroundPadding;
+    }
+    // don't add padding if not displaying background
+    return 0;
+  }
+
   getPathDescription() {
     const radius = this.getPathRadius();
     return `
@@ -58,7 +70,7 @@ class CircularProgressbar extends React.Component {
   getPathRadius() {
     // the radius of the path is defined to be in the middle, so in order for the path to
     // fit perfectly inside the 100x100 viewBox, need to subtract half the strokeWidth
-    return 50 - (this.props.strokeWidth / 2) - this.props.backgroundPadding;
+    return 50 - (this.props.strokeWidth / 2) - this.getBackgroundPadding();
   }
 
   render() {
@@ -70,12 +82,16 @@ class CircularProgressbar extends React.Component {
         className={`CircularProgressbar ${this.props.className} ${classForPercentage}`}
         viewBox="0 0 100 100"
       >
-        <circle
-          className="CircularProgressbar-background"
-          cx={50}
-          cy={50}
-          r={50}
-        />
+        {
+          this.props.background ? (
+            <circle
+              className="CircularProgressbar-background"
+              cx={50}
+              cy={50}
+              r={50}
+            />
+          ) : null
+        }
 
         <path
           className="CircularProgressbar-trail"
@@ -106,8 +122,9 @@ class CircularProgressbar extends React.Component {
 
 CircularProgressbar.propTypes = {
   percentage: PropTypes.number.isRequired,
-  strokeWidth: PropTypes.number,
   className: PropTypes.string,
+  strokeWidth: PropTypes.number,
+  background: PropTypes.bool,
   backgroundPadding: PropTypes.number,
   initialAnimation: PropTypes.bool,
   classForPercentage: PropTypes.func,
@@ -117,7 +134,8 @@ CircularProgressbar.propTypes = {
 CircularProgressbar.defaultProps = {
   strokeWidth: 8,
   className: '',
-  backgroundPadding: 0,
+  background: false,
+  backgroundPadding: null,
   initialAnimation: false,
   textForPercentage: (percentage) => `${percentage}%`,
 };

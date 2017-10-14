@@ -92,8 +92,9 @@ class Demo extends React.Component {
             description="Add a background color for that inverted look."
           >
             <CircularProgressbar
-              className="background"
-              backgroundPadding={4}
+              className="CircularProgressbar-inverted"
+              background
+              backgroundPadding={5}
               strokeWidth={6}
               percentage={33}
             />

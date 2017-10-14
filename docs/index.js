@@ -6528,6 +6528,20 @@ var CircularProgressbar = function (_React$Component) {
       window.cancelAnimationFrame(this.requestAnimationFrame);
     }
   }, {
+    key: 'getBackgroundPadding',
+    value: function getBackgroundPadding() {
+      if (this.props.background) {
+        // default padding to be the same as strokeWidth
+        // compare to null because 0 is falsy
+        if (this.props.backgroundPadding == null) {
+          return this.props.strokeWidth;
+        }
+        return this.props.backgroundPadding;
+      }
+      // don't add padding if not displaying background
+      return 0;
+    }
+  }, {
     key: 'getPathDescription',
     value: function getPathDescription() {
       var radius = this.getPathRadius();
@@ -6548,7 +6562,7 @@ var CircularProgressbar = function (_React$Component) {
     value: function getPathRadius() {
       // the radius of the path is defined to be in the middle, so in order for the path to
       // fit perfectly inside the 100x100 viewBox, need to subtract half the strokeWidth
-      return 50 - this.props.strokeWidth / 2 - this.props.backgroundPadding;
+      return 50 - this.props.strokeWidth / 2 - this.getBackgroundPadding();
     }
   }, {
     key: 'render',
@@ -6562,12 +6576,12 @@ var CircularProgressbar = function (_React$Component) {
           className: 'CircularProgressbar ' + this.props.className + ' ' + classForPercentage,
           viewBox: '0 0 100 100'
         },
-        _react2.default.createElement('circle', {
+        this.props.background ? _react2.default.createElement('circle', {
           className: 'CircularProgressbar-background',
           cx: 50,
           cy: 50,
           r: 50
-        }),
+        }) : null,
         _react2.default.createElement('path', {
           className: 'CircularProgressbar-trail',
           d: pathDescription,
@@ -6599,8 +6613,9 @@ var CircularProgressbar = function (_React$Component) {
 
 CircularProgressbar.propTypes = {
   percentage: _propTypes2.default.number.isRequired,
-  strokeWidth: _propTypes2.default.number,
   className: _propTypes2.default.string,
+  strokeWidth: _propTypes2.default.number,
+  background: _propTypes2.default.bool,
   backgroundPadding: _propTypes2.default.number,
   initialAnimation: _propTypes2.default.bool,
   classForPercentage: _propTypes2.default.func,
@@ -6610,7 +6625,7 @@ CircularProgressbar.propTypes = {
 CircularProgressbar.defaultProps = {
   strokeWidth: 8,
   className: '',
-  backgroundPadding: 0,
+  background: false,
   initialAnimation: false,
   textForPercentage: function textForPercentage(percentage) {
     return percentage + '%';
@@ -10314,7 +10329,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-console.log('react-circular-progressbar v' + "0.2.1");
+console.log('react-circular-progressbar v' + "0.3.0");
 
 var githubURL = 'https://github.com/iqnivek/react-circular-progressbar';
 
@@ -10468,8 +10483,9 @@ var Demo = function (_React$Component2) {
               description: 'Add a background color for that inverted look.'
             },
             _react2.default.createElement(_src2.default, {
-              className: 'background',
-              backgroundPadding: 4,
+              className: 'CircularProgressbar-inverted',
+              background: true,
+              backgroundPadding: 5,
               strokeWidth: 6,
               percentage: 33
             })
