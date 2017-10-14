@@ -6530,13 +6530,13 @@ var CircularProgressbar = function (_React$Component) {
   }, {
     key: 'getPathDescription',
     value: function getPathDescription() {
-      var radius = this.getRadius() - BACKGROUND_OFFSET;
+      var radius = this.getPathRadius();
       return '\n      M 50,50 m 0,-' + radius + '\n      a ' + radius + ',' + radius + ' 0 1 1 0,' + 2 * radius + '\n      a ' + radius + ',' + radius + ' 0 1 1 0,-' + 2 * radius + '\n    ';
     }
   }, {
     key: 'getProgressStyle',
     value: function getProgressStyle() {
-      var diameter = Math.PI * 2 * this.getRadius();
+      var diameter = Math.PI * 2 * this.getPathRadius();
       var truncatedPercentage = Math.min(Math.max(this.state.percentage, MIN_PERCENTAGE), MAX_PERCENTAGE);
       return {
         strokeDasharray: diameter + 'px ' + diameter + 'px',
@@ -6544,9 +6544,11 @@ var CircularProgressbar = function (_React$Component) {
       };
     }
   }, {
-    key: 'getRadius',
-    value: function getRadius() {
-      return 50 - this.props.strokeWidth / 2;
+    key: 'getPathRadius',
+    value: function getPathRadius() {
+      // the radius of the path is defined to be in the middle, so in order for the path to
+      // fit perfectly inside the 100x100 viewBox, need to subtract half the strokeWidth
+      return 50 - this.props.strokeWidth / 2 - this.props.backgroundPadding;
     }
   }, {
     key: 'render',
@@ -6560,8 +6562,11 @@ var CircularProgressbar = function (_React$Component) {
           className: 'CircularProgressbar ' + this.props.className + ' ' + classForPercentage,
           viewBox: '0 0 100 100'
         },
-        _react2.default.createElement('circle', { className: 'CircularProgressbar-background',
-          cx: '50', cy: '50', r: this.getRadius()
+        _react2.default.createElement('circle', {
+          className: 'CircularProgressbar-background',
+          cx: 50,
+          cy: 50,
+          r: 50
         }),
         _react2.default.createElement('path', {
           className: 'CircularProgressbar-trail',
@@ -6596,6 +6601,7 @@ CircularProgressbar.propTypes = {
   percentage: _propTypes2.default.number.isRequired,
   strokeWidth: _propTypes2.default.number,
   className: _propTypes2.default.string,
+  backgroundPadding: _propTypes2.default.number,
   initialAnimation: _propTypes2.default.bool,
   classForPercentage: _propTypes2.default.func,
   textForPercentage: _propTypes2.default.func
@@ -6604,6 +6610,7 @@ CircularProgressbar.propTypes = {
 CircularProgressbar.defaultProps = {
   strokeWidth: 8,
   className: '',
+  backgroundPadding: 0,
   initialAnimation: false,
   textForPercentage: function textForPercentage(percentage) {
     return percentage + '%';
@@ -10311,55 +10318,12 @@ console.log('react-circular-progressbar v' + "0.2.1");
 
 var githubURL = 'https://github.com/iqnivek/react-circular-progressbar';
 
-var Config = function Config(_ref) {
-  var name = _ref.name,
-      example = _ref.example,
-      description = _ref.description,
+var Example = function Example(_ref) {
+  var description = _ref.description,
       children = _ref.children;
   return _react2.default.createElement(
     'div',
-    { className: 'row mb-3' },
-    _react2.default.createElement(
-      'div',
-      { className: 'col-xs-12 col-md-6 offset-md-3' },
-      _react2.default.createElement(
-        'p',
-        null,
-        _react2.default.createElement(
-          'code',
-          null,
-          name
-        ),
-        _react2.default.createElement(
-          'small',
-          { className: 'text-muted ml-1' },
-          example ? 'e.g. ' + example : null
-        )
-      ),
-      _react2.default.createElement(
-        'p',
-        null,
-        description
-      ),
-      _react2.default.createElement(
-        'div',
-        { className: 'row' },
-        _react2.default.createElement(
-          'div',
-          { className: 'col-xs-4 offset-xs-4' },
-          children
-        )
-      )
-    )
-  );
-};
-
-var Example = function Example(_ref2) {
-  var description = _ref2.description,
-      children = _ref2.children;
-  return _react2.default.createElement(
-    'div',
-    { className: 'col-xs-12 col-sm-6' },
+    { className: 'col-xs-12 col-sm-4' },
     _react2.default.createElement(
       'div',
       { className: 'row mb-1' },
@@ -10433,7 +10397,7 @@ var Demo = function (_React$Component2) {
         { className: 'container' },
         _react2.default.createElement(
           'div',
-          { className: 'row my-3' },
+          { className: 'row mt-3' },
           _react2.default.createElement(
             'div',
             { className: 'col-xs-12' },
@@ -10455,7 +10419,7 @@ var Demo = function (_React$Component2) {
         ),
         _react2.default.createElement(
           'div',
-          { className: 'row mb-3' },
+          { className: 'row mt-3' },
           _react2.default.createElement(
             'div',
             { className: 'col-xs-6 offset-xs-3 col-md-2 offset-md-5' },
@@ -10464,38 +10428,19 @@ var Demo = function (_React$Component2) {
             })
           )
         ),
-        _react2.default.createElement(
-          'div',
-          { className: 'text-xs-center my-3' },
-          _react2.default.createElement(
-            'p',
-            null,
-            'Install with npm:'
-          ),
-          _react2.default.createElement(
-            'p',
-            { className: 'mb-3' },
-            _react2.default.createElement(
-              'code',
-              null,
-              'npm install ',
-              "react-circular-progressbar"
-            )
-          ),
-          _react2.default.createElement(
-            'a',
-            { className: 'btn btn-info btn-lg', href: githubURL },
-            'View project on Github'
-          )
-        ),
         _react2.default.createElement('hr', null),
         _react2.default.createElement(
           'div',
           { className: 'row mt-3' },
           _react2.default.createElement(
+            'h2',
+            { className: 'text-xs-center mb-3' },
+            'Styled with plain CSS.'
+          ),
+          _react2.default.createElement(
             Example,
             {
-              description: 'Configure color/styling based on percentage using plain old CSS classes.'
+              description: 'Change color/styling based on percentage.'
             },
             _react2.default.createElement(ChangingProgressbar, {
               percentages: [75, 100],
@@ -10507,7 +10452,7 @@ var Demo = function (_React$Component2) {
           _react2.default.createElement(
             Example,
             {
-              description: 'Configure text formatting and stroke width.'
+              description: 'Customize text formatting and stroke width.'
             },
             _react2.default.createElement(_src2.default, {
               percentage: 50,
@@ -10516,52 +10461,52 @@ var Demo = function (_React$Component2) {
                 return '$' + percentage;
               }
             })
+          ),
+          _react2.default.createElement(
+            Example,
+            {
+              description: 'Add a background color for that inverted look.'
+            },
+            _react2.default.createElement(_src2.default, {
+              className: 'background',
+              backgroundPadding: 4,
+              strokeWidth: 6,
+              percentage: 33
+            })
           )
         ),
         _react2.default.createElement('hr', null),
         _react2.default.createElement(
-          'h2',
-          { className: 'text-xs-center my-3' },
-          'Props'
-        ),
-        _react2.default.createElement(Config, {
-          name: 'percentage',
-          example: '44',
-          description: 'Percentage to display.'
-        }),
-        _react2.default.createElement(Config, {
-          name: 'strokeWidth',
-          example: '10',
-          description: 'Width of circular line'
-        }),
-        _react2.default.createElement(Config, {
-          name: 'className',
-          example: '\'your-css-class\'',
-          description: 'Classes to apply to the svg element'
-        }),
-        _react2.default.createElement(Config, {
-          name: 'initialAnimation',
-          example: 'false',
-          description: 'Toggle whether to animate progress starting from 0% on initial mount.'
-        }),
-        _react2.default.createElement(Config, {
-          name: 'classForPercentage',
-          example: '(pct) => pct < 100 ? \'incomplete\' : \'complete\'',
-          description: 'Function which can set an additional class to apply to top-level element, which can be used for coloring/styling percentage ranges differently.'
-        }),
-        _react2.default.createElement(Config, {
-          name: 'textForPercentage',
-          example: '(pct) => `${pct}%`',
-          description: 'Function which sets text formatting given a percentage.'
-        }),
-        _react2.default.createElement('hr', null),
-        _react2.default.createElement(
           'div',
-          { className: 'text-xs-center my-3' },
+          { className: 'row mt-3 mb-3' },
           _react2.default.createElement(
-            'a',
-            { className: 'btn btn-info btn-lg', href: githubURL },
-            'View project on Github'
+            'h2',
+            { className: 'text-xs-center' },
+            'Installation'
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'text-xs-center mt-3' },
+            _react2.default.createElement(
+              'p',
+              null,
+              'Install with npm:'
+            ),
+            _react2.default.createElement(
+              'p',
+              { className: 'mb-3' },
+              _react2.default.createElement(
+                'code',
+                null,
+                'npm install ',
+                "react-circular-progressbar"
+              )
+            ),
+            _react2.default.createElement(
+              'a',
+              { className: 'btn btn-info btn-lg', href: githubURL },
+              'View docs on Github'
+            )
           )
         )
       );
