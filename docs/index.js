@@ -6570,6 +6570,7 @@ var CircularProgressbar = function (_React$Component) {
           percentage = _props.percentage,
           textForPercentage = _props.textForPercentage,
           className = _props.className,
+          classes = _props.classes,
           strokeWidth = _props.strokeWidth;
 
       var classForPercentage = this.props.classForPercentage ? this.props.classForPercentage(percentage) : '';
@@ -6579,23 +6580,23 @@ var CircularProgressbar = function (_React$Component) {
       return _react2.default.createElement(
         'svg',
         {
-          className: 'CircularProgressbar ' + className + ' ' + classForPercentage,
+          className: classes.root + ' ' + className + ' ' + classForPercentage,
           viewBox: '0 0 100 100'
         },
         this.props.background ? _react2.default.createElement('circle', {
-          className: 'CircularProgressbar-background',
+          className: classes.background,
           cx: 50,
           cy: 50,
           r: 50
         }) : null,
         _react2.default.createElement('path', {
-          className: 'CircularProgressbar-trail',
+          className: classes.trail,
           d: pathDescription,
           strokeWidth: strokeWidth,
           fillOpacity: 0
         }),
         _react2.default.createElement('path', {
-          className: 'CircularProgressbar-path',
+          className: classes.path,
           d: pathDescription,
           strokeWidth: strokeWidth,
           fillOpacity: 0,
@@ -6604,7 +6605,7 @@ var CircularProgressbar = function (_React$Component) {
         text ? _react2.default.createElement(
           'text',
           {
-            className: 'CircularProgressbar-text',
+            className: classes.text,
             x: 50,
             y: 50
           },
@@ -6620,6 +6621,7 @@ var CircularProgressbar = function (_React$Component) {
 CircularProgressbar.propTypes = {
   percentage: _propTypes2.default.number.isRequired,
   className: _propTypes2.default.string,
+  classes: _propTypes2.default.objectOf(_propTypes2.default.string),
   strokeWidth: _propTypes2.default.number,
   background: _propTypes2.default.bool,
   backgroundPadding: _propTypes2.default.number,
@@ -6631,6 +6633,13 @@ CircularProgressbar.propTypes = {
 CircularProgressbar.defaultProps = {
   strokeWidth: 8,
   className: '',
+  classes: {
+    root: 'CircularProgressbar',
+    trail: 'CircularProgressbar-trail',
+    path: 'CircularProgressbar-path',
+    text: 'CircularProgressbar-text',
+    background: 'CircularProgressbar-background'
+  },
   background: false,
   backgroundPadding: null,
   initialAnimation: false,
@@ -10336,7 +10345,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-console.log('react-circular-progressbar v' + "0.4.0");
+console.log('react-circular-progressbar v' + "0.5.0");
 
 var githubURL = 'https://github.com/iqnivek/react-circular-progressbar';
 
