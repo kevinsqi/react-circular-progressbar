@@ -36,8 +36,9 @@ import CircularProgressbar from 'react-circular-progressbar';
 | Name | Description |
 | ---- | ----------- |
 | `percentage` | Numeric percentage to display, from 0-100. Required. |
-| `strokeWidth` | Width of circular line. Default: `8`. |
 | `className` | Classes to apply to the svg element |
+| `strokeWidth` | Width of circular line as a percentage relative to total width of component. Default: `8`. |
+| `backgroundPadding` | Padding between background and edge of svg as a percentage relative to total width of component. Default: `0`. |
 | `initialAnimation` | Toggle whether to animate progress starting from 0% on initial mount. Default: `false`. |
 | `classForPercentage` | Function which returns an additional class to apply to top-level svg element, which can be used for coloring/styling percentage ranges differently. Example: `(percent) => percent < 100 ? 'incomplete' : 'complete'`. |
 | `textForPercentage` | Function which returns text to display, can be configured based on percentage. Example: ``(pct) => `${pct}%` ``. |
@@ -52,6 +53,7 @@ Use plain CSS to customize the styling - the [default CSS](src/styles.css) is a 
 .CircularProgressbar-path { stroke: red; }
 .CircularProgressbar-trail { stroke: gray; }
 .CircularProgressbar-text { fill: yellow; }
+.CircularProgressbar-background { fill: green; }
 ```
 
 You can also use the `className` prop to add different classes to the top-level SVG element, and then use that to add different themes to different instances, e.g.:

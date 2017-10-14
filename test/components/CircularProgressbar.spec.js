@@ -91,8 +91,12 @@ describe('CircularProgressbar props', () => {
     );
 
     const dashoffset = wrapper.find('.CircularProgressbar-path').prop('style').strokeDashoffset;
-    const expectedDiameter = 2 * 50 * Math.PI;
+    const expectedRadius = 50;
+    const expectedDiameter = 2 * expectedRadius * Math.PI;
     const expectedOffset = ((100 - percentage) / 100) * expectedDiameter;
     assert.equal(dashoffset, `${expectedOffset}px`);
+
+    const expectedArcto = `a ${expectedRadius},${expectedRadius}`;
+    assert(wrapper.find('.CircularProgressbar-path').prop('d').includes(expectedArcto));
   });
 });

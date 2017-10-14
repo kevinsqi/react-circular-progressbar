@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 const MIN_PERCENTAGE = 0;
 const MAX_PERCENTAGE = 100;
+const BACKGROUND_OFFSET = 7;
 
 class CircularProgressbar extends React.Component {
   constructor(props) {
@@ -37,7 +38,7 @@ class CircularProgressbar extends React.Component {
   }
 
   getPathDescription() {
-    const radius = this.getRadius();
+    const radius = this.getPathRadius();
     return `
       M 50,50 m 0,-${radius}
       a ${radius},${radius} 0 1 1 0,${2 * radius}
@@ -46,7 +47,7 @@ class CircularProgressbar extends React.Component {
   }
 
   getProgressStyle() {
-    const diameter = Math.PI * 2 * this.getRadius();
+    const diameter = Math.PI * 2 * this.getPathRadius();
     const truncatedPercentage = Math.min(Math.max(this.state.percentage, MIN_PERCENTAGE), MAX_PERCENTAGE);
     return {
       strokeDasharray: `${diameter}px ${diameter}px`,
@@ -54,8 +55,10 @@ class CircularProgressbar extends React.Component {
     };
   }
 
-  getRadius() {
-    return (50 - this.props.strokeWidth / 2);
+  getPathRadius() {
+    // the radius of the path is defined to be in the middle, so in order for the path to
+    // fit perfectly inside the 100x100 viewBox, need to subtract half the strokeWidth
+    return 50 - (this.props.strokeWidth / 2) - this.props.backgroundPadding;
   }
 
   render() {
@@ -67,6 +70,13 @@ class CircularProgressbar extends React.Component {
         className={`CircularProgressbar ${this.props.className} ${classForPercentage}`}
         viewBox="0 0 100 100"
       >
+        <circle
+          className="CircularProgressbar-background"
+          cx={50}
+          cy={50}
+          r={50}
+        />
+
         <path
           className="CircularProgressbar-trail"
           d={pathDescription}
@@ -98,6 +108,7 @@ CircularProgressbar.propTypes = {
   percentage: PropTypes.number.isRequired,
   strokeWidth: PropTypes.number,
   className: PropTypes.string,
+  backgroundPadding: PropTypes.number,
   initialAnimation: PropTypes.bool,
   classForPercentage: PropTypes.func,
   textForPercentage: PropTypes.func,
@@ -106,6 +117,7 @@ CircularProgressbar.propTypes = {
 CircularProgressbar.defaultProps = {
   strokeWidth: 8,
   className: '',
+  backgroundPadding: 0,
   initialAnimation: false,
   textForPercentage: (percentage) => `${percentage}%`,
 };
