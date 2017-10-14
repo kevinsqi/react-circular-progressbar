@@ -31,6 +31,8 @@ import CircularProgressbar from 'react-circular-progressbar';
 <CircularProgressbar percentage={60} />
 ```
 
+For more in-depth examples, take a look at the [demo code](docs/demo.jsx) to see JSX for the [live demo page](http://www.kevinqi.com/react-circular-progressbar/).
+
 ## Props
 
 | Name | Description |
@@ -44,7 +46,6 @@ import CircularProgressbar from 'react-circular-progressbar';
 | `classForPercentage` | Function which returns an additional class to apply to top-level svg element, which can be used for coloring/styling percentage ranges differently. Example: `(percent) => percent < 100 ? 'incomplete' : 'complete'`. |
 | `textForPercentage` | Function which returns text to display, can be configured based on percentage. Example: ``(pct) => `${pct}%` ``. |
 
-See the [demo page JSX](docs/demo.jsx) to see code used on the live demo page.
 
 ## Customizing styles
 
