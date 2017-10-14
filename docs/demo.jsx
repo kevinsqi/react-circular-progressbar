@@ -111,7 +111,8 @@ class Demo extends React.Component {
           >
             <CircularProgressbar
               className="background"
-              strokeWidth={10}
+              backgroundGutter={4}
+              strokeWidth={6}
               percentage={33}
             />
           </Example>
