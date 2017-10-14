@@ -87,7 +87,7 @@ class CircularProgressbar extends React.Component {
         {
           this.props.background ? (
             <circle
-              className="CircularProgressbar-background"
+              className={classes.background}
               cx={50}
               cy={50}
               r={50}
@@ -146,6 +146,7 @@ CircularProgressbar.defaultProps = {
     trail: 'CircularProgressbar-trail',
     path: 'CircularProgressbar-path',
     text: 'CircularProgressbar-text',
+    background: 'CircularProgressbar-background',
   },
   background: false,
   backgroundPadding: null,
