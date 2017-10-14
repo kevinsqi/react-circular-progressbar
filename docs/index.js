@@ -10354,13 +10354,13 @@ var Example = function Example(_ref) {
       children = _ref.children;
   return _react2.default.createElement(
     'div',
-    { className: 'col-xs-12 col-sm-4' },
+    { className: 'col-xs-12 col-sm-6 col-md-3' },
     _react2.default.createElement(
       'div',
       { className: 'row mb-1' },
       _react2.default.createElement(
         'div',
-        { className: 'col-xs-4 offset-xs-4' },
+        { className: 'col-xs-6 offset-xs-3' },
         children
       )
     ),
@@ -10466,7 +10466,7 @@ var Demo = function (_React$Component2) {
           _react2.default.createElement(
             'h2',
             { className: 'text-xs-center mb-3' },
-            'Styled with plain CSS.'
+            'Built with SVG and styled with plain CSS.'
           ),
           _react2.default.createElement(
             Example,
@@ -10486,7 +10486,7 @@ var Demo = function (_React$Component2) {
               description: 'Customize text and stroke width.'
             },
             _react2.default.createElement(_src2.default, {
-              percentage: 50,
+              percentage: 33,
               strokeWidth: 5,
               textForPercentage: function textForPercentage(percentage) {
                 return '$' + percentage;
@@ -10503,8 +10503,31 @@ var Demo = function (_React$Component2) {
               background: true,
               backgroundPadding: 5,
               strokeWidth: 6,
-              percentage: 33
+              percentage: 66
             })
+          ),
+          _react2.default.createElement(
+            Example,
+            {
+              description: 'With SVG and CSS you can do anything.'
+            },
+            _react2.default.createElement(
+              'div',
+              { style: { position: 'relative', width: '100%', height: '100%' } },
+              _react2.default.createElement(
+                'div',
+                { style: { position: 'absolute', width: '100%' } },
+                _react2.default.createElement(_src2.default, {
+                  percentage: 50,
+                  textForPercentage: null
+                })
+              ),
+              _react2.default.createElement(
+                'div',
+                { style: { width: '100%', padding: '10%' } },
+                _react2.default.createElement('img', { style: { width: '100%' }, src: 'https://i.imgur.com/b9NyUGm.png', alt: 'doge' })
+              )
+            )
           )
         ),
         _react2.default.createElement('hr', null),

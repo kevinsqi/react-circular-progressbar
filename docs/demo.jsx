@@ -7,9 +7,9 @@ console.log(`react-circular-progressbar v${COMPONENT_VERSION}`);
 const githubURL = 'https://github.com/iqnivek/react-circular-progressbar';
 
 const Example = ({ description, children }) => (
-  <div className="col-xs-12 col-sm-4">
+  <div className="col-xs-12 col-sm-6 col-md-3">
     <div className="row mb-1">
-      <div className="col-xs-4 offset-xs-4">
+      <div className="col-xs-6 offset-xs-3">
         {children}
       </div>
     </div>
@@ -65,7 +65,7 @@ class Demo extends React.Component {
 
         <hr />
         <div className="row mt-3">
-          <h2 className="text-xs-center mb-3">Styled with plain CSS.</h2>
+          <h2 className="text-xs-center mb-3">Built with SVG and styled with plain CSS.</h2>
 
           <Example
             description="Change color/styling based on percentage."
@@ -82,7 +82,7 @@ class Demo extends React.Component {
             description="Customize text and stroke width."
           >
             <CircularProgressbar
-              percentage={50}
+              percentage={33}
               strokeWidth={5}
               textForPercentage={(percentage) => `$${percentage}`}
             />
@@ -96,8 +96,24 @@ class Demo extends React.Component {
               background
               backgroundPadding={5}
               strokeWidth={6}
-              percentage={33}
+              percentage={66}
             />
+          </Example>
+
+          <Example
+            description="With SVG and CSS you can do anything."
+          >
+            <div style={{ position: 'relative', width: '100%', height: '100%' }}>
+              <div style={{ position: 'absolute', width: '100%' }}>
+                <CircularProgressbar
+                  percentage={50}
+                  textForPercentage={null}
+                />
+              </div>
+              <div style={{ width: '100%', padding: '10%' }}>
+                <img style={{ width: '100%' }} src="https://i.imgur.com/b9NyUGm.png" alt="doge" />
+              </div>
+            </div>
           </Example>
         </div>
 
