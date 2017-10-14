@@ -4,10 +4,7 @@
   "description": "A circular progress indicator component",
   "author": "Kevin Qi <iqnivek@gmail.com>",
   "main": "./build/index.js",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/iqnivek/react-circular-progressbar.git"
-  },
+  "repository": "https://github.com/iqnivek/react-circular-progressbar.git",
   "license": "MIT",
   "keywords": [
     "progressbar",
