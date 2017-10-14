@@ -1,3 +1,7 @@
+## 0.4.0
+
+* Add `background` prop, fix black circle issue for upgrading without new CSS
+
 ## 0.3.0
 
 * Support custom background colors and added `backgroundPadding` prop [#23]
