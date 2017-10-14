@@ -48,7 +48,7 @@ See the [demo page JSX](docs/demo.jsx) to see code used on the live demo page.
 
 ## Customizing styles
 
-Use plain CSS to customize the styling - the [default CSS](src/styles.css) is a good starting point, but you can modify it as needed. There are CSS hooks for the path, trail, and text of the progressbar which you can customize, e.g.:
+Use plain CSS to customize the styling - the [default CSS](src/styles.css) is a good starting point, but you can modify it as needed. There are CSS hooks for the path, trail, text, and background of the progressbar which you can customize, e.g.:
 
 ```css
 .CircularProgressbar-path { stroke: red; }

@@ -6483,7 +6483,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var MIN_PERCENTAGE = 0;
 var MAX_PERCENTAGE = 100;
-var BACKGROUND_OFFSET = 7;
 
 var CircularProgressbar = function (_React$Component) {
   _inherits(CircularProgressbar, _React$Component);
@@ -6626,6 +6625,7 @@ CircularProgressbar.defaultProps = {
   strokeWidth: 8,
   className: '',
   background: false,
+  backgroundPadding: null,
   initialAnimation: false,
   textForPercentage: function textForPercentage(percentage) {
     return percentage + '%';
@@ -10329,7 +10329,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-console.log('react-circular-progressbar v' + "0.3.0");
+console.log('react-circular-progressbar v' + "0.4.0");
 
 var githubURL = 'https://github.com/iqnivek/react-circular-progressbar';
 
