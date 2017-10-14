@@ -6566,13 +6566,20 @@ var CircularProgressbar = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      var classForPercentage = this.props.classForPercentage ? this.props.classForPercentage(this.props.percentage) : '';
+      var _props = this.props,
+          percentage = _props.percentage,
+          textForPercentage = _props.textForPercentage,
+          className = _props.className,
+          strokeWidth = _props.strokeWidth;
+
+      var classForPercentage = this.props.classForPercentage ? this.props.classForPercentage(percentage) : '';
       var pathDescription = this.getPathDescription();
+      var text = textForPercentage ? textForPercentage(percentage) : null;
 
       return _react2.default.createElement(
         'svg',
         {
-          className: 'CircularProgressbar ' + this.props.className + ' ' + classForPercentage,
+          className: 'CircularProgressbar ' + className + ' ' + classForPercentage,
           viewBox: '0 0 100 100'
         },
         this.props.background ? _react2.default.createElement('circle', {
@@ -6584,25 +6591,25 @@ var CircularProgressbar = function (_React$Component) {
         _react2.default.createElement('path', {
           className: 'CircularProgressbar-trail',
           d: pathDescription,
-          strokeWidth: this.props.strokeWidth,
+          strokeWidth: strokeWidth,
           fillOpacity: 0
         }),
         _react2.default.createElement('path', {
           className: 'CircularProgressbar-path',
           d: pathDescription,
-          strokeWidth: this.props.strokeWidth,
+          strokeWidth: strokeWidth,
           fillOpacity: 0,
           style: this.getProgressStyle()
         }),
-        _react2.default.createElement(
+        text ? _react2.default.createElement(
           'text',
           {
             className: 'CircularProgressbar-text',
             x: 50,
             y: 50
           },
-          this.props.textForPercentage(this.props.percentage)
-        )
+          text
+        ) : null
       );
     }
   }]);
@@ -10350,7 +10357,7 @@ var Example = function Example(_ref) {
     ),
     _react2.default.createElement(
       'p',
-      null,
+      { className: 'text-xs-center' },
       description
     )
   );
@@ -10467,7 +10474,7 @@ var Demo = function (_React$Component2) {
           _react2.default.createElement(
             Example,
             {
-              description: 'Customize text formatting and stroke width.'
+              description: 'Customize text and stroke width.'
             },
             _react2.default.createElement(_src2.default, {
               percentage: 50,

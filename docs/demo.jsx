@@ -13,7 +13,7 @@ const Example = ({ description, children }) => (
         {children}
       </div>
     </div>
-    <p>{description}</p>
+    <p className="text-xs-center">{description}</p>
   </div>
 );
 
@@ -79,7 +79,7 @@ class Demo extends React.Component {
           </Example>
 
           <Example
-            description="Customize text formatting and stroke width."
+            description="Customize text and stroke width."
           >
             <CircularProgressbar
               percentage={50}
