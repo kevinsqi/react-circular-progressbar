@@ -74,26 +74,32 @@ class CircularProgressbar extends React.Component {
   }
 
   render() {
-    const { percentage, textForPercentage, className, classes, strokeWidth } = this.props;
+    const { percentage, textForPercentage, className, classes, strokeWidth, indicatorIcon , indicatorImg} = this.props ;
     const classForPercentage = this.props.classForPercentage ? this.props.classForPercentage(percentage) : '';
     const pathDescription = this.getPathDescription();
     const text = textForPercentage ? textForPercentage(percentage) : null;
-
+    const alertIconPosition = (this.props.percentage * 360)/100 + 'deg';
+    const alertIconAngle = '-' + (this.props.percentage *360)/100 + 'deg';
+    const indicator = {
+        img:  indicatorImg ? indicatorImg : 'default_img.png',
+     }
     return (
-      <svg
-        className={`${classes.root} ${className} ${classForPercentage}`}
-        viewBox="0 0 100 100"
-      >
-        {
-          this.props.background ? (
-            <circle
-              className={classes.background}
-              cx={50}
-              cy={50}
-              r={50}
-            />
-          ) : null
-        }
+         <div className={`csm-progressbar-icon-wrapper ${classForPercentage}`}>
+         {this.props.indicatorIcon && <div className="csm-icon" style={{transform: `rotate(${alertIconPosition})`}}><span style={{transform: `rotate(${alertIconAngle})`,backgroundImage: `url(${indicator.img})`}}></span></div >}
+         <svg
+            className={`${classes.root} ${className} ${classForPercentage}`}
+            viewBox="0 0 100 100"
+          >
+            {
+              this.props.background ? (
+                <circle
+                  className={classes.background}
+                  cx={50}
+                  cy={50}
+                  r={50}
+                />
+              ) : null
+            }
 
         <path
           className={classes.trail}
@@ -110,18 +116,19 @@ class CircularProgressbar extends React.Component {
           style={this.getProgressStyle()}
         />
 
-        {
-          text ? (
-            <text
-              className={classes.text}
-              x={50}
-              y={50}
-            >
-              {text}
-            </text>
-          ) : null
-        }
-      </svg>
+            {
+              text ? (
+                <text
+                  className={classes.text}
+                  x={50}
+                  y={50}
+                >
+                  {text}
+                </text>
+              ) : null
+            }
+          </svg>
+        </div>
     );
   }
 }

@@ -65,6 +65,56 @@ class Demo extends React.Component {
 
         <hr />
         <div className="row mt-3">
+          <h2 className="text-xs-center">You can add icon with ur progress</h2>
+            <div className="text-xs-center">
+              <p>By just passing true value to indicatorIcon</p>
+              <p>here you can pass an image link in indicatorImg</p>
+              <br/>
+              <br/>
+            </div>
+            <div className="col-xs-6 offset-xs-3 col-md-2 offset-md-5">
+              <div>
+                <div >
+                <ChangingProgressbar
+                percentages={[10, 40]}
+                indicatorIcon={true}
+                indicatorImg ='bell.png'
+                classForPercentage={(percentage) => {
+                  return percentage === 100 ? 'complete' : 'incomplete';
+                }}             
+                />
+                </div>
+                
+              </div>
+            </div>
+          </div>
+        <hr />
+        <div className="row mt-3">
+          <h2 className="text-xs-center">You can add icon with ur progress</h2>
+          <div className="text-xs-center">
+            <p>By just passing true value to indicatorIcon</p>
+            <p>if you are not passing img link in indicatorImg then the default img will show</p>
+            <br/>
+            <br/>
+          </div>
+          <div className="col-xs-6 offset-xs-3 col-md-2 offset-md-5">
+            <div>
+              <div >
+                <ChangingProgressbar
+                    percentages={[10, 40]}
+                    indicatorIcon={true}
+                    classForPercentage={(percentage) => {
+                        return percentage === 100 ? 'complete' : 'incomplete';
+                    }}
+                />
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div className="row mt-3">
+          
+        <hr/>
           <h2 className="text-xs-center mb-3">Built with SVG and styled with plain CSS.</h2>
 
           <Example
@@ -81,11 +131,13 @@ class Demo extends React.Component {
           <Example
             description="Customize text and stroke width."
           >
-            <CircularProgressbar
-              percentage={33}
-              strokeWidth={5}
-              textForPercentage={(percentage) => `$${percentage}`}
-            />
+
+                <CircularProgressbar
+                  percentage={33}
+                  strokeWidth={5}
+                  textForPercentage={(percentage) => `$${percentage}`}
+                />
+            
           </Example>
 
           <Example
@@ -118,6 +170,7 @@ class Demo extends React.Component {
         </div>
 
         <hr />
+        
         <div className="row mt-3 mb-3">
           <h2 className="text-xs-center">Installation</h2>
           <div className="text-xs-center mt-3">
