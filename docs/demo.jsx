@@ -6,6 +6,26 @@ console.log(`react-circular-progressbar v${COMPONENT_VERSION}`);
 
 const githubURL = 'https://github.com/iqnivek/react-circular-progressbar';
 
+
+class GradientSVG extends React.Component {
+  render() {
+    let { startColor, endColor, idCSS, rotation } = this.props;
+
+    let gradientTransform = `rotate(90)`;
+
+    return (
+      <svg style={{ height: 0 }}>
+        <defs>
+          <linearGradient id={idCSS} gradientTransform={gradientTransform}>
+            <stop offset="0%" stopColor={startColor} />
+            <stop offset="100%" stopColor={endColor} />
+          </linearGradient>
+        </defs>
+      </svg>
+    );
+  }
+}
+
 const Example = ({ description, children }) => (
   <div className="col-xs-12 col-sm-6 col-md-3">
     <div className="row mb-1">
@@ -57,6 +77,11 @@ class Demo extends React.Component {
 
         <div className="row mt-3">
           <div className="col-xs-6 offset-xs-3 col-md-2 offset-md-5">
+						<GradientSVG
+              startColor="#d8eaf3"
+              endColor="#255b77"
+              idCSS="gradient"
+            />
             <ChangingProgressbar
               percentages={[0, 20, 40, 60, 80, 100]}
             />

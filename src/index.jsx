@@ -51,8 +51,13 @@ class CircularProgressbar extends React.Component {
 
   getPathDescription() {
     const radius = this.getPathRadius();
+
+    const centerPoint = '50,50';
+    // move to center point (50,50)
+    // relative move to top center point
+    // relative arc to 
     return `
-      M 50,50 m 0,-${radius}
+      M ${centerPoint} m 0,-${radius}
       a ${radius},${radius} 0 1 1 0,${2 * radius}
       a ${radius},${radius} 0 1 1 0,-${2 * radius}
     `;

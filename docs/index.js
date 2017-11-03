@@ -10349,6 +10349,47 @@ console.log('react-circular-progressbar v' + "0.5.0");
 
 var githubURL = 'https://github.com/iqnivek/react-circular-progressbar';
 
+var GradientSVG = function (_Component) {
+  _inherits(GradientSVG, _Component);
+
+  function GradientSVG() {
+    _classCallCheck(this, GradientSVG);
+
+    return _possibleConstructorReturn(this, (GradientSVG.__proto__ || Object.getPrototypeOf(GradientSVG)).apply(this, arguments));
+  }
+
+  _createClass(GradientSVG, [{
+    key: 'render',
+    value: function render() {
+      var _props = this.props,
+          startColor = _props.startColor,
+          endColor = _props.endColor,
+          idCSS = _props.idCSS,
+          rotation = _props.rotation;
+
+
+      var gradientTransform = 'rotate(' + rotation + ')';
+
+      return _react2.default.createElement(
+        'svg',
+        { style: { height: 0 } },
+        _react2.default.createElement(
+          'defs',
+          null,
+          _react2.default.createElement(
+            'linearGradient',
+            { id: idCSS, gradientTransform: gradientTransform },
+            _react2.default.createElement('stop', { offset: '0%', stopColor: startColor }),
+            _react2.default.createElement('stop', { offset: '100%', stopColor: endColor })
+          )
+        )
+      );
+    }
+  }]);
+
+  return GradientSVG;
+}(Component);
+
 var Example = function Example(_ref) {
   var description = _ref.description,
       children = _ref.children;
@@ -10378,22 +10419,22 @@ var ChangingProgressbar = function (_React$Component) {
   function ChangingProgressbar(props) {
     _classCallCheck(this, ChangingProgressbar);
 
-    var _this = _possibleConstructorReturn(this, (ChangingProgressbar.__proto__ || Object.getPrototypeOf(ChangingProgressbar)).call(this, props));
+    var _this2 = _possibleConstructorReturn(this, (ChangingProgressbar.__proto__ || Object.getPrototypeOf(ChangingProgressbar)).call(this, props));
 
-    _this.state = {
+    _this2.state = {
       currentPercentageIndex: 0
     };
-    return _this;
+    return _this2;
   }
 
   _createClass(ChangingProgressbar, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
-      var _this2 = this;
+      var _this3 = this;
 
       setInterval(function () {
-        _this2.setState({
-          currentPercentageIndex: (_this2.state.currentPercentageIndex + 1) % _this2.props.percentages.length
+        _this3.setState({
+          currentPercentageIndex: (_this3.state.currentPercentageIndex + 1) % _this3.props.percentages.length
         });
       }, this.props.interval);
     }
@@ -10454,6 +10495,12 @@ var Demo = function (_React$Component2) {
           _react2.default.createElement(
             'div',
             { className: 'col-xs-6 offset-xs-3 col-md-2 offset-md-5' },
+            _react2.default.createElement(GradientSVG, {
+              startColor: '#33000',
+              endColor: '#ff0000',
+              idCSS: 'gradient',
+              rotation: 0
+            }),
             _react2.default.createElement(ChangingProgressbar, {
               percentages: [0, 20, 40, 60, 80, 100]
             })
