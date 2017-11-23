@@ -8,6 +8,7 @@
         "objects": "always-multiline"
       }
     ],
+	"linebreak-style": 0,
     "max-len": 0,
     "react/jsx-filename-extension": 0
   },

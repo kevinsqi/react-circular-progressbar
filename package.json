@@ -4,6 +4,7 @@
   "description": "A circular progress indicator component",
   "author": "Kevin Qi <iqnivek@gmail.com>",
   "main": "./build/index.js",
+  "typings": "./build/index.d.ts",
   "repository": "https://github.com/iqnivek/react-circular-progressbar.git",
   "license": "MIT",
   "keywords": [
@@ -13,8 +14,8 @@
     "svg"
   ],
   "scripts": {
-    "build": "NODE_ENV=production webpack && npm run build:demo",
-    "build:demo": "NODE_ENV=demo webpack && cp ./src/styles.css ./docs/styles.css",
+    "build": "cross-env NODE_ENV=production webpack && npm run build:demo",
+    "build:demo": "cross-env NODE_ENV=demo webpack",
     "clean": "rimraf build",
     "lint": "eslint src test",
     "prepare": "npm run clean && npm run build",
@@ -30,6 +31,8 @@
     "babel-preset-react": "^6.3.13",
     "babel-register": "^6.8.0",
     "chai": "^3.5.0",
+    "copy-webpack-plugin": "^4.2.3",
+    "cross-env": "^5.1.1",
     "enzyme": "^2.3.0",
     "eslint": "^3.11.0",
     "eslint-config-airbnb": "^14.1.0",

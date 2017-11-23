@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const path = require('path');
 const pak = require('./package.json');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const nodeEnv = process.env.NODE_ENV || 'development';
 const demoDir = 'docs';
 
@@ -36,7 +37,11 @@ const webpackConfig = {
     }),
     new webpack.LoaderOptionsPlugin({
       debug: true
-    })
+    }),
+	new CopyWebpackPlugin([
+		{ from: './src/*.d.ts', to: './', flatten: true },
+		{ from: './src/*.css', to: './', flatten: true }
+	]),
   ]
 };
 
