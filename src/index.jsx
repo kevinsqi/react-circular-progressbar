@@ -51,19 +51,23 @@ class CircularProgressbar extends React.Component {
 
   getPathDescription() {
     const radius = this.getPathRadius();
+    const rotation = this.props.counterClockwise ? 1 : 0;
     return `
-      M 50,50 m 0,-${radius}
-      a ${radius},${radius} 0 1 1 0,${2 * radius}
-      a ${radius},${radius} 0 1 1 0,-${2 * radius}
+      M 50,50
+      m 0,-${radius}
+      a ${radius},${radius} ${rotation} 1 1 0,${2 * radius}
+      a ${radius},${radius} ${rotation} 1 1 0,-${2 * radius}
     `;
   }
 
   getProgressStyle() {
     const diameter = Math.PI * 2 * this.getPathRadius();
     const truncatedPercentage = Math.min(Math.max(this.state.percentage, MIN_PERCENTAGE), MAX_PERCENTAGE);
+    const dashoffset = ((100 - truncatedPercentage) / 100) * diameter;
+
     return {
       strokeDasharray: `${diameter}px ${diameter}px`,
-      strokeDashoffset: `${((100 - truncatedPercentage) / 100 * diameter)}px`,
+      strokeDashoffset: `${this.props.counterClockwise ? -dashoffset : dashoffset}px`,
     };
   }
 
@@ -134,6 +138,7 @@ CircularProgressbar.propTypes = {
   background: PropTypes.bool,
   backgroundPadding: PropTypes.number,
   initialAnimation: PropTypes.bool,
+  counterClockwise: PropTypes.bool,
   classForPercentage: PropTypes.func,
   textForPercentage: PropTypes.func,
 };
@@ -151,6 +156,8 @@ CircularProgressbar.defaultProps = {
   background: false,
   backgroundPadding: null,
   initialAnimation: false,
+  counterClockwise: false,
+  classForPercentage: null,
   textForPercentage: (percentage) => `${percentage}%`,
 };
 

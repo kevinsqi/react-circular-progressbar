@@ -85,6 +85,7 @@ class Demo extends React.Component {
               percentage={33}
               strokeWidth={5}
               textForPercentage={(percentage) => `$${percentage}`}
+              counterClockwise
             />
           </Example>
 
