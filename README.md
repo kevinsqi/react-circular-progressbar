@@ -76,8 +76,8 @@ You can also use the `className` prop to add different classes to the top-level 
 To run demo locally on localhost:8080:
 
 ```bash
-npm install
-npm start
+yarn install
+yarn start
 ```
 
-Keep CI tests passing by running `npm test` and `npm run lint` often.
+Keep tests passing by running `yarn test` and `yarn run lint`.
