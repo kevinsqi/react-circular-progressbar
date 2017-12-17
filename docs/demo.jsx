@@ -82,10 +82,10 @@ class Demo extends React.Component {
           </Example>
 
           <Example
-            description="Customize stroke width or make it go counterclockwise."
+            description="Customize stroke width and make it go counterclockwise."
           >
-            <CircularProgressbar
-              percentage={33}
+            <ChangingProgressbar
+              percentages={[0, 20, 80]}
               strokeWidth={5}
               counterClockwise
             />
