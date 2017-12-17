@@ -3,6 +3,11 @@ import PropTypes from 'prop-types';
 
 const MIN_PERCENTAGE = 0;
 const MAX_PERCENTAGE = 100;
+const MAX_X = 100;
+const MAX_Y = 100;
+const FULL_RADIUS = 50;
+const CENTER_X = 50;
+const CENTER_Y = 50;
 
 class CircularProgressbar extends React.Component {
   constructor(props) {
@@ -52,8 +57,9 @@ class CircularProgressbar extends React.Component {
   getPathDescription() {
     const radius = this.getPathRadius();
     const rotation = this.props.counterClockwise ? 1 : 0;
+
     return `
-      M 50,50
+      M ${CENTER_X},${CENTER_Y}
       m 0,-${radius}
       a ${radius},${radius} ${rotation} 1 1 0,${2 * radius}
       a ${radius},${radius} ${rotation} 1 1 0,-${2 * radius}
@@ -74,7 +80,7 @@ class CircularProgressbar extends React.Component {
   getPathRadius() {
     // the radius of the path is defined to be in the middle, so in order for the path to
     // fit perfectly inside the 100x100 viewBox, need to subtract half the strokeWidth
-    return 50 - (this.props.strokeWidth / 2) - this.getBackgroundPadding();
+    return FULL_RADIUS - (this.props.strokeWidth / 2) - this.getBackgroundPadding();
   }
 
   render() {
@@ -86,15 +92,15 @@ class CircularProgressbar extends React.Component {
     return (
       <svg
         className={`${classes.root} ${className} ${classForPercentage}`}
-        viewBox="0 0 100 100"
+        viewBox={`0 0 ${MAX_X} ${MAX_Y}`}
       >
         {
           this.props.background ? (
             <circle
               className={classes.background}
-              cx={50}
-              cy={50}
-              r={50}
+              cx={CENTER_X}
+              cy={CENTER_Y}
+              r={FULL_RADIUS}
             />
           ) : null
         }
@@ -118,8 +124,8 @@ class CircularProgressbar extends React.Component {
           text ? (
             <text
               className={classes.text}
-              x={50}
-              y={50}
+              x={CENTER_X}
+              y={CENTER_Y}
             >
               {text}
             </text>
