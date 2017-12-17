@@ -58,6 +58,10 @@ class CircularProgressbar extends React.Component {
     const radius = this.getPathRadius();
     const rotation = this.props.counterClockwise ? 1 : 0;
 
+    // Move to center of canvas
+    // Relative move to top canvas
+    // Relative arc to bottom of canvas
+    // Relative arc to top of canvas
     return `
       M ${CENTER_X},${CENTER_Y}
       m 0,-${radius}
