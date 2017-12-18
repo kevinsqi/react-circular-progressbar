@@ -6483,6 +6483,11 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var MIN_PERCENTAGE = 0;
 var MAX_PERCENTAGE = 100;
+var MAX_X = 100;
+var MAX_Y = 100;
+var FULL_RADIUS = 50;
+var CENTER_X = 50;
+var CENTER_Y = 50;
 
 var CircularProgressbar = function (_React$Component) {
   _inherits(CircularProgressbar, _React$Component);
@@ -6544,16 +6549,24 @@ var CircularProgressbar = function (_React$Component) {
     key: 'getPathDescription',
     value: function getPathDescription() {
       var radius = this.getPathRadius();
-      return '\n      M 50,50 m 0,-' + radius + '\n      a ' + radius + ',' + radius + ' 0 1 1 0,' + 2 * radius + '\n      a ' + radius + ',' + radius + ' 0 1 1 0,-' + 2 * radius + '\n    ';
+      var rotation = this.props.counterClockwise ? 1 : 0;
+
+      // Move to center of canvas
+      // Relative move to top canvas
+      // Relative arc to bottom of canvas
+      // Relative arc to top of canvas
+      return '\n      M ' + CENTER_X + ',' + CENTER_Y + '\n      m 0,-' + radius + '\n      a ' + radius + ',' + radius + ' ' + rotation + ' 1 1 0,' + 2 * radius + '\n      a ' + radius + ',' + radius + ' ' + rotation + ' 1 1 0,-' + 2 * radius + '\n    ';
     }
   }, {
     key: 'getProgressStyle',
     value: function getProgressStyle() {
       var diameter = Math.PI * 2 * this.getPathRadius();
       var truncatedPercentage = Math.min(Math.max(this.state.percentage, MIN_PERCENTAGE), MAX_PERCENTAGE);
+      var dashoffset = (100 - truncatedPercentage) / 100 * diameter;
+
       return {
         strokeDasharray: diameter + 'px ' + diameter + 'px',
-        strokeDashoffset: (100 - truncatedPercentage) / 100 * diameter + 'px'
+        strokeDashoffset: (this.props.counterClockwise ? -dashoffset : dashoffset) + 'px'
       };
     }
   }, {
@@ -6561,7 +6574,7 @@ var CircularProgressbar = function (_React$Component) {
     value: function getPathRadius() {
       // the radius of the path is defined to be in the middle, so in order for the path to
       // fit perfectly inside the 100x100 viewBox, need to subtract half the strokeWidth
-      return 50 - this.props.strokeWidth / 2 - this.getBackgroundPadding();
+      return FULL_RADIUS - this.props.strokeWidth / 2 - this.getBackgroundPadding();
     }
   }, {
     key: 'render',
@@ -6581,13 +6594,13 @@ var CircularProgressbar = function (_React$Component) {
         'svg',
         {
           className: classes.root + ' ' + className + ' ' + classForPercentage,
-          viewBox: '0 0 100 100'
+          viewBox: '0 0 ' + MAX_X + ' ' + MAX_Y
         },
         this.props.background ? _react2.default.createElement('circle', {
           className: classes.background,
-          cx: 50,
-          cy: 50,
-          r: 50
+          cx: CENTER_X,
+          cy: CENTER_Y,
+          r: FULL_RADIUS
         }) : null,
         _react2.default.createElement('path', {
           className: classes.trail,
@@ -6606,8 +6619,8 @@ var CircularProgressbar = function (_React$Component) {
           'text',
           {
             className: classes.text,
-            x: 50,
-            y: 50
+            x: CENTER_X,
+            y: CENTER_Y
           },
           text
         ) : null
@@ -6626,6 +6639,7 @@ CircularProgressbar.propTypes = {
   background: _propTypes2.default.bool,
   backgroundPadding: _propTypes2.default.number,
   initialAnimation: _propTypes2.default.bool,
+  counterClockwise: _propTypes2.default.bool,
   classForPercentage: _propTypes2.default.func,
   textForPercentage: _propTypes2.default.func
 };
@@ -6643,6 +6657,8 @@ CircularProgressbar.defaultProps = {
   background: false,
   backgroundPadding: null,
   initialAnimation: false,
+  counterClockwise: false,
+  classForPercentage: null,
   textForPercentage: function textForPercentage(percentage) {
     return percentage + '%';
   }
@@ -10345,7 +10361,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-console.log('react-circular-progressbar v' + "0.5.0");
+console.log('react-circular-progressbar v' + "0.6.0");
 
 var githubURL = 'https://github.com/iqnivek/react-circular-progressbar';
 
@@ -10471,26 +10487,27 @@ var Demo = function (_React$Component2) {
           _react2.default.createElement(
             Example,
             {
-              description: 'Change color/styling based on percentage.'
+              description: 'Customize text and styling dynamically based on percentage.'
             },
             _react2.default.createElement(ChangingProgressbar, {
               percentages: [75, 100],
               classForPercentage: function classForPercentage(percentage) {
                 return percentage === 100 ? 'complete' : 'incomplete';
+              },
+              textForPercentage: function textForPercentage(percentage) {
+                return percentage === 100 ? percentage + '!!' : '' + percentage;
               }
             })
           ),
           _react2.default.createElement(
             Example,
             {
-              description: 'Customize text and stroke width.'
+              description: 'Customize stroke width and make it go counterclockwise.'
             },
-            _react2.default.createElement(_src2.default, {
-              percentage: 33,
+            _react2.default.createElement(ChangingProgressbar, {
+              percentages: [0, 20, 80],
               strokeWidth: 5,
-              textForPercentage: function textForPercentage(percentage) {
-                return '$' + percentage;
-              }
+              counterClockwise: true
             })
           ),
           _react2.default.createElement(
@@ -10509,7 +10526,7 @@ var Demo = function (_React$Component2) {
           _react2.default.createElement(
             Example,
             {
-              description: 'With SVG and CSS you can do anything.'
+              description: 'With SVG and CSS you can do whatever you want.'
             },
             _react2.default.createElement(
               'div',
