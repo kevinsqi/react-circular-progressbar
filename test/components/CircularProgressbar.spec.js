@@ -99,4 +99,19 @@ describe('CircularProgressbar props', () => {
     const expectedArcto = `a ${expectedRadius},${expectedRadius}`;
     assert(wrapper.find('.CircularProgressbar-path').prop('d').includes(expectedArcto));
   });
+
+  it('counterClockwise', () => {
+    const clockwise = shallow(
+      <CircularProgressbar percentage={50} />
+    );
+    const counterClockwise = shallow(
+      <CircularProgressbar percentage={50} counterClockwise />
+    );
+
+    assert.equal(
+      `-${clockwise.find('.CircularProgressbar-path').prop('style').strokeDashoffset}`,
+      counterClockwise.find('.CircularProgressbar-path').prop('style').strokeDashoffset,
+      'counterclockwise should have the negative dashoffset of clockwise',
+    );
+  });
 });
