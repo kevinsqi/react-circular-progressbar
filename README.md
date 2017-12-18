@@ -43,6 +43,7 @@ For more in-depth examples, take a look at the [demo code](docs/demo.jsx) to see
 | `background` | Whether to display background color. Default: `false`. |
 | `backgroundPadding` | Padding between background and edge of svg as a percentage relative to total width of component. Default: `0`. |
 | `initialAnimation` | Toggle whether to animate progress starting from 0% on initial mount. Default: `false`. |
+| `counterClockwise` | Toggle whether to rotate progressbar in counterclockwise direction. Default: `false`. |
 | `classForPercentage` | Function which returns an additional class to apply to top-level svg element, which can be used for coloring/styling percentage ranges differently. Example: `(percent) => percent < 100 ? 'incomplete' : 'complete'`. |
 | `textForPercentage` | Function which returns text to display, can be configured based on percentage. Example: ``(pct) => `${pct}%` ``. |
 | `classes` | Object mapping to override classNames of each svg element (root, trail, path, text, background). Enables styling with react-jss. See [this PR](https://github.com/iqnivek/react-circular-progressbar/pull/25) for more detail. |
@@ -76,8 +77,8 @@ You can also use the `className` prop to add different classes to the top-level 
 To run demo locally on localhost:8080:
 
 ```bash
-npm install
-npm start
+yarn install
+yarn start
 ```
 
-Keep CI tests passing by running `npm test` and `npm run lint` often.
+Keep tests passing by running `yarn test` and `yarn run lint`.

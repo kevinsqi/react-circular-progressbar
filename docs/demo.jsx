@@ -68,23 +68,26 @@ class Demo extends React.Component {
           <h2 className="text-xs-center mb-3">Built with SVG and styled with plain CSS.</h2>
 
           <Example
-            description="Change color/styling based on percentage."
+            description="Customize text and styling dynamically based on percentage."
           >
             <ChangingProgressbar
               percentages={[75, 100]}
               classForPercentage={(percentage) => {
                 return percentage === 100 ? 'complete' : 'incomplete';
               }}
+              textForPercentage={(percentage) => {
+                return percentage === 100 ? `${percentage}!!` : `${percentage}`;
+              }}
             />
           </Example>
 
           <Example
-            description="Customize text and stroke width."
+            description="Customize stroke width and make it go counterclockwise."
           >
-            <CircularProgressbar
-              percentage={33}
+            <ChangingProgressbar
+              percentages={[0, 20, 80]}
               strokeWidth={5}
-              textForPercentage={(percentage) => `$${percentage}`}
+              counterClockwise
             />
           </Example>
 
@@ -101,7 +104,7 @@ class Demo extends React.Component {
           </Example>
 
           <Example
-            description="With SVG and CSS you can do anything."
+            description="With SVG and CSS you can do whatever you want."
           >
             <div style={{ position: 'relative', width: '100%', height: '100%' }}>
               <div style={{ position: 'absolute', width: '100%' }}>
