@@ -120,6 +120,21 @@ class Demo extends React.Component {
           </Example>
         </div>
 
+        <div className="row mt-3">
+
+          <Example
+            description="You can even stack percentages!"
+          >
+            <CircularProgressbar
+              initialAnimation
+              percentage={0}
+              stackPercentages={[10, 20, 45]}
+              textForPercentage={() => '75%'}
+            />
+          </Example>
+        </div>
+
+
         <hr />
         <div className="row mt-3 mb-3">
           <h2 className="text-xs-center">Installation</h2>

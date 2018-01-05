@@ -13,27 +13,47 @@ class CircularProgressbar extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
+    let state = {
       percentage: props.initialAnimation ? 0 : props.percentage,
-    };
+    }
+
+    if (props.stackPercentages && Array.isArray(props.stackPercentages)) {
+      props.stackPercentages.forEach((p, idx) => {
+        state[`path-${idx}`] = props.initialAnimation ? 0 : p;
+      })
+    }
+
+    this.state = state;
   }
 
   componentDidMount() {
     if (this.props.initialAnimation) {
       this.initialTimeout = setTimeout(() => {
         this.requestAnimationFrame = window.requestAnimationFrame(() => {
-          this.setState({
+          let state = {
             percentage: this.props.percentage,
-          });
+          }
+
+          if (this.props.stackPercentages && Array.isArray(this.props.stackPercentages)) {
+            this.props.stackPercentages.forEach((p, idx) => (state[`path-${idx}`] = p))
+          }
+
+          this.setState(state);
         });
       }, 0);
     }
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({
+    let state = {
       percentage: nextProps.percentage,
-    });
+    }
+
+    if (nextProps.stackPercentages && Array.isArray(nextProps.stackPercentages)) {
+      nextProps.stackPercentages.forEach((p, idx) => (state[`path-${idx}`] = p))
+    }
+
+    this.setState(state);
   }
 
   componentWillUnmount() {
@@ -70,14 +90,17 @@ class CircularProgressbar extends React.Component {
     `;
   }
 
-  getProgressStyle() {
+  getProgressStyle(percentage=this.state.percentage, stackOffsetPercent=0) {
     const diameter = Math.PI * 2 * this.getPathRadius();
-    const truncatedPercentage = Math.min(Math.max(this.state.percentage, MIN_PERCENTAGE), MAX_PERCENTAGE);
+    const truncatedPercentage = Math.min(Math.max(percentage, MIN_PERCENTAGE), MAX_PERCENTAGE);
     const dashoffset = ((100 - truncatedPercentage) / 100) * diameter;
+    const stackOffsetDegrees = (stackOffsetPercent/100) * 360;
 
     return {
       strokeDasharray: `${diameter}px ${diameter}px`,
       strokeDashoffset: `${this.props.counterClockwise ? -dashoffset : dashoffset}px`,
+      transformOrigin: 'center',
+      transform: `rotate(${stackOffsetDegrees}deg)`
     };
   }
 
@@ -88,10 +111,26 @@ class CircularProgressbar extends React.Component {
   }
 
   render() {
-    const { percentage, textForPercentage, className, classes, strokeWidth } = this.props;
+    const { percentage, stackPercentages, textForPercentage, className, classes, strokeWidth } = this.props;
     const classForPercentage = this.props.classForPercentage ? this.props.classForPercentage(percentage) : '';
     const pathDescription = this.getPathDescription();
     const text = textForPercentage ? textForPercentage(percentage) : null;
+
+    const stackPercentagesPaths = stackPercentages ? (
+      stackPercentages.map((p, idx) => {
+        let stackOffset = idx > 0 ? stackPercentages.slice(0, idx).reduce((acc, cur) => (acc + cur)) : 0;
+
+        return (
+          <path key={`path-${idx}`}
+            className={`CircularProgressbar-path-${idx}`}
+            d={pathDescription}
+            strokeWidth={strokeWidth}
+            fillOpacity={0}
+            style={this.getProgressStyle(this.state[`path-${idx}`], stackOffset)}
+          />
+        )
+      })
+    ) : null
 
     return (
       <svg
@@ -115,6 +154,8 @@ class CircularProgressbar extends React.Component {
           strokeWidth={strokeWidth}
           fillOpacity={0}
         />
+
+        { stackPercentagesPaths }
 
         <path
           className={classes.path}
