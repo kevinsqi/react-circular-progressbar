@@ -6630,7 +6630,7 @@ var CircularProgressbar = function (_React$Component) {
         }) : 0;
 
         return _react2.default.createElement('path', { key: 'path-' + idx,
-          className: '' + (classes.stackPaths[idx] || STACK_PREFIX + ('-' + idx)),
+          className: '' + (classes.stackPaths && classes.stackPaths[idx] || STACK_PREFIX + ('-' + idx)),
           d: pathDescription,
           strokeWidth: strokeWidth,
           fillOpacity: 0,
@@ -10411,7 +10411,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-console.log('react-circular-progressbar v' + "0.6.4");
+console.log('react-circular-progressbar v' + "0.6.5");
 
 var githubURL = 'https://github.com/iqnivek/react-circular-progressbar';
 
