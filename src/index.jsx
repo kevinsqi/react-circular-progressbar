@@ -8,6 +8,7 @@ const MAX_Y = 100;
 const FULL_RADIUS = 50;
 const CENTER_X = 50;
 const CENTER_Y = 50;
+const STACK_PREFIX = 'CircularProgressbar-path';
 
 class CircularProgressbar extends React.Component {
   constructor(props) {
@@ -122,7 +123,7 @@ class CircularProgressbar extends React.Component {
 
         return (
           <path key={`path-${idx}`}
-            className={`${classes.path} path-${idx}`}
+            className={`${classes.stackPaths[idx] || (STACK_PREFIX + `-${idx}`)}`}
             d={pathDescription}
             strokeWidth={strokeWidth}
             fillOpacity={0}
@@ -203,6 +204,7 @@ CircularProgressbar.defaultProps = {
     path: 'CircularProgressbar-path',
     text: 'CircularProgressbar-text',
     background: 'CircularProgressbar-background',
+    stackPaths: []
   },
   background: false,
   backgroundPadding: null,
