@@ -6488,6 +6488,7 @@ var MAX_Y = 100;
 var FULL_RADIUS = 50;
 var CENTER_X = 50;
 var CENTER_Y = 50;
+var STACK_PREFIX = 'CircularProgressbar-path';
 
 var CircularProgressbar = function (_React$Component) {
   _inherits(CircularProgressbar, _React$Component);
@@ -6497,9 +6498,17 @@ var CircularProgressbar = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (CircularProgressbar.__proto__ || Object.getPrototypeOf(CircularProgressbar)).call(this, props));
 
-    _this.state = {
+    var state = {
       percentage: props.initialAnimation ? 0 : props.percentage
     };
+
+    if (props.stackPercentages && Array.isArray(props.stackPercentages)) {
+      props.stackPercentages.forEach(function (p, idx) {
+        state['path-' + idx] = props.initialAnimation ? 0 : p;
+      });
+    }
+
+    _this.state = state;
     return _this;
   }
 
@@ -6511,9 +6520,17 @@ var CircularProgressbar = function (_React$Component) {
       if (this.props.initialAnimation) {
         this.initialTimeout = setTimeout(function () {
           _this2.requestAnimationFrame = window.requestAnimationFrame(function () {
-            _this2.setState({
+            var state = {
               percentage: _this2.props.percentage
-            });
+            };
+
+            if (_this2.props.stackPercentages && Array.isArray(_this2.props.stackPercentages)) {
+              _this2.props.stackPercentages.forEach(function (p, idx) {
+                return state['path-' + idx] = p;
+              });
+            }
+
+            _this2.setState(state);
           });
         }, 0);
       }
@@ -6521,9 +6538,17 @@ var CircularProgressbar = function (_React$Component) {
   }, {
     key: 'componentWillReceiveProps',
     value: function componentWillReceiveProps(nextProps) {
-      this.setState({
+      var state = {
         percentage: nextProps.percentage
-      });
+      };
+
+      if (nextProps.stackPercentages && Array.isArray(nextProps.stackPercentages)) {
+        nextProps.stackPercentages.forEach(function (p, idx) {
+          return state['path-' + idx] = p;
+        });
+      }
+
+      this.setState(state);
     }
   }, {
     key: 'componentWillUnmount',
@@ -6560,13 +6585,19 @@ var CircularProgressbar = function (_React$Component) {
   }, {
     key: 'getProgressStyle',
     value: function getProgressStyle() {
+      var percentage = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.state.percentage;
+      var stackOffsetPercent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+
       var diameter = Math.PI * 2 * this.getPathRadius();
-      var truncatedPercentage = Math.min(Math.max(this.state.percentage, MIN_PERCENTAGE), MAX_PERCENTAGE);
+      var truncatedPercentage = Math.min(Math.max(percentage, MIN_PERCENTAGE), MAX_PERCENTAGE);
       var dashoffset = (100 - truncatedPercentage) / 100 * diameter;
+      var stackOffsetDegrees = stackOffsetPercent / 100 * 360;
 
       return {
         strokeDasharray: diameter + 'px ' + diameter + 'px',
-        strokeDashoffset: (this.props.counterClockwise ? -dashoffset : dashoffset) + 'px'
+        strokeDashoffset: (this.props.counterClockwise ? -dashoffset : dashoffset) + 'px',
+        transformOrigin: 'center',
+        transform: 'rotate(' + stackOffsetDegrees + 'deg)'
       };
     }
   }, {
@@ -6579,8 +6610,11 @@ var CircularProgressbar = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
+      var _this3 = this;
+
       var _props = this.props,
           percentage = _props.percentage,
+          stackPercentages = _props.stackPercentages,
           textForPercentage = _props.textForPercentage,
           className = _props.className,
           classes = _props.classes,
@@ -6589,6 +6623,20 @@ var CircularProgressbar = function (_React$Component) {
       var classForPercentage = this.props.classForPercentage ? this.props.classForPercentage(percentage) : '';
       var pathDescription = this.getPathDescription();
       var text = textForPercentage ? textForPercentage(percentage) : null;
+
+      var stackPercentagesPaths = stackPercentages ? stackPercentages.map(function (p, idx) {
+        var stackOffset = idx > 0 ? stackPercentages.slice(0, idx).reduce(function (acc, cur) {
+          return acc + cur;
+        }) : 0;
+
+        return _react2.default.createElement('path', { key: 'path-' + idx,
+          className: '' + (classes.stackPaths && classes.stackPaths[idx] || STACK_PREFIX + ('-' + idx)),
+          d: pathDescription,
+          strokeWidth: strokeWidth,
+          fillOpacity: 0,
+          style: _this3.getProgressStyle(_this3.state['path-' + idx], stackOffset)
+        });
+      }) : null;
 
       return _react2.default.createElement(
         'svg',
@@ -6608,6 +6656,7 @@ var CircularProgressbar = function (_React$Component) {
           strokeWidth: strokeWidth,
           fillOpacity: 0
         }),
+        stackPercentagesPaths,
         _react2.default.createElement('path', {
           className: classes.path,
           d: pathDescription,
@@ -6652,7 +6701,8 @@ CircularProgressbar.defaultProps = {
     trail: 'CircularProgressbar-trail',
     path: 'CircularProgressbar-path',
     text: 'CircularProgressbar-text',
-    background: 'CircularProgressbar-background'
+    background: 'CircularProgressbar-background',
+    stackPaths: []
   },
   background: false,
   backgroundPadding: null,
@@ -10361,7 +10411,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-console.log('react-circular-progressbar v' + "0.6.0");
+console.log('react-circular-progressbar v' + "0.6.5");
 
 var githubURL = 'https://github.com/iqnivek/react-circular-progressbar';
 
@@ -10454,12 +10504,12 @@ var Demo = function (_React$Component2) {
               _react2.default.createElement(
                 'h1',
                 { className: 'mb-2' },
-                "react-circular-progressbar"
+                "react-circular-multi-progressbar"
               ),
               _react2.default.createElement(
                 'p',
                 null,
-                "A circular progress indicator component"
+                "A circular progress indicator component with support for multiple bars"
               )
             )
           )
@@ -10547,6 +10597,24 @@ var Demo = function (_React$Component2) {
             )
           )
         ),
+        _react2.default.createElement(
+          'div',
+          { className: 'row mt-3' },
+          _react2.default.createElement(
+            Example,
+            {
+              description: 'You can even stack percentages!'
+            },
+            _react2.default.createElement(_src2.default, {
+              initialAnimation: true,
+              percentage: 0,
+              stackPercentages: [10, 20, 45],
+              textForPercentage: function textForPercentage() {
+                return '75%';
+              }
+            })
+          )
+        ),
         _react2.default.createElement('hr', null),
         _react2.default.createElement(
           'div',
@@ -10571,7 +10639,7 @@ var Demo = function (_React$Component2) {
                 'code',
                 null,
                 'npm install ',
-                "react-circular-progressbar"
+                "react-circular-multi-progressbar"
               )
             ),
             _react2.default.createElement(

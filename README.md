@@ -1,4 +1,15 @@
-# React Circular Progressbar
+# React Circular Multi Progressbar
+
+This is a fork of Kevin Qi's react-circular-progressbar that adds support for multiple bars within a single progressbar ring.
+
+## Multibar usage
+
+```js
+<CircularProgressbar percentage={0} stackPercentages={[10, 20, 70]} />
+```
+
+
+## Original README follows
 
 A circular progress indicator component, built with SVG. Easily customizable with CSS. [See a live demo](http://www.kevinqi.com/react-circular-progressbar/).
 
