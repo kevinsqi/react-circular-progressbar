@@ -122,7 +122,7 @@ class CircularProgressbar extends React.Component {
 
         return (
           <path key={`path-${idx}`}
-            className={`CircularProgressbar-path-${idx}`}
+            className={`${classes.path} path-${idx}`}
             d={pathDescription}
             strokeWidth={strokeWidth}
             fillOpacity={0}
