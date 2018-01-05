@@ -5,7 +5,7 @@ This is a fork of Kevin Qi's react-circular-progressbar that adds support for mu
 ## Multibar usage
 
 ```js
-<CircularProgressbar percentage={0} percentages={[10, 20, 70]} />
+<CircularProgressbar percentage={0} stackPercentages={[10, 20, 70]} />
 ```
 
 

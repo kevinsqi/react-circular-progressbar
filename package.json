@@ -1,6 +1,6 @@
 {
   "name": "react-circular-multi-progressbar",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "description": "A circular progress indicator component with support for multiple bars",
   "author": "Kevin Qi <iqnivek@gmail.com>, Dave Martinez <d@dmartinez.co>",
   "main": "./build/index.js",
