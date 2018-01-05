@@ -123,7 +123,7 @@ class CircularProgressbar extends React.Component {
 
         return (
           <path key={`path-${idx}`}
-            className={`${classes.stackPaths[idx] || (STACK_PREFIX + `-${idx}`)}`}
+            className={`${classes.stackPaths && classes.stackPaths[idx] || (STACK_PREFIX + `-${idx}`)}`}
             d={pathDescription}
             strokeWidth={strokeWidth}
             fillOpacity={0}
