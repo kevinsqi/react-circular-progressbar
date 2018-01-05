@@ -6488,6 +6488,7 @@ var MAX_Y = 100;
 var FULL_RADIUS = 50;
 var CENTER_X = 50;
 var CENTER_Y = 50;
+var STACK_PREFIX = 'CircularProgressbar-path';
 
 var CircularProgressbar = function (_React$Component) {
   _inherits(CircularProgressbar, _React$Component);
@@ -6629,7 +6630,7 @@ var CircularProgressbar = function (_React$Component) {
         }) : 0;
 
         return _react2.default.createElement('path', { key: 'path-' + idx,
-          className: classes.path + ' path-' + idx,
+          className: '' + (classes.stackPaths[idx] || STACK_PREFIX + ('-' + idx)),
           d: pathDescription,
           strokeWidth: strokeWidth,
           fillOpacity: 0,
@@ -6700,7 +6701,8 @@ CircularProgressbar.defaultProps = {
     trail: 'CircularProgressbar-trail',
     path: 'CircularProgressbar-path',
     text: 'CircularProgressbar-text',
-    background: 'CircularProgressbar-background'
+    background: 'CircularProgressbar-background',
+    stackPaths: []
   },
   background: false,
   backgroundPadding: null,
@@ -10409,7 +10411,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-console.log('react-circular-progressbar v' + "0.6.3");
+console.log('react-circular-progressbar v' + "0.6.4");
 
 var githubURL = 'https://github.com/iqnivek/react-circular-progressbar';
 
