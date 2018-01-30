@@ -6558,8 +6558,8 @@ var CircularProgressbar = function (_React$Component) {
       return '\n      M ' + CENTER_X + ',' + CENTER_Y + '\n      m 0,-' + radius + '\n      a ' + radius + ',' + radius + ' ' + rotation + ' 1 1 0,' + 2 * radius + '\n      a ' + radius + ',' + radius + ' ' + rotation + ' 1 1 0,-' + 2 * radius + '\n    ';
     }
   }, {
-    key: 'getProgressStyle',
-    value: function getProgressStyle() {
+    key: 'getPathStyles',
+    value: function getPathStyles() {
       var diameter = Math.PI * 2 * this.getPathRadius();
       var truncatedPercentage = Math.min(Math.max(this.state.percentage, MIN_PERCENTAGE), MAX_PERCENTAGE);
       var dashoffset = (100 - truncatedPercentage) / 100 * diameter;
@@ -6616,7 +6616,7 @@ var CircularProgressbar = function (_React$Component) {
           d: pathDescription,
           strokeWidth: strokeWidth,
           fillOpacity: 0,
-          style: Object.assign({}, styles.path, this.getProgressStyle())
+          style: Object.assign({}, styles.path, this.getPathStyles())
         }),
         text ? _react2.default.createElement(
           'text',
@@ -10426,9 +10426,22 @@ var ChangingProgressbar = function (_React$Component) {
       }, this.props.interval);
     }
   }, {
+    key: 'getStyles',
+    value: function getStyles() {
+      return this.props.stylesForPercentage ? this.props.stylesForPercentage(this.getCurrentPercentage()) : {};
+    }
+  }, {
+    key: 'getCurrentPercentage',
+    value: function getCurrentPercentage() {
+      return this.props.percentages[this.state.currentPercentageIndex];
+    }
+  }, {
     key: 'render',
     value: function render() {
-      return _react2.default.createElement(_src2.default, _extends({}, this.props, { percentage: this.props.percentages[this.state.currentPercentageIndex] }));
+      return _react2.default.createElement(_src2.default, _extends({}, this.props, {
+        percentage: this.getCurrentPercentage(),
+        styles: this.getStyles()
+      }));
     }
   }]);
 
@@ -10483,7 +10496,15 @@ var Demo = function (_React$Component2) {
             'div',
             { className: 'col-xs-6 offset-xs-3 col-md-2 offset-md-5' },
             _react2.default.createElement(ChangingProgressbar, {
-              percentages: [0, 20, 40, 60, 80, 100]
+              percentages: [0, 20, 40, 60, 80, 100],
+              stylesForPercentage: function stylesForPercentage(percentage) {
+                var alpha = (100 + percentage) / 200;
+                return {
+                  path: {
+                    stroke: 'rgba(62, 152, 199, ' + alpha + ')'
+                  }
+                };
+              }
             })
           )
         ),
