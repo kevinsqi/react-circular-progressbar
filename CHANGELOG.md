@@ -1,3 +1,7 @@
+## 0.7.0
+
+* Add `styles` prop for customizing inline styles [#42]
+
 ## 0.6.0
 
 * Add `counterClockwise` prop for having progressbar go in opposite direction [#39]
