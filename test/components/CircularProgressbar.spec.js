@@ -114,4 +114,20 @@ describe('CircularProgressbar props', () => {
       'counterclockwise should have the negative dashoffset of clockwise',
     );
   });
+
+  it('styles', () => {
+    const wrapper = shallow(
+      <CircularProgressbar
+        percentage={50}
+        styles={{
+          path: { stroke: '#ffffff' },
+        }}
+      />
+    );
+
+    assert.equal(
+      wrapper.find('.CircularProgressbar-path').prop('style').stroke,
+      '#ffffff',
+    );
+  });
 });
