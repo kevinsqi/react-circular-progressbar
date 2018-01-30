@@ -6584,6 +6584,7 @@ var CircularProgressbar = function (_React$Component) {
           textForPercentage = _props.textForPercentage,
           className = _props.className,
           classes = _props.classes,
+          styles = _props.styles,
           strokeWidth = _props.strokeWidth;
 
       var classForPercentage = this.props.classForPercentage ? this.props.classForPercentage(percentage) : '';
@@ -6598,12 +6599,14 @@ var CircularProgressbar = function (_React$Component) {
         },
         this.props.background ? _react2.default.createElement('circle', {
           className: classes.background,
+          style: styles.background,
           cx: CENTER_X,
           cy: CENTER_Y,
           r: FULL_RADIUS
         }) : null,
         _react2.default.createElement('path', {
           className: classes.trail,
+          style: styles.trail,
           d: pathDescription,
           strokeWidth: strokeWidth,
           fillOpacity: 0
@@ -6613,12 +6616,13 @@ var CircularProgressbar = function (_React$Component) {
           d: pathDescription,
           strokeWidth: strokeWidth,
           fillOpacity: 0,
-          style: this.getProgressStyle()
+          style: Object.assign({}, styles.path, this.getProgressStyle())
         }),
         text ? _react2.default.createElement(
           'text',
           {
             className: classes.text,
+            style: styles.text,
             x: CENTER_X,
             y: CENTER_Y
           },
@@ -6635,6 +6639,7 @@ CircularProgressbar.propTypes = {
   percentage: _propTypes2.default.number.isRequired,
   className: _propTypes2.default.string,
   classes: _propTypes2.default.objectOf(_propTypes2.default.string),
+  styles: _propTypes2.default.objectOf(_propTypes2.default.object),
   strokeWidth: _propTypes2.default.number,
   background: _propTypes2.default.bool,
   backgroundPadding: _propTypes2.default.number,
@@ -6653,6 +6658,13 @@ CircularProgressbar.defaultProps = {
     path: 'CircularProgressbar-path',
     text: 'CircularProgressbar-text',
     background: 'CircularProgressbar-background'
+  },
+  styles: {
+    root: {},
+    trail: {},
+    path: {},
+    text: {},
+    background: {}
   },
   background: false,
   backgroundPadding: null,

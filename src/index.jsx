@@ -70,7 +70,7 @@ class CircularProgressbar extends React.Component {
     `;
   }
 
-  getProgressStyle() {
+  getPathStyles() {
     const diameter = Math.PI * 2 * this.getPathRadius();
     const truncatedPercentage = Math.min(Math.max(this.state.percentage, MIN_PERCENTAGE), MAX_PERCENTAGE);
     const dashoffset = ((100 - truncatedPercentage) / 100) * diameter;
@@ -88,7 +88,14 @@ class CircularProgressbar extends React.Component {
   }
 
   render() {
-    const { percentage, textForPercentage, className, classes, styles, strokeWidth } = this.props;
+    const {
+      percentage,
+      textForPercentage,
+      className,
+      classes,
+      styles,
+      strokeWidth,
+    } = this.props;
     const classForPercentage = this.props.classForPercentage ? this.props.classForPercentage(percentage) : '';
     const pathDescription = this.getPathDescription();
     const text = textForPercentage ? textForPercentage(percentage) : null;
@@ -123,7 +130,7 @@ class CircularProgressbar extends React.Component {
           d={pathDescription}
           strokeWidth={strokeWidth}
           fillOpacity={0}
-          style={Object.assign({}, styles.path, this.getProgressStyle())}
+          style={Object.assign({}, styles.path, this.getPathStyles())}
         />
 
         {

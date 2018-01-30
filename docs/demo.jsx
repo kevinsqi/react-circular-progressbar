@@ -34,8 +34,24 @@ class ChangingProgressbar extends React.Component {
     }, this.props.interval);
   }
 
+  getStyles() {
+    return this.props.stylesForPercentage ? (
+      this.props.stylesForPercentage(this.getCurrentPercentage())
+    ) : {};
+  }
+
+  getCurrentPercentage() {
+    return this.props.percentages[this.state.currentPercentageIndex];
+  }
+
   render() {
-    return <CircularProgressbar {...this.props} percentage={this.props.percentages[this.state.currentPercentageIndex]} />;
+    return (
+      <CircularProgressbar
+        {...this.props}
+        percentage={this.getCurrentPercentage()}
+        styles={this.getStyles()}
+      />
+    );
   }
 }
 ChangingProgressbar.defaultProps = {
@@ -59,6 +75,14 @@ class Demo extends React.Component {
           <div className="col-xs-6 offset-xs-3 col-md-2 offset-md-5">
             <ChangingProgressbar
               percentages={[0, 20, 40, 60, 80, 100]}
+              stylesForPercentage={(percentage) => {
+                const alpha = (100 + percentage) / 200;
+                return {
+                  path: {
+                    stroke: `rgba(62, 152, 199, ${alpha})`,
+                  },
+                };
+              }}
             />
           </div>
         </div>
