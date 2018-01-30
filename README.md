@@ -65,6 +65,19 @@ There are CSS hooks for the path, trail, text, and background of the progressbar
 .CircularProgressbar-background { fill: green; }
 ```
 
+#### Inline style hooks
+
+There are hooks to customize the inline styles of subcomponents of the progressbar (root, path, trail, text, and background). For example, to make the path colored dynamically based on percentage:
+
+```jsx
+<CircularProgressbar
+  percentage={yourPercentage}
+  styles={{
+    path: { stroke: `rgba(62, 152, 199, ${yourPercentage / 100})` },
+  }}
+/>
+```
+
 #### Using multiple themes
 
 You can use the `className` prop to add different classes to the top-level SVG element, and then use that to add different themes to different instances, e.g.:
