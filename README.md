@@ -9,11 +9,13 @@ A circular progress indicator component, built with SVG. Easily customizable wit
 
 ## Installation
 
-Install with yarn or npm:
+Install with yarn:
 
 ```bash
 yarn add react-circular-progressbar
 ```
+
+or npm:
 
 ```bash
 npm install --save react-circular-progressbar

@@ -71,7 +71,7 @@ class Demo extends React.Component {
           </div>
         </div>
 
-        <div className="row mt-3">
+        <div className="row mt-3 mb-3">
           <div className="col-xs-6 offset-xs-3 col-md-2 offset-md-5">
             <ChangingProgressbar
               percentages={[0, 20, 40, 60, 80, 100]}
@@ -145,12 +145,40 @@ class Demo extends React.Component {
         </div>
 
         <hr />
-        <div className="row mt-3 mb-3">
+        <div className="mt-3 mb-3">
           <h2 className="text-xs-center">Installation</h2>
           <div className="text-xs-center mt-3">
-            <p>Install with npm:</p>
-            <p className="mb-3"><code>npm install {COMPONENT_NAME}</code></p>
+            <p>Install with yarn or npm:</p>
+            <p className="mb-3"><code>yarn add {COMPONENT_NAME}</code></p>
             <a className="btn btn-info btn-lg" href={githubURL}>View docs on Github</a>
+          </div>
+        </div>
+
+        <hr />
+        <div className="mt-3 mb-3">
+          <h2 className="text-xs-center">Try it out</h2>
+          <div className="row mt-3">
+            <div className="col-md-10 offset-md-1">
+              <iframe
+                src="https://codesandbox.io/embed/vymm4oln6y"
+                style={{
+                  width: '100%',
+                  height: '500px',
+                  border: 0,
+                  borderRadius: '4px',
+                  overflow: 'hidden',
+                }}
+                sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"
+              />
+            </div>
+          </div>
+        </div>
+
+        <hr />
+        <div className="my-3">
+          <div className="text-xs-center">
+            <a className="btn btn-info btn-lg" href={githubURL}>View docs on Github</a>
+            <div className="mt-3">Built by <a href="http://www.kevinqi.com/">Kevin Qi</a></div>
           </div>
         </div>
       </div>
