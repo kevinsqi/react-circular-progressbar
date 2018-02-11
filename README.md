@@ -21,13 +21,15 @@ Import the component:
 
 ```javascript
 import CircularProgressbar from 'react-circular-progressbar';
+```
 
-// If you have a CSS loader configured, you can import the stylesheet.
-// Otherwise, you can copy this CSS file into your project.
+If you have a CSS loader configured, you can import the stylesheet (if not, you can copy [styles.css](dist/styles.css) directly into your project):
+
+```javascript
 import 'react-circular-progressbar/dist/styles.css';
 ```
 
-..and use the component in your JSX:
+Now you can use the component:
 
 ```javascript
 <CircularProgressbar percentage={60} />
