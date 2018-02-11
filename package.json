@@ -18,7 +18,7 @@
   ],
   "scripts": {
     "build": "NODE_ENV=production webpack && npm run build:demo && npm run build:css",
-    "build:css": "cp ./src/styles.css ./dist/styles.css && cp ./src/styles.css ./docs/styles.css",
+    "build:css": "mkdir -p dist && cp ./src/styles.css ./dist/styles.css && cp ./src/styles.css ./docs/styles.css",
     "build:demo": "NODE_ENV=demo webpack",
     "clean": "rimraf dist",
     "lint": "eslint src test",
