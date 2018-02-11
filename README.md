@@ -23,11 +23,13 @@ Import the component:
 import CircularProgressbar from 'react-circular-progressbar';
 ```
 
-If you have a CSS loader configured, you can import the stylesheet (if not, you can copy [styles.css](dist/styles.css) directly into your project):
+If you have a CSS loader configured, you can import the stylesheet:
 
 ```javascript
 import 'react-circular-progressbar/dist/styles.css';
 ```
+
+If not, you can copy [styles.css](dist/styles.css) into your project instead and use `<link rel="stylesheet" href="styles.css" />` in your `<head>`.
 
 Now you can use the component:
 
