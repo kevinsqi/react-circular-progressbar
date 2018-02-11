@@ -1,3 +1,7 @@
+## 0.8.0
+
+* Check in build files to `/dist` and enable importing styles from `dist/styles.css` [#40] [#45]
+
 ## 0.7.0
 
 * Add `styles` prop for customizing inline styles [#42]
