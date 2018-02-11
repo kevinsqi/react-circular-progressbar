@@ -9,10 +9,14 @@ A circular progress indicator component, built with SVG. Easily customizable wit
 
 ## Installation
 
-Install the npm module:
+Install with yarn or npm:
 
 ```bash
-npm install react-circular-progressbar
+yarn add react-circular-progressbar
+```
+
+```bash
+npm install --save react-circular-progressbar
 ```
 
 ## Usage
@@ -37,9 +41,11 @@ Now you can use the component:
 <CircularProgressbar percentage={60} />
 ```
 
-For more in-depth examples, take a look at the [demo code](docs/demo.jsx) to see JSX for the [live demo page](http://www.kevinqi.com/react-circular-progressbar/).
+You can play around with a working example on CodeSandbox: https://codesandbox.io/s/vymm4oln6y
 
 ## Props
+
+For examples of how to use props, take a look at the [demo code](docs/demo.jsx) to see JSX for the [live demo page](http://www.kevinqi.com/react-circular-progressbar/).
 
 | Name | Description |
 | ---- | ----------- |
