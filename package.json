@@ -3,7 +3,7 @@
   "version": "0.7.0",
   "description": "A circular progress indicator component",
   "author": "Kevin Qi <iqnivek@gmail.com>",
-  "main": "./build/index.js",
+  "main": "./dist/index.js",
   "repository": "https://github.com/iqnivek/react-circular-progressbar.git",
   "license": "MIT",
   "keywords": [
@@ -12,10 +12,15 @@
     "react-component",
     "svg"
   ],
+  "style": "dist/styles.css",
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "build": "NODE_ENV=production webpack && npm run build:demo",
-    "build:demo": "NODE_ENV=demo webpack && cp ./src/styles.css ./docs/styles.css",
-    "clean": "rimraf build",
+    "build": "NODE_ENV=production webpack && npm run build:demo && npm run build:css",
+    "build:css": "mkdir -p dist && cp ./src/styles.css ./dist/styles.css && cp ./src/styles.css ./docs/styles.css",
+    "build:demo": "NODE_ENV=demo webpack",
+    "clean": "rimraf dist",
     "lint": "eslint src test",
     "prepare": "npm run clean && npm run build",
     "test": "mocha --compilers js:babel-register --recursive --require ./test/setup.js",

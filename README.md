@@ -5,7 +5,7 @@ A circular progress indicator component, built with SVG. Easily customizable wit
 [![npm version](https://badge.fury.io/js/react-circular-progressbar.svg)](https://badge.fury.io/js/react-circular-progressbar)
 [![Build Status](https://travis-ci.org/iqnivek/react-circular-progressbar.svg?branch=master)](https://travis-ci.org/iqnivek/react-circular-progressbar)
 
-[![react-circular-progressbar animated gif](/assets/react-circular-progressbar.gif?raw=true)](http://www.kevinqi.com/react-circular-progressbar/)
+[![react-circular-progressbar animated gif](/docs/react-circular-progressbar.gif?raw=true)](http://www.kevinqi.com/react-circular-progressbar/)
 
 ## Installation
 
@@ -15,8 +15,6 @@ Install the npm module:
 npm install react-circular-progressbar
 ```
 
-**Important**: you'll also need to copy [src/styles.css](src/styles.css) into your repo to use the default styling!
-
 ## Usage
 
 Import the component:
@@ -25,7 +23,15 @@ Import the component:
 import CircularProgressbar from 'react-circular-progressbar';
 ```
 
-..and use the component in your JSX:
+If you have a CSS loader configured, you can import the stylesheet:
+
+```javascript
+import 'react-circular-progressbar/dist/styles.css';
+```
+
+If not, you can copy [styles.css](dist/styles.css) into your project instead and use `<link rel="stylesheet" href="styles.css" />` in your `<head>`.
+
+Now you can use the component:
 
 ```javascript
 <CircularProgressbar percentage={60} />
@@ -52,7 +58,7 @@ For more in-depth examples, take a look at the [demo code](docs/demo.jsx) to see
 
 ## Customizing styles
 
-Use plain CSS to customize the styling - the [default CSS](src/styles.css) is a good starting point, but you can modify it as needed.
+Use plain CSS to customize the styling - the default CSS is a good starting point, but you can override it as needed.
 
 #### CSS hooks
 

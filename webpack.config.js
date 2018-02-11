@@ -70,7 +70,7 @@ if (nodeEnv === 'production') {
       amd: 'react'
     }
   };
-  webpackConfig.output.path = path.resolve(__dirname, 'build');
+  webpackConfig.output.path = path.resolve(__dirname, 'dist');
   webpackConfig.plugins.push(new webpack.optimize.UglifyJsPlugin({
     compress: { warnings: false },
     sourceMap: false
