@@ -17,9 +17,10 @@
     "dist"
   ],
   "scripts": {
-    "build": "NODE_ENV=production webpack && npm run build:demo",
-    "build:demo": "NODE_ENV=demo webpack && cp ./dist/styles.css ./docs/styles.css",
-    "clean": "rimraf build",
+    "build": "NODE_ENV=production webpack && npm run build:demo && npm run build:css",
+    "build:css": "cp ./src/styles.css ./dist/styles.css && cp ./src/styles.css ./docs/styles.css",
+    "build:demo": "NODE_ENV=demo webpack",
+    "clean": "rimraf dist",
     "lint": "eslint src test",
     "prepare": "npm run clean && npm run build",
     "test": "mocha --compilers js:babel-register --recursive --require ./test/setup.js",
