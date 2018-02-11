@@ -13,9 +13,9 @@
     "svg"
   ],
   "style": "dist/styles.css",
-  "files": {
+  "files": [
     "dist"
-  },
+  ],
   "scripts": {
     "build": "NODE_ENV=production webpack && npm run build:demo",
     "build:demo": "NODE_ENV=demo webpack && cp ./dist/styles.css ./docs/styles.css",
