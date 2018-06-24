@@ -1,10 +1,12 @@
 # React Circular Progressbar
 
-A circular progress indicator component, built with SVG and extensively customizable. [See a live demo](http://www.kevinqi.com/react-circular-progressbar/) or [try it out on CodeSandbox](https://codesandbox.io/s/vymm4oln6y).
-
 [![npm version](https://badge.fury.io/js/react-circular-progressbar.svg)](https://www.npmjs.com/package/react-circular-progressbar)
 [![Build Status](https://travis-ci.org/iqnivek/react-circular-progressbar.svg?branch=master)](https://travis-ci.org/iqnivek/react-circular-progressbar)
 [![Bundle size](https://img.shields.io/bundlephobia/min/react-circular-progressbar.svg)](https://bundlephobia.com/result?p=react-circular-progressbar)
+
+A circular progressbar component, built with SVG and extensively customizable.
+
+[Try it out on CodeSandbox](https://codesandbox.io/s/vymm4oln6y).
 
 <a href="https://codesandbox.io/s/vymm4oln6y"><img height="120" src="/docs/animated-progressbar.gif?raw=true" alt="animated progressbar" /></a> <a href="https://codesandbox.io/s/vymm4oln6y"><img height="120" src="/docs/circular-progressbar-examples.png?raw=true" alt="progressbar examples" /></a>
 
@@ -36,12 +38,17 @@ If you have a CSS loader configured, you can import the stylesheet:
 import 'react-circular-progressbar/dist/styles.css';
 ```
 
-If not, you can copy [styles.css](dist/styles.css) into your project instead and use `<link rel="stylesheet" href="styles.css" />` in your `<head>`.
+If not, you can copy [styles.css](dist/styles.css) into your project instead, and include `<link rel="stylesheet" href="styles.css" />` in your `<head>`.
 
 Now you can use the component:
 
-```javascript
-<CircularProgressbar percentage={60} />
+```jsx
+const percentage = 66;
+
+<CircularProgressbar
+  percentage={percentage}
+  text={`${percentage}%`}
+/>
 ```
 
 ## Props
@@ -51,7 +58,8 @@ Now you can use the component:
 | Name | Description |
 | ---- | ----------- |
 | `percentage` | Numeric percentage to display, from 0-100. Required. |
-| `className` | Classes to apply to the svg element |
+| `className` | Classes to apply to the svg element. Default: `''`. |
+| `text` | Text to display inside progressbar. Default: `null`. |
 | `strokeWidth` | Width of circular line as a percentage relative to total width of component. Default: `8`. |
 | `background` | Whether to display background color. Default: `false`. |
 | `backgroundPadding` | Padding between background and edge of svg as a percentage relative to total width of component. Default: `null`. |
@@ -59,8 +67,6 @@ Now you can use the component:
 | `counterClockwise` | Toggle whether to rotate progressbar in counterclockwise direction. Default: `false`. |
 | `classes` | Object allowing overrides of classNames of each svg subcomponent (root, trail, path, text, background). Enables styling with react-jss. See [this PR](https://github.com/iqnivek/react-circular-progressbar/pull/25) for more detail. |
 | `styles` | Object allowing customization of styles of each svg subcomponent (root, trail, path, text, background). |
-| `classForPercentage` | **Deprecated** - please use `className` prop instead. Example: `(percent) => percent < 100 ? 'incomplete' : 'complete'`. |
-| `textForPercentage` | Function which returns text to display, can be configured based on percentage. Example: ``(pct) => `${pct}%` ``. |
 
 
 ## Customizing styles
@@ -74,6 +80,7 @@ There are hooks to customize the inline styles of each subcomponent of the progr
 ```jsx
 <CircularProgressbar
   percentage={percentage}
+  text={`${percentage}%`}
   styles={{
     path: { stroke: `rgba(62, 152, 199, ${percentage / 100})` },
     text: { fill: '#f88', fontSize: '16px' },

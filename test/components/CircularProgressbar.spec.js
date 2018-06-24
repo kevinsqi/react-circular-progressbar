@@ -28,48 +28,6 @@ describe('CircularProgressbar props', () => {
     assert.equal(2, wrapper.find('.CircularProgressbar-path').prop('strokeWidth'));
   });
 
-  it('classForPercentage', () => {
-    function classForPercentage(percentage) {
-      return percentage < 100 ? 'incomplete' : 'done';
-    }
-    const bar1 = shallow(
-      <CircularProgressbar
-        percentage={50}
-        classForPercentage={classForPercentage}
-      />
-    );
-    assert.include(bar1.find('.CircularProgressbar').prop('className'), 'incomplete', 'should have correct class depending on percentage');
-
-    const bar2 = shallow(
-      <CircularProgressbar
-        percentage={100}
-        classForPercentage={classForPercentage}
-      />
-    );
-    assert.include(bar2.find('.CircularProgressbar').prop('className'), 'done', 'should have correct class depending on percentage');
-  });
-
-  it('textForPercentage', () => {
-    function textForPercentage(percentage) {
-      return percentage < 50 ? `meh ${percentage}` : `yey ${percentage}`;
-    }
-    const bar1 = shallow(
-      <CircularProgressbar
-        percentage={25}
-        textForPercentage={textForPercentage}
-      />
-    );
-    assert.equal('meh 25', bar1.find('.CircularProgressbar-text').prop('children'));
-
-    const bar2 = shallow(
-      <CircularProgressbar
-        percentage={80}
-        textForPercentage={textForPercentage}
-      />
-    );
-    assert.equal('yey 80', bar2.find('.CircularProgressbar-text').prop('children'));
-  });
-
   it('className', () => {
     const wrapper = shallow(
       <CircularProgressbar
@@ -78,6 +36,26 @@ describe('CircularProgressbar props', () => {
       />
     );
     assert(wrapper.find('svg').prop('className').includes('my-custom-class'));
+  });
+
+  it('text does not render when null', () => {
+    const wrapper = shallow(
+      <CircularProgressbar
+        percentage={50}
+      />
+    );
+    assert(!wrapper.find('.CircularProgressbar-text').exists());
+  });
+
+  it('text', () => {
+    const percentage = 50;
+    const wrapper = shallow(
+      <CircularProgressbar
+        percentage={percentage}
+        text={`${percentage}%`}
+      />
+    );
+    assert.equal(wrapper.find('.CircularProgressbar-text').text(), '50%');
   });
 
   it('percentage', () => {
@@ -116,9 +94,11 @@ describe('CircularProgressbar props', () => {
   });
 
   it('styles', () => {
+    const percentage = 50;
     const wrapper = shallow(
       <CircularProgressbar
-        percentage={50}
+        percentage={percentage}
+        text={`${percentage}%`}
         background
         styles={{
           root: { stroke: '#000000' },
@@ -149,5 +129,69 @@ describe('CircularProgressbar props', () => {
       wrapper.find('.CircularProgressbar-background').prop('style').stroke,
       '#444444',
     );
+  });
+
+  it('background does not render when null', () => {
+    const wrapper = shallow(
+      <CircularProgressbar
+        percentage={50}
+      />
+    );
+    assert(!wrapper.find('.CircularProgressbar-background').exists());
+  });
+
+  it('background', () => {
+    const wrapper = shallow(
+      <CircularProgressbar
+        percentage={50}
+        background
+      />
+    );
+    assert(wrapper.find('.CircularProgressbar-background').exists());
+    assert.equal(wrapper.find('.CircularProgressbar-background').type(), 'circle');
+    assert.equal(wrapper.find('.CircularProgressbar-background').prop('r'), 50);
+  });
+
+  it('classes defaults', () => {
+    const wrapper = shallow(
+      <CircularProgressbar
+        percentage={50}
+        text="50"
+      />
+    );
+    assert.equal(wrapper.find('.CircularProgressbar').type(), 'svg');
+    assert.equal(wrapper.find('.CircularProgressbar-path').type(), 'path');
+    assert.equal(wrapper.find('.CircularProgressbar-trail').type(), 'path');
+    assert.equal(wrapper.find('.CircularProgressbar-text').type(), 'text');
+  });
+
+  it('classes', () => {
+    const wrapper = shallow(
+      <CircularProgressbar
+        percentage={50}
+        text="50"
+        background
+        classes={{
+          root: 'someRootClass',
+          path: 'somePathClass',
+          trail: 'someTrailClass',
+          text: 'someTextClass',
+          background: 'someBackgroundClass',
+        }}
+      />
+    );
+
+    // Assert default classes don't exist
+    assert(!wrapper.find('.CircularProgressbar').exists());
+    assert(!wrapper.find('.CircularProgressbar-path').exists());
+    assert(!wrapper.find('.CircularProgressbar-trail').exists());
+    assert(!wrapper.find('.CircularProgressbar-text').exists());
+    assert(!wrapper.find('.CircularProgressbar-background').exists());
+    // Assert override classes do exist
+    assert.equal(wrapper.find('.someRootClass').type(), 'svg');
+    assert.equal(wrapper.find('.somePathClass').type(), 'path');
+    assert.equal(wrapper.find('.someTrailClass').type(), 'path');
+    assert.equal(wrapper.find('.someTextClass').type(), 'text');
+    assert.equal(wrapper.find('.someBackgroundClass').type(), 'circle');
   });
 });

@@ -1,8 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import CircularProgressbar from '../src';
-
-console.log(`react-circular-progressbar v${COMPONENT_VERSION}`);
+import ChangingProgressbar from './ChangingProgressbar';
 
 const githubURL = 'https://github.com/iqnivek/react-circular-progressbar';
 
@@ -17,47 +16,6 @@ const Example = ({ description, children }) => (
   </div>
 );
 
-class ChangingProgressbar extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      currentPercentageIndex: 0,
-    };
-  }
-
-  componentDidMount() {
-    setInterval(() => {
-      this.setState({
-        currentPercentageIndex: (this.state.currentPercentageIndex + 1) % this.props.percentages.length
-      });
-    }, this.props.interval);
-  }
-
-  getStyles() {
-    return this.props.stylesForPercentage ? (
-      this.props.stylesForPercentage(this.getCurrentPercentage())
-    ) : {};
-  }
-
-  getCurrentPercentage() {
-    return this.props.percentages[this.state.currentPercentageIndex];
-  }
-
-  render() {
-    return (
-      <CircularProgressbar
-        {...this.props}
-        percentage={this.getCurrentPercentage()}
-        styles={this.getStyles()}
-      />
-    );
-  }
-}
-ChangingProgressbar.defaultProps = {
-  interval: 1000,
-}
-
 class Demo extends React.Component {
   render() {
     return (
@@ -65,8 +23,8 @@ class Demo extends React.Component {
         <div className="row mt-3">
           <div className="col-xs-12">
             <div className="text-xs-center">
-              <h1 className="mb-2">{COMPONENT_NAME}</h1>
-              <p>{COMPONENT_DESCRIPTION}</p>
+              <h1 className="mb-2">react-circular-progressbar</h1>
+              <p>A circular progress indicator component</p>
             </div>
           </div>
         </div>
@@ -124,6 +82,7 @@ class Demo extends React.Component {
               backgroundPadding={5}
               strokeWidth={6}
               percentage={66}
+              text={`${66}%`}
             />
           </Example>
 
@@ -134,7 +93,6 @@ class Demo extends React.Component {
               <div style={{ position: 'absolute', width: '100%' }}>
                 <CircularProgressbar
                   percentage={50}
-                  textForPercentage={null}
                 />
               </div>
               <div style={{ width: '100%', padding: '10%' }}>
@@ -149,7 +107,7 @@ class Demo extends React.Component {
           <h2 className="text-xs-center">Installation</h2>
           <div className="text-xs-center mt-3">
             <p>Install with yarn or npm:</p>
-            <p className="mb-3"><code>yarn add {COMPONENT_NAME}</code></p>
+            <p className="mb-3"><code>yarn add react-circular-progressbar</code></p>
             <a className="btn btn-info btn-lg" href={githubURL}>View docs on Github</a>
           </div>
         </div>

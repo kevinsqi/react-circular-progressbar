@@ -1,6 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
-const pak = require('./package.json');
+
 const nodeEnv = process.env.NODE_ENV || 'development';
 const demoDir = 'docs';
 
@@ -51,14 +51,6 @@ if (nodeEnv === 'development') {
 if (nodeEnv === 'demo') {
   webpackConfig.entry['react-circular-progressbar'].push(path.resolve(__dirname, demoDir, 'demo.jsx'));
   webpackConfig.output.path = path.resolve(__dirname, demoDir);
-}
-
-if (nodeEnv === 'development' || nodeEnv === 'demo') {
-  webpackConfig.plugins.push(new webpack.DefinePlugin({
-    'COMPONENT_NAME': JSON.stringify(pak.name),
-    'COMPONENT_VERSION': JSON.stringify(pak.version),
-    'COMPONENT_DESCRIPTION': JSON.stringify(pak.description)
-  }));
 }
 
 if (nodeEnv === 'production') {

@@ -90,19 +90,17 @@ class CircularProgressbar extends React.Component {
   render() {
     const {
       percentage,
-      textForPercentage,
       className,
       classes,
       styles,
       strokeWidth,
+      text,
     } = this.props;
-    const classForPercentage = this.props.classForPercentage ? this.props.classForPercentage(percentage) : '';
     const pathDescription = this.getPathDescription();
-    const text = textForPercentage ? textForPercentage(percentage) : null;
 
     return (
       <svg
-        className={`${classes.root} ${className} ${classForPercentage}`}
+        className={`${classes.root} ${className}`}
         style={styles.root}
         viewBox={`0 0 ${MAX_X} ${MAX_Y}`}
       >
@@ -154,6 +152,7 @@ class CircularProgressbar extends React.Component {
 CircularProgressbar.propTypes = {
   percentage: PropTypes.number.isRequired,
   className: PropTypes.string,
+  text: PropTypes.string,
   classes: PropTypes.objectOf(PropTypes.string),
   styles: PropTypes.objectOf(PropTypes.object),
   strokeWidth: PropTypes.number,
@@ -161,13 +160,12 @@ CircularProgressbar.propTypes = {
   backgroundPadding: PropTypes.number,
   initialAnimation: PropTypes.bool,
   counterClockwise: PropTypes.bool,
-  classForPercentage: PropTypes.func,
-  textForPercentage: PropTypes.func,
 };
 
 CircularProgressbar.defaultProps = {
   strokeWidth: 8,
   className: '',
+  text: null,
   classes: {
     root: 'CircularProgressbar',
     trail: 'CircularProgressbar-trail',
@@ -186,8 +184,6 @@ CircularProgressbar.defaultProps = {
   backgroundPadding: null,
   initialAnimation: false,
   counterClockwise: false,
-  classForPercentage: null,
-  textForPercentage: (percentage) => `${percentage}%`,
 };
 
 export default CircularProgressbar;
