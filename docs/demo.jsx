@@ -2,8 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import CircularProgressbar from '../src';
 
-console.log(`react-circular-progressbar v${COMPONENT_VERSION}`);
-
 const githubURL = 'https://github.com/iqnivek/react-circular-progressbar';
 
 const Example = ({ description, children }) => (
@@ -44,11 +42,18 @@ class ChangingProgressbar extends React.Component {
     return this.props.percentages[this.state.currentPercentageIndex];
   }
 
+  getText() {
+    return this.props.textForPercentage
+      ? this.props.textForPercentage(this.getCurrentPercentage())
+      : `${this.getCurrentPercentage()}%`;
+  }
+
   render() {
     return (
       <CircularProgressbar
         {...this.props}
         percentage={this.getCurrentPercentage()}
+        text={this.getText()}
         styles={this.getStyles()}
       />
     );

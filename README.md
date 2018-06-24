@@ -41,7 +41,8 @@ If not, you can copy [styles.css](dist/styles.css) into your project instead and
 Now you can use the component:
 
 ```javascript
-<CircularProgressbar percentage={60} />
+const percentage = 66;
+<CircularProgressbar percentage={percentage} text={`${percentage}%`} />
 ```
 
 ## Props
