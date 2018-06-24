@@ -1,3 +1,62 @@
+## 1.0.0
+
+We're at 1.0.0! 🎉  Thank you to all the contributors and issue creators.
+
+The main breaking change is the replacement of the `classForPercentage` prop with `className`, and the `textForPercentage` prop with `text` [#61].
+
+**How to migrate**:
+
+Previously, the text would by default display as "{yourPercentage}%". With 1.0, if you want to display that text, you need to supply the `text` prop explicitly:
+
+```jsx
+const percentage = 60;
+
+<CircularProgressbar
+  percentage={percentage}
+  text={`${percentage}%`}
+/>
+```
+
+If you had customized either `classForPercentage` or `textForPercentage` functions before 1.0, you can reuse the same function for `className` and `text`.
+
+So if your pre-1.0 usage looked like this:
+
+```jsx
+function customClassForPercentage(percentage) {
+  if (percentage < 50) {
+    return 'red';
+  } else {
+    return 'blue';
+  }
+}
+
+function customTextForPercentage(percentage) {
+  if (percentage === 100) {
+    return `${percentage}!!!`;
+  } else {
+    return `${percentage}%`;
+  }
+}
+
+const percentage = 60;
+
+<CircularProgressbar
+  percentage={percentage}
+  classForPercentage={customClassForPercentage}
+  textForPercentage={customTextForPercentage}
+/>
+```
+
+...you can make a small change to make it work in 1.0:
+
+```jsx
+<CircularProgressbar
+  percentage={percentage}
+  className={customClassForPercentage()}
+  text={customTextForPercentage()}
+/>
+```
+
 ## 0.8.1
 
 * Use styles.root style hook properly [#60]

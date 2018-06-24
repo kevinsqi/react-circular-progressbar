@@ -68,6 +68,7 @@ const percentage = 66;
 | `classes` | Object allowing overrides of classNames of each svg subcomponent (root, trail, path, text, background). Enables styling with react-jss. See [this PR](https://github.com/iqnivek/react-circular-progressbar/pull/25) for more detail. |
 | `styles` | Object allowing customization of styles of each svg subcomponent (root, trail, path, text, background). |
 
+Version 1.0.0 removed the `classForPercentage` and `textForPercentage` props in favor of the newer `className` and `text` props. Take a look at the [migration guide](/CHANGELOG.md) for instructions on how to migrate.
 
 ## Customizing styles
 
