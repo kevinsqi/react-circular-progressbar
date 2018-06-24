@@ -65,8 +65,6 @@ const percentage = 66;
 | `counterClockwise` | Toggle whether to rotate progressbar in counterclockwise direction. Default: `false`. |
 | `classes` | Object allowing overrides of classNames of each svg subcomponent (root, trail, path, text, background). Enables styling with react-jss. See [this PR](https://github.com/iqnivek/react-circular-progressbar/pull/25) for more detail. |
 | `styles` | Object allowing customization of styles of each svg subcomponent (root, trail, path, text, background). |
-| `classForPercentage` | **Deprecated** - please use `className` prop instead. Example: `(percent) => percent < 100 ? 'incomplete' : 'complete'`. |
-| `textForPercentage` | **Deprecated** - please use `text` prop instead. [See this post](https://github.com/iqnivek/react-circular-progressbar/issues/29#issuecomment-341628016) on how to migrate. Example: ``(pct) => `${pct}%`. |
 
 
 ## Customizing styles

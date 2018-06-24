@@ -82,6 +82,7 @@ class Demo extends React.Component {
               backgroundPadding={5}
               strokeWidth={6}
               percentage={66}
+              text={`${66}%`}
             />
           </Example>
 
@@ -92,7 +93,6 @@ class Demo extends React.Component {
               <div style={{ position: 'absolute', width: '100%' }}>
                 <CircularProgressbar
                   percentage={50}
-                  textForPercentage={null}
                 />
               </div>
               <div style={{ width: '100%', padding: '10%' }}>
