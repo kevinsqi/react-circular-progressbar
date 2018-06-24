@@ -38,6 +38,26 @@ describe('CircularProgressbar props', () => {
     assert(wrapper.find('svg').prop('className').includes('my-custom-class'));
   });
 
+  it('text does not render when null', () => {
+    const wrapper = shallow(
+      <CircularProgressbar
+        percentage={50}
+      />
+    );
+    assert(!wrapper.find('.CircularProgressbar-text').exists());
+  });
+
+  it('text', () => {
+    const percentage = 50;
+    const wrapper = shallow(
+      <CircularProgressbar
+        percentage={percentage}
+        text={`${percentage}%`}
+      />
+    );
+    assert.equal(wrapper.find('.CircularProgressbar-text').text(), '50%');
+  });
+
   it('percentage', () => {
     const percentage = 30;
     const wrapper = shallow(
