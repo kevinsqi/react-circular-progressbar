@@ -130,4 +130,68 @@ describe('CircularProgressbar props', () => {
       '#444444',
     );
   });
+
+  it('background does not render when null', () => {
+    const wrapper = shallow(
+      <CircularProgressbar
+        percentage={50}
+      />
+    );
+    assert(!wrapper.find('.CircularProgressbar-background').exists());
+  });
+
+  it('background', () => {
+    const wrapper = shallow(
+      <CircularProgressbar
+        percentage={50}
+        background
+      />
+    );
+    assert(wrapper.find('.CircularProgressbar-background').exists());
+    assert.equal(wrapper.find('.CircularProgressbar-background').type(), 'circle');
+    assert.equal(wrapper.find('.CircularProgressbar-background').prop('r'), 50);
+  });
+
+  it('classes defaults', () => {
+    const wrapper = shallow(
+      <CircularProgressbar
+        percentage={50}
+        text="50"
+      />
+    );
+    assert.equal(wrapper.find('.CircularProgressbar').type(), 'svg');
+    assert.equal(wrapper.find('.CircularProgressbar-path').type(), 'path');
+    assert.equal(wrapper.find('.CircularProgressbar-trail').type(), 'path');
+    assert.equal(wrapper.find('.CircularProgressbar-text').type(), 'text');
+  });
+
+  it('classes', () => {
+    const wrapper = shallow(
+      <CircularProgressbar
+        percentage={50}
+        text="50"
+        background
+        classes={{
+          root: 'someRootClass',
+          path: 'somePathClass',
+          trail: 'someTrailClass',
+          text: 'someTextClass',
+          background: 'someBackgroundClass',
+        }}
+      />
+    );
+
+    // Assert default classes don't exist
+    assert(!wrapper.find('.CircularProgressbar').exists());
+    assert(!wrapper.find('.CircularProgressbar-path').exists());
+    assert(!wrapper.find('.CircularProgressbar-trail').exists());
+    assert(!wrapper.find('.CircularProgressbar-text').exists());
+    assert(!wrapper.find('.CircularProgressbar-background').exists());
+    // Assert override classes do exist
+    assert.equal(wrapper.find('.someRootClass').type(), 'svg');
+    assert.equal(wrapper.find('.somePathClass').type(), 'path');
+    assert.equal(wrapper.find('.someTrailClass').type(), 'path');
+    assert.equal(wrapper.find('.someTextClass').type(), 'text');
+    assert.equal(wrapper.find('.someBackgroundClass').type(), 'circle');
+  });
 });
