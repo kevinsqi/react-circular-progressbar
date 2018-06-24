@@ -1,6 +1,6 @@
 {
   "name": "react-circular-progressbar",
-  "version": "0.8.1",
+  "version": "1.0.0",
   "description": "A circular progress indicator component",
   "author": "Kevin Qi <iqnivek@gmail.com>",
   "main": "./dist/index.js",
