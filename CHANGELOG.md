@@ -1,3 +1,7 @@
+## 0.8.1
+
+* Use styles.root style hook properly [#60]
+
 ## 0.8.0
 
 * Check in build files to `/dist` and enable importing styles from `dist/styles.css` [#40] [#45]
