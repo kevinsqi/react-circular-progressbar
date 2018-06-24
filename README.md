@@ -1,6 +1,6 @@
 # React Circular Progressbar
 
-A circular progress indicator component, built with SVG. Easily customizable with CSS. [See a live demo](http://www.kevinqi.com/react-circular-progressbar/).
+A circular progress indicator component, built with SVG and extensively customizable. [See a live demo](http://www.kevinqi.com/react-circular-progressbar/) or [try it out on CodeSandbox](https://codesandbox.io/s/vymm4oln6y).
 
 [![npm version](https://badge.fury.io/js/react-circular-progressbar.svg)](https://www.npmjs.com/package/react-circular-progressbar)
 [![Build Status](https://travis-ci.org/iqnivek/react-circular-progressbar.svg?branch=master)](https://travis-ci.org/iqnivek/react-circular-progressbar)
@@ -44,11 +44,9 @@ Now you can use the component:
 <CircularProgressbar percentage={60} />
 ```
 
-You can play around with a working example on CodeSandbox: https://codesandbox.io/s/vymm4oln6y
-
 ## Props
 
-For examples of how to use props, take a look at the [demo code](docs/demo.jsx) to see JSX for the [live demo page](http://www.kevinqi.com/react-circular-progressbar/).
+[**Take a look at the CodeSandbox**](https://codesandbox.io/s/vymm4oln6y) for interactive examples on how to use these props.
 
 | Name | Description |
 | ---- | ----------- |
@@ -56,55 +54,52 @@ For examples of how to use props, take a look at the [demo code](docs/demo.jsx) 
 | `className` | Classes to apply to the svg element |
 | `strokeWidth` | Width of circular line as a percentage relative to total width of component. Default: `8`. |
 | `background` | Whether to display background color. Default: `false`. |
-| `backgroundPadding` | Padding between background and edge of svg as a percentage relative to total width of component. Default: `0`. |
+| `backgroundPadding` | Padding between background and edge of svg as a percentage relative to total width of component. Default: `null`. |
 | `initialAnimation` | Toggle whether to animate progress starting from 0% on initial mount. Default: `false`. |
 | `counterClockwise` | Toggle whether to rotate progressbar in counterclockwise direction. Default: `false`. |
-| `classForPercentage` | Function which returns an additional class to apply to top-level svg element, which can be used for coloring/styling percentage ranges differently. Example: `(percent) => percent < 100 ? 'incomplete' : 'complete'`. |
-| `textForPercentage` | Function which returns text to display, can be configured based on percentage. Example: ``(pct) => `${pct}%` ``. |
 | `classes` | Object allowing overrides of classNames of each svg subcomponent (root, trail, path, text, background). Enables styling with react-jss. See [this PR](https://github.com/iqnivek/react-circular-progressbar/pull/25) for more detail. |
 | `styles` | Object allowing customization of styles of each svg subcomponent (root, trail, path, text, background). |
+| `classForPercentage` | **Deprecated** - please use `className` prop instead. Example: `(percent) => percent < 100 ? 'incomplete' : 'complete'`. |
+| `textForPercentage` | Function which returns text to display, can be configured based on percentage. Example: ``(pct) => `${pct}%` ``. |
 
 
 ## Customizing styles
 
-Use plain CSS to customize the styling - the default CSS is a good starting point, but you can override it as needed.
-
-#### CSS hooks
-
-There are CSS hooks for the path, trail, text, and background of the progressbar which you can customize, e.g.:
-
-```css
-.CircularProgressbar-path       { stroke: red; }
-.CircularProgressbar-trail      { stroke: gray; }
-.CircularProgressbar-text       { fill: yellow; }
-.CircularProgressbar-background { fill: green; }
-```
+Use CSS or inline styles to customize the styling - the default CSS is a good starting point, but you can override it as needed.
 
 #### Inline style hooks
 
-There are hooks to customize the inline styles of subcomponents of the progressbar (root, path, trail, text, and background). For example, to make the path colored dynamically based on percentage:
+There are hooks to customize the inline styles of each subcomponent of the progressbar (the root svg, path, trail, text, and background).
 
 ```jsx
 <CircularProgressbar
-  percentage={yourPercentage}
+  percentage={percentage}
   styles={{
-    path: { stroke: `rgba(62, 152, 199, ${yourPercentage / 100})` },
+    path: { stroke: `rgba(62, 152, 199, ${percentage / 100})` },
+    text: { fill: '#f88', fontSize: '16px' },
   }}
 />
 ```
 
-#### Using multiple themes
+See `StyledProgressbar.js` in the [CodeSandbox examples](https://codesandbox.io/s/vymm4oln6y) for in-depth examples on how to customize these styles.
 
-You can use the `className` prop to add different classes to the top-level SVG element, and then use that to add different themes to different instances, e.g.:
+#### CSS hooks
 
-```javascript
-<CircularProgressbar percentage={25} className="progressbar-red" />
-<CircularProgressbar percentage={25} className="progressbar-blue" />
+There are equivalent CSS hooks for the root, path, trail, text, and background of the progressbar which you can customize.
+
+If you're importing the default styles, you can override the defaults like this:
+
+```jsx
+import 'react-circular-progressbar/dist/styles.css';
+import './custom.css';
 ```
 
 ```css
-.progressbar-red .CircularProgressbar-path { stroke: red; }
-.progressbar-blue .CircularProgressbar-path { stroke: blue; }
+// custom.css
+.CircularProgressbar-path       { stroke: red; }
+.CircularProgressbar-trail      { stroke: gray; }
+.CircularProgressbar-text       { fill: yellow; }
+.CircularProgressbar-background { fill: green; }
 ```
 
 #### Advanced usage
@@ -117,13 +112,11 @@ A lot of use cases can be covered with CSS. A few examples:
 * [Customizing the background](https://github.com/iqnivek/react-circular-progressbar/issues/21#issuecomment-336613160)
 
 
-## Development
+## Contributing
 
-To run demo locally on localhost:8080:
+Take a look at [CONTRIBUTING.md](/CONTRIBUTING.md) to see how to develop on react-circular-progressbar.
 
-```bash
-yarn install
-yarn start
-```
 
-Keep tests passing by running `yarn test` and `yarn run lint`.
+## License
+
+[MIT](/LICENSE)
