@@ -6,7 +6,8 @@ A circular progress indicator component, built with SVG and extensively customiz
 [![Build Status](https://travis-ci.org/iqnivek/react-circular-progressbar.svg?branch=master)](https://travis-ci.org/iqnivek/react-circular-progressbar)
 [![Bundle size](https://img.shields.io/bundlephobia/min/react-circular-progressbar.svg)](https://bundlephobia.com/result?p=react-circular-progressbar)
 
-[![react-circular-progressbar animated gif](/docs/react-circular-progressbar.gif?raw=true)](http://www.kevinqi.com/react-circular-progressbar/)
+[![react-circular-progressbar animated gif](/docs/animated-progressbar.gif?raw=true)](http://www.kevinqi.com/react-circular-progressbar/)
+[![react-circular-progressbar examples](/docs/circular-progressbar-examples.png?raw=true)](https://codesandbox.io/s/vymm4oln6y)
 
 ## Installation
 
