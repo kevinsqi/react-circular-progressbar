@@ -36,13 +36,17 @@ If you have a CSS loader configured, you can import the stylesheet:
 import 'react-circular-progressbar/dist/styles.css';
 ```
 
-If not, you can copy [styles.css](dist/styles.css) into your project instead and use `<link rel="stylesheet" href="styles.css" />` in your `<head>`.
+If not, you can copy [styles.css](dist/styles.css) into your project instead, and include `<link rel="stylesheet" href="styles.css" />` in your `<head>`.
 
 Now you can use the component:
 
 ```javascript
 const percentage = 66;
-<CircularProgressbar percentage={percentage} text={`${percentage}%`} />
+
+<CircularProgressbar
+  percentage={percentage}
+  text={`${percentage}%`}
+/>
 ```
 
 ## Props
@@ -52,7 +56,8 @@ const percentage = 66;
 | Name | Description |
 | ---- | ----------- |
 | `percentage` | Numeric percentage to display, from 0-100. Required. |
-| `className` | Classes to apply to the svg element |
+| `className` | Classes to apply to the svg element. Default: `''`. |
+| `text` | Text to display inside progressbar. Default: `null`. |
 | `strokeWidth` | Width of circular line as a percentage relative to total width of component. Default: `8`. |
 | `background` | Whether to display background color. Default: `false`. |
 | `backgroundPadding` | Padding between background and edge of svg as a percentage relative to total width of component. Default: `null`. |
@@ -61,7 +66,7 @@ const percentage = 66;
 | `classes` | Object allowing overrides of classNames of each svg subcomponent (root, trail, path, text, background). Enables styling with react-jss. See [this PR](https://github.com/iqnivek/react-circular-progressbar/pull/25) for more detail. |
 | `styles` | Object allowing customization of styles of each svg subcomponent (root, trail, path, text, background). |
 | `classForPercentage` | **Deprecated** - please use `className` prop instead. Example: `(percent) => percent < 100 ? 'incomplete' : 'complete'`. |
-| `textForPercentage` | Function which returns text to display, can be configured based on percentage. Example: ``(pct) => `${pct}%` ``. |
+| `textForPercentage` | **Deprecated** - please use `text` prop instead. [See this post](https://github.com/iqnivek/react-circular-progressbar/issues/29#issuecomment-341628016) on how to migrate. Example: ``(pct) => `${pct}%`. |
 
 
 ## Customizing styles
@@ -75,6 +80,7 @@ There are hooks to customize the inline styles of each subcomponent of the progr
 ```jsx
 <CircularProgressbar
   percentage={percentage}
+  text={`${percentage}%`}
   styles={{
     path: { stroke: `rgba(62, 152, 199, ${percentage / 100})` },
     text: { fill: '#f88', fontSize: '16px' },
