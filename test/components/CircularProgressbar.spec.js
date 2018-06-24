@@ -119,15 +119,35 @@ describe('CircularProgressbar props', () => {
     const wrapper = shallow(
       <CircularProgressbar
         percentage={50}
+        background
         styles={{
-          path: { stroke: '#ffffff' },
+          root: { stroke: '#000000' },
+          trail: { stroke: '#111111' },
+          path: { stroke: '#222222' },
+          text: { stroke: '#333333' },
+          background: { stroke: '#444444' },
         }}
       />
     );
-
+    assert.equal(
+      wrapper.find('.CircularProgressbar').prop('style').stroke,
+      '#000000',
+    );
+    assert.equal(
+      wrapper.find('.CircularProgressbar-trail').prop('style').stroke,
+      '#111111',
+    );
     assert.equal(
       wrapper.find('.CircularProgressbar-path').prop('style').stroke,
-      '#ffffff',
+      '#222222',
+    );
+    assert.equal(
+      wrapper.find('.CircularProgressbar-text').prop('style').stroke,
+      '#333333',
+    );
+    assert.equal(
+      wrapper.find('.CircularProgressbar-background').prop('style').stroke,
+      '#444444',
     );
   });
 });

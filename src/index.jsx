@@ -103,6 +103,7 @@ class CircularProgressbar extends React.Component {
     return (
       <svg
         className={`${classes.root} ${className} ${classForPercentage}`}
+        style={styles.root}
         viewBox={`0 0 ${MAX_X} ${MAX_Y}`}
       >
         {
