@@ -6595,6 +6595,7 @@ var CircularProgressbar = function (_React$Component) {
         'svg',
         {
           className: classes.root + ' ' + className + ' ' + classForPercentage,
+          style: styles.root,
           viewBox: '0 0 ' + MAX_X + ' ' + MAX_Y
         },
         this.props.background ? _react2.default.createElement('circle', {
@@ -10373,7 +10374,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-console.log('react-circular-progressbar v' + "0.8.0");
+console.log('react-circular-progressbar v' + "0.8.1");
 
 var githubURL = 'https://github.com/iqnivek/react-circular-progressbar';
 
@@ -10491,7 +10492,7 @@ var Demo = function (_React$Component2) {
         ),
         _react2.default.createElement(
           'div',
-          { className: 'row mt-3' },
+          { className: 'row mt-3 mb-3' },
           _react2.default.createElement(
             'div',
             { className: 'col-xs-6 offset-xs-3 col-md-2 offset-md-5' },
@@ -10583,7 +10584,7 @@ var Demo = function (_React$Component2) {
         _react2.default.createElement('hr', null),
         _react2.default.createElement(
           'div',
-          { className: 'row mt-3 mb-3' },
+          { className: 'mt-3 mb-3' },
           _react2.default.createElement(
             'h2',
             { className: 'text-xs-center' },
@@ -10595,7 +10596,7 @@ var Demo = function (_React$Component2) {
             _react2.default.createElement(
               'p',
               null,
-              'Install with npm:'
+              'Install with yarn or npm:'
             ),
             _react2.default.createElement(
               'p',
@@ -10603,7 +10604,7 @@ var Demo = function (_React$Component2) {
               _react2.default.createElement(
                 'code',
                 null,
-                'npm install ',
+                'yarn add ',
                 "react-circular-progressbar"
               )
             ),
@@ -10611,6 +10612,59 @@ var Demo = function (_React$Component2) {
               'a',
               { className: 'btn btn-info btn-lg', href: githubURL },
               'View docs on Github'
+            )
+          )
+        ),
+        _react2.default.createElement('hr', null),
+        _react2.default.createElement(
+          'div',
+          { className: 'mt-3 mb-3' },
+          _react2.default.createElement(
+            'h2',
+            { className: 'text-xs-center' },
+            'Try it out'
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'row mt-3' },
+            _react2.default.createElement(
+              'div',
+              { className: 'col-md-10 offset-md-1' },
+              _react2.default.createElement('iframe', {
+                src: 'https://codesandbox.io/embed/vymm4oln6y',
+                style: {
+                  width: '100%',
+                  height: '500px',
+                  border: 0,
+                  borderRadius: '4px',
+                  overflow: 'hidden'
+                },
+                sandbox: 'allow-modals allow-forms allow-popups allow-scripts allow-same-origin'
+              })
+            )
+          )
+        ),
+        _react2.default.createElement('hr', null),
+        _react2.default.createElement(
+          'div',
+          { className: 'my-3' },
+          _react2.default.createElement(
+            'div',
+            { className: 'text-xs-center' },
+            _react2.default.createElement(
+              'a',
+              { className: 'btn btn-info btn-lg', href: githubURL },
+              'View docs on Github'
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'mt-3' },
+              'Built by ',
+              _react2.default.createElement(
+                'a',
+                { href: 'http://www.kevinqi.com/' },
+                'Kevin Qi'
+              )
             )
           )
         )
