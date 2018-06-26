@@ -4,9 +4,7 @@
 [![Build Status](https://travis-ci.org/iqnivek/react-circular-progressbar.svg?branch=master)](https://travis-ci.org/iqnivek/react-circular-progressbar)
 [![Bundle size](https://img.shields.io/bundlephobia/min/react-circular-progressbar.svg)](https://bundlephobia.com/result?p=react-circular-progressbar)
 
-A circular progressbar component, built with SVG and extensively customizable.
-
-[Try it out on CodeSandbox](https://codesandbox.io/s/vymm4oln6y).
+A circular progressbar component, built with SVG and extensively customizable. [**Try it out on CodeSandbox**](https://codesandbox.io/s/vymm4oln6y).
 
 <a href="https://codesandbox.io/s/vymm4oln6y"><img height="120" src="/docs/animated-progressbar.gif?raw=true" alt="animated progressbar" /></a> <a href="https://codesandbox.io/s/vymm4oln6y"><img height="120" src="/docs/circular-progressbar-examples.png?raw=true" alt="progressbar examples" /></a>
 
