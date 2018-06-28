@@ -52,8 +52,8 @@ const percentage = 60;
 ```jsx
 <CircularProgressbar
   percentage={percentage}
-  className={customClassForPercentage()}  // calls function
-  text={customTextForPercentage()}        // calls function
+  className={customClassForPercentage(percentage)}  // call function directly
+  text={customTextForPercentage(percentage)}        // call function directly
 />
 ```
 
