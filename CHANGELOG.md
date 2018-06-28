@@ -17,7 +17,7 @@ const percentage = 60;
 />
 ```
 
-If you had customized either `classForPercentage` or `textForPercentage` functions before 1.0, you can reuse the same function for `className` and `text`.
+If you had customized either `classForPercentage` or `textForPercentage` functions before 1.0, you can reuse the same function for `className` and `text`. But instead of passing the function as a prop, you now need to pass the called function's value.
 
 So if your pre-1.0 usage looked like this:
 
@@ -42,18 +42,18 @@ const percentage = 60;
 
 <CircularProgressbar
   percentage={percentage}
-  classForPercentage={customClassForPercentage}
-  textForPercentage={customTextForPercentage}
+  classForPercentage={customClassForPercentage}  // pass function
+  textForPercentage={customTextForPercentage}    // pass function
 />
 ```
 
-...you can make a small change to make it work in 1.0:
+...you can make a small change to make it work in 1.0 by using the new props and calling the functions instead:
 
 ```jsx
 <CircularProgressbar
   percentage={percentage}
-  className={customClassForPercentage()}
-  text={customTextForPercentage()}
+  className={customClassForPercentage()}  // calls function
+  text={customTextForPercentage()}        // calls function
 />
 ```
 
