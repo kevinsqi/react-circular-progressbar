@@ -68,30 +68,55 @@ const percentage = 66;
 
 Version 1.0.0 removed the `classForPercentage` and `textForPercentage` props in favor of the newer `className` and `text` props. Take a look at the [migration guide](/CHANGELOG.md) for instructions on how to migrate.
 
-## Customizing styles
+## Theming (customizing styles)
 
 Use CSS or inline styles to customize the styling - the default CSS is a good starting point, but you can override it as needed.
 
-#### Inline style hooks
+#### Using the `styles` prop
 
-There are hooks to customize the inline styles of each subcomponent of the progressbar (the root svg, path, trail, text, and background).
+You can use the `styles` prop to customize the inline styles of each subcomponent of the progressbar (the root svg, path, trail, text, and background). This uses the native `style` prop for each subcomponent, so you can use any CSS properties here, not just the ones mentioned below.
 
 ```jsx
 <CircularProgressbar
   percentage={percentage}
   text={`${percentage}%`}
   styles={{
-    path: { stroke: `rgba(62, 152, 199, ${percentage / 100})` },
-    text: { fill: '#f88', fontSize: '16px' },
+    // Customize the root svg element
+    root: {},
+    // Customize the path, i.e. the "completed progress"
+    path: {
+      // Path color
+      stroke: `rgba(62, 152, 199, ${percentage / 100})`,
+      // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
+      strokeLinecap: 'butt',
+      // Customize transition animation
+      transition: 'stroke-dashoffset 0.5s ease 0s',
+    },
+    // Customize the circle behind the path, i.e. the "total progress"
+    trail: {
+      // Trail color
+      stroke: '#d6d6d6',
+    },
+    // Customize the text
+    text: {
+      // Text color
+      fill: '#f88',
+      // Text size
+      fontSize: '16px',
+    },
+    // Customize background - only used when the `background` prop is true
+    background: {
+      fill: '#3e98c7',
+    },
   }}
 />
 ```
 
-See `StyledProgressbar.js` in the [CodeSandbox examples](https://codesandbox.io/s/vymm4oln6y) for in-depth examples on how to customize these styles.
+See the [CodeSandbox examples](https://codesandbox.io/s/vymm4oln6y) for a live example on how to customize styles.
 
-#### CSS hooks
+#### Using CSS
 
-There are equivalent CSS hooks for the root, path, trail, text, and background of the progressbar which you can customize.
+You can also customize styles with CSS. There are equivalent CSS hooks for the root, path, trail, text, and background of the progressbar.
 
 If you're importing the default styles, you can override the defaults like this:
 
@@ -102,25 +127,51 @@ import './custom.css';
 
 ```css
 // custom.css
-.CircularProgressbar-path       { stroke: red; }
+.CircularProgressbar-path       { stroke: red;  }
 .CircularProgressbar-trail      { stroke: gray; }
 .CircularProgressbar-text       { fill: yellow; }
-.CircularProgressbar-background { fill: green; }
+.CircularProgressbar-background { fill: green;  }
 ```
 
-#### Advanced usage
+## Customizing the text/content inside progressbar
 
-A lot of use cases can be covered with CSS. A few examples:
+If you want to add images or multiple lines of text within the progressbar, the suggested approach is to overlay it on top of a regular `<CircularProgressbar />` using absolute positioning - this gives you the ability to put arbitrary HTML content in there. You can create your own wrapper component to make this easy to work with.
 
-* [Rotating progressbar](https://github.com/iqnivek/react-circular-progressbar/issues/38)
-* [Making the progressbar a gradient](https://github.com/iqnivek/react-circular-progressbar/issues/31#issuecomment-338216925)
-* [Putting progressbar around an image](https://github.com/iqnivek/react-circular-progressbar/issues/32)
+[**Here's a Codesandbox demo**](https://codesandbox.io/s/qlr7w0rm29)
+
+<a href="https://codesandbox.io/s/qlr7w0rm29"><img src="/docs/custom-content-progressbar.png?raw=true" alt="custom content progressbar" /></a>
+
+## Customizing animation and animating text
+
+You can adjust the animation characteristics using CSS or the `styles` prop:
+
+```
+<CircularProgressbar
+  styles={{
+    path: {
+      transition: 'stroke-dashoffset 0.5s ease 0s',
+    }
+  }}
+/>
+```
+
+[See this Codesandbox example](https://codesandbox.io/s/x29rxrr4kw) to see how the transition can be customized.
+
+If you want to animate the text as well, you can! You'll instead control the `percentage` prop using a third-party animation library, like react-spring. [**See a Codesandbox example here on how to do that**](https://codesandbox.io/s/m5xq9ozo3j).
+
+## Advanced usage
+
+* [Delaying the animation until the progressbar is visible](https://github.com/iqnivek/react-circular-progressbar/issues/64)
+* [Using a different value range than 0-100](https://codesandbox.io/s/6z64omwv3n)
+* [Rotating the progressbar by some degree](https://github.com/iqnivek/react-circular-progressbar/issues/38)
+* [Applying a gradient to the progressbar](https://github.com/iqnivek/react-circular-progressbar/issues/31#issuecomment-338216925)
 * [Customizing the background](https://github.com/iqnivek/react-circular-progressbar/issues/21#issuecomment-336613160)
+* [Creating a countdown timer](https://github.com/iqnivek/react-circular-progressbar/issues/52)
 
 
 ## Contributing
 
-Take a look at [CONTRIBUTING.md](/CONTRIBUTING.md) to see how to develop on react-circular-progressbar.
+Take a look at [CONTRIBUTING.md](/CONTRIBUTING.md) to see how to help contribute to react-circular-progressbar.
 
 
 ## License
