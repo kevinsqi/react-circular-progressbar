@@ -161,7 +161,11 @@ If you want to animate the text as well, you can! You'll instead control the `pe
 
 ## Fixing text centering in Internet Explorer (IE)
 
-Because the `dominant-baseline` CSS property does not work in IE, the percentage text may not be centered. You can work around this by setting the `text` prop to be a `<tspan>` element and then adjusting the `dy` vertical offset, like so:
+Because the `dominant-baseline` CSS property does not work in IE, the percentage text may not be centered.
+
+A solid cross-browser way to fix this is to use [this approach for overlaying arbitrary content inside the progressbar](https://github.com/iqnivek/react-circular-progressbar#customizing-the-textcontent-inside-progressbar).
+
+However, if you don't want to do that, you can also work around this by setting the `text` prop to be a `<tspan>` element and then adjusting the `dy` vertical offset, like so:
 
 ```jsx
 // Use feature or browser detection to determine if IE
@@ -183,6 +187,11 @@ const needDominantBaselineFix = ...
 * [Applying a gradient to the progressbar](https://github.com/iqnivek/react-circular-progressbar/issues/31#issuecomment-338216925)
 * [Customizing the background](https://github.com/iqnivek/react-circular-progressbar/issues/21#issuecomment-336613160)
 * [Creating a countdown timer](https://github.com/iqnivek/react-circular-progressbar/issues/52)
+
+
+## Supported platforms
+
+react-circular-progressbar does not work with React Native, because React Native does not support `<svg>` out of the box.
 
 
 ## Contributing
