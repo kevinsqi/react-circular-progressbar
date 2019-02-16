@@ -159,6 +159,22 @@ You can adjust the animation characteristics using CSS or the `styles` prop:
 
 If you want to animate the text as well, you can! You'll instead control the `percentage` prop using a third-party animation library, like react-spring. [**See a Codesandbox example here on how to do that**](https://codesandbox.io/s/m5xq9ozo3j).
 
+## Fixing text centering in Internet Explorer (IE)
+
+Because the `dominant-baseline` CSS property does not work in IE, the percentage text may not be centered. You can work around this by setting the `text` prop to be a `<tspan>` element and then adjusting the `dy` vertical offset, like so:
+
+```jsx
+// Use feature or browser detection to determine if IE
+const needDominantBaselineFix = ...
+
+<CircularProgressbar
+  percentage={percentage}
+  text={<tspan dy={needDominantBaselineFix ? -10 : 0}>{percentage}</tspan>}
+/>
+```
+
+[See this Codesandbox example](https://codesandbox.io/s/x8o1zx7j4) to see this in action.
+
 ## Advanced usage
 
 * [Delaying the animation until the progressbar is visible](https://github.com/iqnivek/react-circular-progressbar/issues/64)
