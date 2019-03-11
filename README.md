@@ -1,7 +1,7 @@
 # React Circular Progressbar
 
 [![npm version](https://badge.fury.io/js/react-circular-progressbar.svg)](https://www.npmjs.com/package/react-circular-progressbar)
-[![Build Status](https://travis-ci.org/iqnivek/react-circular-progressbar.svg?branch=master)](https://travis-ci.org/iqnivek/react-circular-progressbar)
+[![Build Status](https://travis-ci.org/kevinsqi/react-circular-progressbar.svg?branch=master)](https://travis-ci.org/kevinsqi/react-circular-progressbar)
 [![Bundle size](https://img.shields.io/bundlephobia/min/react-circular-progressbar.svg)](https://bundlephobia.com/result?p=react-circular-progressbar)
 
 A circular progressbar component, built with SVG and extensively customizable. [**Try it out on CodeSandbox**](https://codesandbox.io/s/vymm4oln6y).
@@ -63,7 +63,7 @@ const percentage = 66;
 | `backgroundPadding` | Padding between background and edge of svg as a percentage relative to total width of component. Default: `null`. |
 | `initialAnimation` | Toggle whether to animate progress starting from 0% on initial mount. Default: `false`. |
 | `counterClockwise` | Toggle whether to rotate progressbar in counterclockwise direction. Default: `false`. |
-| `classes` | Object allowing overrides of classNames of each svg subcomponent (root, trail, path, text, background). Enables styling with react-jss. See [this PR](https://github.com/iqnivek/react-circular-progressbar/pull/25) for more detail. |
+| `classes` | Object allowing overrides of classNames of each svg subcomponent (root, trail, path, text, background). Enables styling with react-jss. See [this PR](https://github.com/kevinsqi/react-circular-progressbar/pull/25) for more detail. |
 | `styles` | Object allowing customization of styles of each svg subcomponent (root, trail, path, text, background). |
 
 Version 1.0.0 removed the `classForPercentage` and `textForPercentage` props in favor of the newer `className` and `text` props. Take a look at the [migration guide](/CHANGELOG.md) for instructions on how to migrate.
@@ -163,7 +163,7 @@ If you want to animate the text as well, you can! You'll instead control the `pe
 
 Because the `dominant-baseline` CSS property does not work in IE, the percentage text may not be centered.
 
-A solid cross-browser way to fix this is to use [this approach for overlaying arbitrary content inside the progressbar](https://github.com/iqnivek/react-circular-progressbar#customizing-the-textcontent-inside-progressbar).
+A solid cross-browser way to fix this is to use [this approach for overlaying arbitrary content inside the progressbar](https://github.com/kevinsqi/react-circular-progressbar#customizing-the-textcontent-inside-progressbar).
 
 However, if you don't want to do that, you can also work around this by setting the `text` prop to be a `<tspan>` element and then adjusting the `dy` vertical offset, like so:
 
@@ -181,12 +181,12 @@ const needDominantBaselineFix = ...
 
 ## Advanced usage
 
-* [Delaying the animation until the progressbar is visible](https://github.com/iqnivek/react-circular-progressbar/issues/64)
+* [Delaying the animation until the progressbar is visible](https://github.com/kevinsqi/react-circular-progressbar/issues/64)
 * [Using a different value range than 0-100](https://codesandbox.io/s/6z64omwv3n)
-* [Rotating the progressbar by some degree](https://github.com/iqnivek/react-circular-progressbar/issues/38)
-* [Applying a gradient to the progressbar](https://github.com/iqnivek/react-circular-progressbar/issues/31#issuecomment-338216925)
-* [Customizing the background](https://github.com/iqnivek/react-circular-progressbar/issues/21#issuecomment-336613160)
-* [Creating a countdown timer](https://github.com/iqnivek/react-circular-progressbar/issues/52)
+* [Rotating the progressbar by some degree](https://github.com/kevinsqi/react-circular-progressbar/issues/38)
+* [Applying a gradient to the progressbar](https://github.com/kevinsqi/react-circular-progressbar/issues/31#issuecomment-338216925)
+* [Customizing the background](https://github.com/kevinsqi/react-circular-progressbar/issues/21#issuecomment-336613160)
+* [Creating a countdown timer](https://github.com/kevinsqi/react-circular-progressbar/issues/52)
 
 
 ## Supported platforms

@@ -3,14 +3,12 @@ import ReactDOM from 'react-dom';
 import CircularProgressbar from '../src';
 import ChangingProgressbar from './ChangingProgressbar';
 
-const githubURL = 'https://github.com/iqnivek/react-circular-progressbar';
+const githubURL = 'https://github.com/kevinsqi/react-circular-progressbar';
 
 const Example = ({ description, children }) => (
   <div className="col-xs-12 col-sm-6 col-md-3">
     <div className="row mb-1">
-      <div className="col-xs-6 offset-xs-3">
-        {children}
-      </div>
+      <div className="col-xs-6 offset-xs-3">{children}</div>
     </div>
     <p className="text-xs-center">{description}</p>
   </div>
@@ -49,9 +47,7 @@ class Demo extends React.Component {
         <div className="row mt-3">
           <h2 className="text-xs-center mb-3">Built with SVG and styled with plain CSS.</h2>
 
-          <Example
-            description="Customize text and styling dynamically based on percentage."
-          >
+          <Example description="Customize text and styling dynamically based on percentage.">
             <ChangingProgressbar
               percentages={[75, 100]}
               classForPercentage={(percentage) => {
@@ -63,19 +59,11 @@ class Demo extends React.Component {
             />
           </Example>
 
-          <Example
-            description="Customize stroke width and make it go counterclockwise."
-          >
-            <ChangingProgressbar
-              percentages={[0, 20, 80]}
-              strokeWidth={5}
-              counterClockwise
-            />
+          <Example description="Customize stroke width and make it go counterclockwise.">
+            <ChangingProgressbar percentages={[0, 20, 80]} strokeWidth={5} counterClockwise />
           </Example>
 
-          <Example
-            description="Add a background color for that inverted look."
-          >
+          <Example description="Add a background color for that inverted look.">
             <CircularProgressbar
               className="CircularProgressbar-inverted"
               background
@@ -86,14 +74,10 @@ class Demo extends React.Component {
             />
           </Example>
 
-          <Example
-            description="With SVG and CSS you can do whatever you want."
-          >
+          <Example description="With SVG and CSS you can do whatever you want.">
             <div style={{ position: 'relative', width: '100%', height: '100%' }}>
               <div style={{ position: 'absolute', width: '100%' }}>
-                <CircularProgressbar
-                  percentage={50}
-                />
+                <CircularProgressbar percentage={50} />
               </div>
               <div style={{ width: '100%', padding: '10%' }}>
                 <img style={{ width: '100%' }} src="https://i.imgur.com/b9NyUGm.png" alt="doge" />
@@ -107,8 +91,12 @@ class Demo extends React.Component {
           <h2 className="text-xs-center">Installation</h2>
           <div className="text-xs-center mt-3">
             <p>Install with yarn or npm:</p>
-            <p className="mb-3"><code>yarn add react-circular-progressbar</code></p>
-            <a className="btn btn-info btn-lg" href={githubURL}>View docs on Github</a>
+            <p className="mb-3">
+              <code>yarn add react-circular-progressbar</code>
+            </p>
+            <a className="btn btn-info btn-lg" href={githubURL}>
+              View docs on Github
+            </a>
           </div>
         </div>
 
@@ -135,8 +123,12 @@ class Demo extends React.Component {
         <hr />
         <div className="my-3">
           <div className="text-xs-center">
-            <a className="btn btn-info btn-lg" href={githubURL}>View docs on Github</a>
-            <div className="mt-3">Built by <a href="http://www.kevinqi.com/">Kevin Qi</a></div>
+            <a className="btn btn-info btn-lg" href={githubURL}>
+              View docs on Github
+            </a>
+            <div className="mt-3">
+              Built by <a href="http://www.kevinqi.com/">Kevin Qi</a>
+            </div>
           </div>
         </div>
       </div>
