@@ -10370,7 +10370,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var githubURL = 'https://github.com/iqnivek/react-circular-progressbar';
+var githubURL = 'https://github.com/kevinsqi/react-circular-progressbar';
 
 var Example = function Example(_ref) {
   var description = _ref.description,
@@ -10462,9 +10462,7 @@ var Demo = function (_React$Component) {
           ),
           _react2.default.createElement(
             Example,
-            {
-              description: 'Customize text and styling dynamically based on percentage.'
-            },
+            { description: 'Customize text and styling dynamically based on percentage.' },
             _react2.default.createElement(_ChangingProgressbar2.default, {
               percentages: [75, 100],
               classForPercentage: function classForPercentage(percentage) {
@@ -10477,20 +10475,12 @@ var Demo = function (_React$Component) {
           ),
           _react2.default.createElement(
             Example,
-            {
-              description: 'Customize stroke width and make it go counterclockwise.'
-            },
-            _react2.default.createElement(_ChangingProgressbar2.default, {
-              percentages: [0, 20, 80],
-              strokeWidth: 5,
-              counterClockwise: true
-            })
+            { description: 'Customize stroke width and make it go counterclockwise.' },
+            _react2.default.createElement(_ChangingProgressbar2.default, { percentages: [0, 20, 80], strokeWidth: 5, counterClockwise: true })
           ),
           _react2.default.createElement(
             Example,
-            {
-              description: 'Add a background color for that inverted look.'
-            },
+            { description: 'Add a background color for that inverted look.' },
             _react2.default.createElement(_src2.default, {
               className: 'CircularProgressbar-inverted',
               background: true,
@@ -10502,18 +10492,14 @@ var Demo = function (_React$Component) {
           ),
           _react2.default.createElement(
             Example,
-            {
-              description: 'With SVG and CSS you can do whatever you want.'
-            },
+            { description: 'With SVG and CSS you can do whatever you want.' },
             _react2.default.createElement(
               'div',
               { style: { position: 'relative', width: '100%', height: '100%' } },
               _react2.default.createElement(
                 'div',
                 { style: { position: 'absolute', width: '100%' } },
-                _react2.default.createElement(_src2.default, {
-                  percentage: 50
-                })
+                _react2.default.createElement(_src2.default, { percentage: 50 })
               ),
               _react2.default.createElement(
                 'div',
