@@ -16,6 +16,7 @@ type CircularProgressbarDefaultProps = {
   backgroundPadding: number;
   initialAnimation: boolean;
   counterClockwise: boolean;
+  percentageOfCircleToShow: number;
   classes: {
     root: string;
     trail: string;
@@ -55,6 +56,7 @@ class CircularProgressbar extends React.Component<
     backgroundPadding: 0,
     initialAnimation: false,
     counterClockwise: false,
+    percentageOfCircleToShow: 100,
     classes: {
       root: 'CircularProgressbar',
       trail: 'CircularProgressbar-trail',
@@ -135,15 +137,26 @@ class CircularProgressbar extends React.Component<
 
   getPathStyles() {
     const diameter = Math.PI * 2 * this.getPathRadius();
+    const gapOffset = diameter - diameter * this.getPercentageOfCircleToShow();
     const truncatedPercentage = Math.min(
       Math.max(this.state.percentage, MIN_PERCENTAGE),
       MAX_PERCENTAGE,
     );
-    const dashoffset = ((100 - truncatedPercentage) / 100) * diameter;
+    const dashoffset =
+      ((100 - truncatedPercentage) / 100) * (diameter * this.getPercentageOfCircleToShow()) +
+      gapOffset;
 
     return {
       strokeDasharray: `${diameter}px ${diameter}px`,
       strokeDashoffset: `${this.props.counterClockwise ? -dashoffset : dashoffset}px`,
+    };
+  }
+
+  getTrailStyles() {
+    const diameter = Math.PI * 2 * this.getPathRadius() * this.getPercentageOfCircleToShow();
+
+    return {
+      strokeDasharray: `${diameter}px ${diameter}px`,
     };
   }
 
@@ -153,8 +166,13 @@ class CircularProgressbar extends React.Component<
     return FULL_RADIUS - this.props.strokeWidth / 2 - this.getBackgroundPadding();
   }
 
+  getPercentageOfCircleToShow() {
+    return this.props.percentageOfCircleToShow / 100;
+  }
+
   render() {
-    const { percentage, className, classes, styles, strokeWidth, text } = this.props;
+    const { className, classes, styles, strokeWidth, text } = this.props;
+
     const pathDescription = this.getPathDescription();
 
     return (
@@ -175,7 +193,7 @@ class CircularProgressbar extends React.Component<
 
         <path
           className={classes.trail}
-          style={styles.trail}
+          style={Object.assign({}, styles.trail, this.getTrailStyles())}
           d={pathDescription}
           strokeWidth={strokeWidth}
           fillOpacity={0}
