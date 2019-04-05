@@ -157,7 +157,7 @@ You can adjust the animation characteristics using CSS or the `styles` prop:
 
 [See this Codesandbox example](https://codesandbox.io/s/x29rxrr4kw) to see how the transition can be customized.
 
-If you want to animate the text as well, you can! You'll instead control the `percentage` prop using a third-party animation library, like react-spring. [**See a Codesandbox example here on how to do that**](https://codesandbox.io/s/m5xq9ozo3j).
+If you want to animate the text as well, you can! You'll instead control the `percentage` prop using a third-party animation library, like react-move. [**See a Codesandbox example here on how to do that**](https://codesandbox.io/s/m5xq9ozo3j).
 
 ## Fixing text centering in Internet Explorer (IE)
 
