@@ -26,8 +26,8 @@ class CircularProgressbar extends React.Component<
 
   static defaultProps = {
     strokeWidth: 8,
-    className: null,
-    text: null,
+    className: '',
+    text: '',
     classes: {
       root: 'CircularProgressbar',
       trail: 'CircularProgressbar-trail',
