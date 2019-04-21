@@ -11,6 +11,20 @@ const CENTER_Y = 50;
 
 type CircularProgressbarProps = typeof CircularProgressbar.defaultProps & {
   percentage: number;
+  classes?: {
+    root?: string;
+    trail?: string;
+    path?: string;
+    text?: string;
+    background?: string;
+  };
+  styles?: {
+    root?: object;
+    trail?: object;
+    path?: object;
+    text?: object;
+    background?: object;
+  };
 };
 
 type CircularProgressbarState = {
