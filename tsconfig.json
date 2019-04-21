@@ -1,11 +1,16 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "module": "commonjs",
     "declaration": true,
+    "declarationDir": "dist",
     "esModuleInterop": true,
+    "jsx": "react",
+    "module": "commonjs",
+    "noImplicitAny": true,
     "outDir": "./dist",
-    "strict": true
+    "removeComments": true,
+    "sourceMap": true,
+    "strict": true,
+    "target": "es5"
   },
   "include": ["src"],
   "exclude": ["node_modules", "dist"]

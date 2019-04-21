@@ -1,6 +1,12 @@
-node_modules
-npm-debug.log
+# dependencies
+/node_modules
+
+# distribution folder
+/dist
+
 .DS_Store
-.cache
-*.iml
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 .idea
