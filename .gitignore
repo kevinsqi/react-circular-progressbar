@@ -4,6 +4,9 @@
 # distribution folder
 /dist
 
+# coverage
+/coverage
+
 .DS_Store
 
 npm-debug.log*
