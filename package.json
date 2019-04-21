@@ -5,6 +5,7 @@
   "author": "Kevin Qi <iqnivek@gmail.com>",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "style": "dist/styles.css",
   "files": [
     "dist"
   ],
@@ -16,7 +17,6 @@
     "react-component",
     "svg"
   ],
-  "style": "dist/styles.css",
   "scripts": {
     "build": "npm-run-all clean build:css build:js",
     "build:css": "mkdir -p dist && cp ./src/styles.css ./dist/styles.css",
@@ -28,18 +28,20 @@
     "test": "jest --config jest.config.json --coverage"
   },
   "devDependencies": {
+    "@types/enzyme": "^3.9.1",
+    "@types/enzyme-adapter-react-16": "^1.0.5",
     "@types/jest": "^24.0.11",
     "@types/react": "^16.8.14",
     "chai": "^3.5.0",
-    "enzyme": "^2.3.0",
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.12.1",
     "jest": "^24.7.1",
     "jsdom": "^9.0.0",
     "mocha": "^3.3.0",
     "npm-run-all": "^4.1.5",
     "prettier": "^1.17.0",
-    "react": "^15.4.0",
-    "react-addons-test-utils": "^15.0.2",
-    "react-dom": "^15.4.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
     "rimraf": "^2.3.4",
     "ts-jest": "^24.0.2",
     "typescript": "^3.4.4"
