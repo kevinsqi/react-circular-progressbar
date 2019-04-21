@@ -22,23 +22,13 @@
     "build:css": "mkdir -p dist && cp ./src/styles.css ./dist/styles.css",
     "build:js": "tsc",
     "clean": "rimraf dist",
-    "prepare": "npm run clean && npm run build"
+    "prepare": "npm run clean && npm run build",
+    "start": "tsc -w"
   },
   "devDependencies": {
     "@types/react": "^16.8.14",
-    "babel-core": "^6.3.15",
-    "babel-eslint": "^7.2.3",
-    "babel-loader": "^7.0.0",
-    "babel-preset-env": "^1.6.0",
-    "babel-preset-react": "^6.3.13",
-    "babel-register": "^6.8.0",
     "chai": "^3.5.0",
     "enzyme": "^2.3.0",
-    "eslint": "^3.11.0",
-    "eslint-config-airbnb": "^14.1.0",
-    "eslint-plugin-import": "^2.2.0",
-    "eslint-plugin-jsx-a11y": "^4.0.0",
-    "eslint-plugin-react": "^6.0.0",
     "jsdom": "^9.0.0",
     "mocha": "^3.3.0",
     "npm-run-all": "^4.1.5",
@@ -46,9 +36,7 @@
     "react-addons-test-utils": "^15.0.2",
     "react-dom": "^15.4.0",
     "rimraf": "^2.3.4",
-    "typescript": "^3.4.4",
-    "webpack": "^2.5.1",
-    "webpack-dev-server": "^2.4.5"
+    "typescript": "^3.4.4"
   },
   "dependencies": {
     "prop-types": "^15.5.10"
