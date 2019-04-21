@@ -4,6 +4,7 @@
     "declarationDir": "dist",
     "esModuleInterop": true,
     "jsx": "react",
+    "lib": ["es2015", "dom"],
     "module": "commonjs",
     "noImplicitAny": true,
     "outDir": "./dist",
