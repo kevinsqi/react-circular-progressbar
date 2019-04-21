@@ -9,8 +9,33 @@ const FULL_RADIUS = 50;
 const CENTER_X = 50;
 const CENTER_Y = 50;
 
-class CircularProgressbar extends React.Component {
-  constructor(props) {
+type CircularProgressbarProps = {
+  percentage: number;
+  className?: string;
+  text?: string;
+  classes?: {
+    root?: string;
+    trail?: string;
+    path?: string;
+    text?: string;
+    background?: string;
+  };
+  styles?: {
+    root?: object;
+    trail?: object;
+    path?: object;
+    text?: object;
+    background?: object;
+  };
+  strokeWidth?: number;
+  background?: boolean;
+  backgroundPadding?: number;
+  initialAnimation?: boolean;
+  counterClockwise?: boolean;
+};
+
+class CircularProgressbar extends React.Component<CircularProgressbarProps> {
+  constructor(props: CircularProgressbarProps) {
     super(props);
 
     this.state = {
@@ -72,7 +97,10 @@ class CircularProgressbar extends React.Component {
 
   getPathStyles() {
     const diameter = Math.PI * 2 * this.getPathRadius();
-    const truncatedPercentage = Math.min(Math.max(this.state.percentage, MIN_PERCENTAGE), MAX_PERCENTAGE);
+    const truncatedPercentage = Math.min(
+      Math.max(this.state.percentage, MIN_PERCENTAGE),
+      MAX_PERCENTAGE,
+    );
     const dashoffset = ((100 - truncatedPercentage) / 100) * diameter;
 
     return {
@@ -84,18 +112,11 @@ class CircularProgressbar extends React.Component {
   getPathRadius() {
     // the radius of the path is defined to be in the middle, so in order for the path to
     // fit perfectly inside the 100x100 viewBox, need to subtract half the strokeWidth
-    return FULL_RADIUS - (this.props.strokeWidth / 2) - this.getBackgroundPadding();
+    return FULL_RADIUS - this.props.strokeWidth / 2 - this.getBackgroundPadding();
   }
 
   render() {
-    const {
-      percentage,
-      className,
-      classes,
-      styles,
-      strokeWidth,
-      text,
-    } = this.props;
+    const { percentage, className, classes, styles, strokeWidth, text } = this.props;
     const pathDescription = this.getPathDescription();
 
     return (
@@ -104,17 +125,15 @@ class CircularProgressbar extends React.Component {
         style={styles.root}
         viewBox={`0 0 ${MAX_X} ${MAX_Y}`}
       >
-        {
-          this.props.background ? (
-            <circle
-              className={classes.background}
-              style={styles.background}
-              cx={CENTER_X}
-              cy={CENTER_Y}
-              r={FULL_RADIUS}
-            />
-          ) : null
-        }
+        {this.props.background ? (
+          <circle
+            className={classes.background}
+            style={styles.background}
+            cx={CENTER_X}
+            cy={CENTER_Y}
+            r={FULL_RADIUS}
+          />
+        ) : null}
 
         <path
           className={classes.trail}
@@ -132,18 +151,11 @@ class CircularProgressbar extends React.Component {
           style={Object.assign({}, styles.path, this.getPathStyles())}
         />
 
-        {
-          text ? (
-            <text
-              className={classes.text}
-              style={styles.text}
-              x={CENTER_X}
-              y={CENTER_Y}
-            >
-              {text}
-            </text>
-          ) : null
-        }
+        {text ? (
+          <text className={classes.text} style={styles.text} x={CENTER_X} y={CENTER_Y}>
+            {text}
+          </text>
+        ) : null}
       </svg>
     );
   }

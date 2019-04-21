@@ -25,6 +25,7 @@
     "prepare": "npm run clean && npm run build"
   },
   "devDependencies": {
+    "@types/react": "^16.8.14",
     "babel-core": "^6.3.15",
     "babel-eslint": "^7.2.3",
     "babel-loader": "^7.0.0",
