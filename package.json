@@ -47,9 +47,7 @@
     "ts-jest": "^24.0.2",
     "typescript": "^3.4.4"
   },
-  "dependencies": {
-    "prop-types": "^15.5.10"
-  },
+  "dependencies": {},
   "peerDependencies": {
     "react": "^0.14.0 || ^15.0.0 || ^16.0.0"
   }
