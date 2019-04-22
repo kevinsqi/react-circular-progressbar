@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "7cdb4ece0cbb9d293157",
+    "revision": "a86c43cb0903b46259e1",
     "url": "/react-circular-progressbar/static/css/main.c5efd66a.chunk.css"
   },
   {
-    "revision": "7cdb4ece0cbb9d293157",
-    "url": "/react-circular-progressbar/static/js/main.3dc6ef97.chunk.js"
+    "revision": "a86c43cb0903b46259e1",
+    "url": "/react-circular-progressbar/static/js/main.9c6e71d5.chunk.js"
   },
   {
     "revision": "84b3e6b81f1edb806d20",
@@ -16,7 +16,7 @@ self.__precacheManifest = [
     "url": "/react-circular-progressbar/static/js/2.78985d59.chunk.js"
   },
   {
-    "revision": "bc4983a6ee0fdd8f864d696e4fe83501",
+    "revision": "92bd69adee608b6336d5ae5c0940c4c8",
     "url": "/react-circular-progressbar/index.html"
   }
 ];
