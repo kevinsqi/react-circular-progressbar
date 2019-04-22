@@ -1,5 +1,5 @@
 {
-  "rootDir": "src",
+  "rootDir": "test",
   "transform": {
     "^.+\\.(t|j)sx?$": "ts-jest"
   },

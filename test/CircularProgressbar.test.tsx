@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import CircularProgressbar from '../index';
+import CircularProgressbar from '../src/index';
 
 describe('<CircularProgressbar />', () => {
   test('SVG rendered to DOM', () => {
