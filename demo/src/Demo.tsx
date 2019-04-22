@@ -71,6 +71,18 @@ function Demo() {
             strokeWidth={6}
             percentage={66}
             text={`${66}%`}
+            classes={{
+              root: 'CircularProgressbar',
+              trail: 'CircularProgressbar-trail',
+              path: 'CircularProgressbar-path',
+              text: 'CircularProgressbar-text some-additional-test-class',
+              background: 'CircularProgressbar-background',
+            }}
+            styles={{
+              background: {
+                fill: '#3e98c7',
+              },
+            }}
           />
         </Example>
 

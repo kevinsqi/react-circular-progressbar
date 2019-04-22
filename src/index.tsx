@@ -9,22 +9,32 @@ const FULL_RADIUS = 50;
 const CENTER_X = 50;
 const CENTER_Y = 50;
 
-type CircularProgressbarProps = typeof CircularProgressbar.defaultProps & {
-  percentage: number;
-  classes?: {
-    root?: string;
-    trail?: string;
-    path?: string;
-    text?: string;
-    background?: string;
+type CircularProgressbarDefaultProps = {
+  strokeWidth: number;
+  className: string;
+  text: string;
+  background: boolean;
+  backgroundPadding: number;
+  initialAnimation: boolean;
+  counterClockwise: boolean;
+  classes: {
+    root: string;
+    trail: string;
+    path: string;
+    text: string;
+    background: string;
   };
-  styles?: {
+  styles: {
     root?: object;
     trail?: object;
     path?: object;
     text?: object;
     background?: object;
   };
+};
+
+type CircularProgressbarProps = CircularProgressbarDefaultProps & {
+  percentage: number;
 };
 
 type CircularProgressbarState = {
@@ -38,10 +48,14 @@ class CircularProgressbar extends React.Component<
   initialTimeout: number | undefined = undefined;
   requestAnimationFrame: number | undefined = undefined;
 
-  static defaultProps = {
+  static defaultProps: CircularProgressbarDefaultProps = {
     strokeWidth: 8,
     className: '',
     text: '',
+    background: false,
+    backgroundPadding: 0,
+    initialAnimation: false,
+    counterClockwise: false,
     classes: {
       root: 'CircularProgressbar',
       trail: 'CircularProgressbar-trail',
@@ -56,10 +70,6 @@ class CircularProgressbar extends React.Component<
       text: {},
       background: {},
     },
-    background: false,
-    backgroundPadding: 0,
-    initialAnimation: false,
-    counterClockwise: false,
   };
 
   constructor(props: CircularProgressbarProps) {

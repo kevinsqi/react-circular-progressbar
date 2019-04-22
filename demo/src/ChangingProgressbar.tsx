@@ -47,7 +47,7 @@ class ChangingProgressbar extends React.Component<Props, State> {
     return this.props.classForPercentage(this.getCurrentPercentage());
   }
 
-  getStyles(): any {
+  getStyles() {
     return this.props.stylesForPercentage(this.getCurrentPercentage());
   }
 
