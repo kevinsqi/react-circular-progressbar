@@ -1,5 +1,6 @@
 {
   "name": "demo",
+  "homepage": "https://www.kevinqi.com/react-circular-progressbar",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -7,12 +8,16 @@
     "@types/node": "11.13.6",
     "@types/react": "16.8.14",
     "@types/react-dom": "16.8.4",
+    "gh-pages": "^2.0.1",
     "react": "^16.8.6",
+    "react-circular-progressbar": "file:./../",
     "react-dom": "^16.8.6",
     "react-scripts": "2.1.8",
     "typescript": "3.4.4"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
