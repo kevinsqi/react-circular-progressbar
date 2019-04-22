@@ -9,8 +9,70 @@ const FULL_RADIUS = 50;
 const CENTER_X = 50;
 const CENTER_Y = 50;
 
-class CircularProgressbar extends React.Component {
-  constructor(props) {
+type CircularProgressbarDefaultProps = {
+  strokeWidth: number;
+  className: string;
+  text: string;
+  background: boolean;
+  backgroundPadding: number;
+  initialAnimation: boolean;
+  counterClockwise: boolean;
+  classes: {
+    root: string;
+    trail: string;
+    path: string;
+    text: string;
+    background: string;
+  };
+  styles: {
+    root?: object;
+    trail?: object;
+    path?: object;
+    text?: object;
+    background?: object;
+  };
+};
+
+type CircularProgressbarProps = CircularProgressbarDefaultProps & {
+  percentage: number;
+};
+
+type CircularProgressbarState = {
+  percentage: number;
+};
+
+class CircularProgressbar extends React.Component<
+  CircularProgressbarProps,
+  CircularProgressbarState
+> {
+  initialTimeout: number | undefined = undefined;
+  requestAnimationFrame: number | undefined = undefined;
+
+  static defaultProps: CircularProgressbarDefaultProps = {
+    strokeWidth: 8,
+    className: '',
+    text: '',
+    background: false,
+    backgroundPadding: 0,
+    initialAnimation: false,
+    counterClockwise: false,
+    classes: {
+      root: 'CircularProgressbar',
+      trail: 'CircularProgressbar-trail',
+      path: 'CircularProgressbar-path',
+      text: 'CircularProgressbar-text',
+      background: 'CircularProgressbar-background',
+    },
+    styles: {
+      root: {},
+      trail: {},
+      path: {},
+      text: {},
+      background: {},
+    },
+  };
+
+  constructor(props: CircularProgressbarProps) {
     super(props);
 
     this.state = {
@@ -20,7 +82,7 @@ class CircularProgressbar extends React.Component {
 
   componentDidMount() {
     if (this.props.initialAnimation) {
-      this.initialTimeout = setTimeout(() => {
+      this.initialTimeout = window.setTimeout(() => {
         this.requestAnimationFrame = window.requestAnimationFrame(() => {
           this.setState({
             percentage: this.props.percentage,
@@ -30,7 +92,7 @@ class CircularProgressbar extends React.Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps: CircularProgressbarProps) {
     this.setState({
       percentage: nextProps.percentage,
     });
@@ -38,7 +100,9 @@ class CircularProgressbar extends React.Component {
 
   componentWillUnmount() {
     clearTimeout(this.initialTimeout);
-    window.cancelAnimationFrame(this.requestAnimationFrame);
+    if (this.requestAnimationFrame) {
+      window.cancelAnimationFrame(this.requestAnimationFrame);
+    }
   }
 
   getBackgroundPadding() {
@@ -72,7 +136,10 @@ class CircularProgressbar extends React.Component {
 
   getPathStyles() {
     const diameter = Math.PI * 2 * this.getPathRadius();
-    const truncatedPercentage = Math.min(Math.max(this.state.percentage, MIN_PERCENTAGE), MAX_PERCENTAGE);
+    const truncatedPercentage = Math.min(
+      Math.max(this.state.percentage, MIN_PERCENTAGE),
+      MAX_PERCENTAGE,
+    );
     const dashoffset = ((100 - truncatedPercentage) / 100) * diameter;
 
     return {
@@ -84,18 +151,11 @@ class CircularProgressbar extends React.Component {
   getPathRadius() {
     // the radius of the path is defined to be in the middle, so in order for the path to
     // fit perfectly inside the 100x100 viewBox, need to subtract half the strokeWidth
-    return FULL_RADIUS - (this.props.strokeWidth / 2) - this.getBackgroundPadding();
+    return FULL_RADIUS - this.props.strokeWidth / 2 - this.getBackgroundPadding();
   }
 
   render() {
-    const {
-      percentage,
-      className,
-      classes,
-      styles,
-      strokeWidth,
-      text,
-    } = this.props;
+    const { percentage, className, classes, styles, strokeWidth, text } = this.props;
     const pathDescription = this.getPathDescription();
 
     return (
@@ -104,17 +164,15 @@ class CircularProgressbar extends React.Component {
         style={styles.root}
         viewBox={`0 0 ${MAX_X} ${MAX_Y}`}
       >
-        {
-          this.props.background ? (
-            <circle
-              className={classes.background}
-              style={styles.background}
-              cx={CENTER_X}
-              cy={CENTER_Y}
-              r={FULL_RADIUS}
-            />
-          ) : null
-        }
+        {this.props.background ? (
+          <circle
+            className={classes.background}
+            style={styles.background}
+            cx={CENTER_X}
+            cy={CENTER_Y}
+            r={FULL_RADIUS}
+          />
+        ) : null}
 
         <path
           className={classes.trail}
@@ -132,58 +190,14 @@ class CircularProgressbar extends React.Component {
           style={Object.assign({}, styles.path, this.getPathStyles())}
         />
 
-        {
-          text ? (
-            <text
-              className={classes.text}
-              style={styles.text}
-              x={CENTER_X}
-              y={CENTER_Y}
-            >
-              {text}
-            </text>
-          ) : null
-        }
+        {text ? (
+          <text className={classes.text} style={styles.text} x={CENTER_X} y={CENTER_Y}>
+            {text}
+          </text>
+        ) : null}
       </svg>
     );
   }
 }
-
-CircularProgressbar.propTypes = {
-  percentage: PropTypes.number.isRequired,
-  className: PropTypes.string,
-  text: PropTypes.string,
-  classes: PropTypes.objectOf(PropTypes.string),
-  styles: PropTypes.objectOf(PropTypes.object),
-  strokeWidth: PropTypes.number,
-  background: PropTypes.bool,
-  backgroundPadding: PropTypes.number,
-  initialAnimation: PropTypes.bool,
-  counterClockwise: PropTypes.bool,
-};
-
-CircularProgressbar.defaultProps = {
-  strokeWidth: 8,
-  className: '',
-  text: null,
-  classes: {
-    root: 'CircularProgressbar',
-    trail: 'CircularProgressbar-trail',
-    path: 'CircularProgressbar-path',
-    text: 'CircularProgressbar-text',
-    background: 'CircularProgressbar-background',
-  },
-  styles: {
-    root: {},
-    trail: {},
-    path: {},
-    text: {},
-    background: {},
-  },
-  background: false,
-  backgroundPadding: null,
-  initialAnimation: false,
-  counterClockwise: false,
-};
 
 export default CircularProgressbar;

@@ -3,7 +3,12 @@
   "version": "1.0.0",
   "description": "A circular progress indicator component",
   "author": "Kevin Qi <iqnivek@gmail.com>",
-  "main": "./dist/index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "style": "dist/styles.css",
+  "files": [
+    "dist"
+  ],
   "repository": "https://github.com/kevinsqi/react-circular-progressbar.git",
   "license": "MIT",
   "keywords": [
@@ -12,43 +17,35 @@
     "react-component",
     "svg"
   ],
-  "style": "dist/styles.css",
-  "files": [
-    "dist"
-  ],
   "scripts": {
-    "build": "NODE_ENV=production webpack && npm run build:demo && npm run build:css",
-    "build:css": "mkdir -p dist && cp ./src/styles.css ./dist/styles.css && cp ./src/styles.css ./docs/styles.css",
-    "build:demo": "NODE_ENV=demo webpack",
+    "build": "npm-run-all clean build:css build:js",
+    "build:css": "postcss src/styles.css --use autoprefixer -d dist/ --no-map",
+    "build:js": "tsc",
     "clean": "rimraf dist",
-    "lint": "eslint src test",
-    "prepare": "npm run clean && npm run build",
-    "test": "mocha --compilers js:babel-register --recursive --require ./test/setup.js",
-    "test:watch": "npm test -- --watch",
-    "start": "webpack-dev-server --progress --inline"
+    "format": "prettier --write 'src/**/*' 'demo/src/**/*'",
+    "prepare": "npm-run-all clean build",
+    "start": "npm-run-all --parallel start:css start:js",
+    "start:css": "postcss src/styles.css --use autoprefixer -d dist/ --no-map --watch",
+    "start:js": "tsc -w",
+    "test": "jest --config jest.config.json --coverage"
   },
   "devDependencies": {
-    "babel-core": "^6.3.15",
-    "babel-eslint": "^7.2.3",
-    "babel-loader": "^7.0.0",
-    "babel-preset-env": "^1.6.0",
-    "babel-preset-react": "^6.3.13",
-    "babel-register": "^6.8.0",
-    "chai": "^3.5.0",
-    "enzyme": "^2.3.0",
-    "eslint": "^3.11.0",
-    "eslint-config-airbnb": "^14.1.0",
-    "eslint-plugin-import": "^2.2.0",
-    "eslint-plugin-jsx-a11y": "^4.0.0",
-    "eslint-plugin-react": "^6.0.0",
-    "jsdom": "^9.0.0",
-    "mocha": "^3.3.0",
-    "react": "^15.4.0",
-    "react-addons-test-utils": "^15.0.2",
-    "react-dom": "^15.4.0",
+    "@types/enzyme": "^3.9.1",
+    "@types/enzyme-adapter-react-16": "^1.0.5",
+    "@types/jest": "^24.0.11",
+    "@types/react": "^16.8.14",
+    "autoprefixer": "^9.5.1",
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.12.1",
+    "jest": "^24.7.1",
+    "npm-run-all": "^4.1.5",
+    "postcss-cli": "^6.1.2",
+    "prettier": "^1.17.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
     "rimraf": "^2.3.4",
-    "webpack": "^2.5.1",
-    "webpack-dev-server": "^2.4.5"
+    "ts-jest": "^24.0.2",
+    "typescript": "^3.4.4"
   },
   "dependencies": {
     "prop-types": "^15.5.10"

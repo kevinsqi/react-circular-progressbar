@@ -6,7 +6,7 @@
 
 A circular progressbar component, built with SVG and extensively customizable. [**Try it out on CodeSandbox**](https://codesandbox.io/s/vymm4oln6y).
 
-<a href="https://codesandbox.io/s/vymm4oln6y"><img height="120" src="/docs/animated-progressbar.gif?raw=true" alt="animated progressbar" /></a> <a href="https://codesandbox.io/s/vymm4oln6y"><img height="120" src="/docs/circular-progressbar-examples.png?raw=true" alt="progressbar examples" /></a>
+<a href="https://codesandbox.io/s/vymm4oln6y"><img height="120" src="/demo/public/images/animated-progressbar.gif?raw=true" alt="animated progressbar" /></a> <a href="https://codesandbox.io/s/vymm4oln6y"><img height="120" src="/demo/public/images/circular-progressbar-examples.png?raw=true" alt="progressbar examples" /></a>
 
 ## Installation
 
@@ -139,7 +139,7 @@ If you want to add images or multiple lines of text within the progressbar, the 
 
 [**Here's a Codesandbox demo**](https://codesandbox.io/s/qlr7w0rm29)
 
-<a href="https://codesandbox.io/s/qlr7w0rm29"><img src="/docs/custom-content-progressbar.png?raw=true" alt="custom content progressbar" /></a>
+<a href="https://codesandbox.io/s/qlr7w0rm29"><img src="/demo/public/images/custom-content-progressbar.png?raw=true" alt="custom content progressbar" /></a>
 
 ## Customizing animation and animating text
 
