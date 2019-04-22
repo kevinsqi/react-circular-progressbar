@@ -1,3 +1,13 @@
+## 1.1.0
+
+* Convert project to Typescript and improve demo setup [#77]
+* Remove prop-types dependency [#78]
+
+1.1.0 now uses Typescript!
+
+There should not be any breaking changes to the public JS interface. However, the slight discrepancy in typing may cause type errors when switching from 1.0 using DefinitelyTyped. Runtime prop-types checking is also now removed in [#78].
+
+
 ## 1.0.0
 
 We're at 1.0.0! 🎉  Thank you to all the contributors and issue creators.
