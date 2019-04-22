@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 const MIN_PERCENTAGE = 0;
 const MAX_PERCENTAGE = 100;
