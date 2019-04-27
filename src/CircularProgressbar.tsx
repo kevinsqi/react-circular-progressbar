@@ -16,7 +16,7 @@ type CircularProgressbarDefaultProps = {
   backgroundPadding: number;
   initialAnimation: boolean;
   counterClockwise: boolean;
-  percentageOfCircleToShow: number;
+  circleRatio: number;
   classes: {
     root: string;
     trail: string;
@@ -56,7 +56,7 @@ class CircularProgressbar extends React.Component<
     backgroundPadding: 0,
     initialAnimation: false,
     counterClockwise: false,
-    percentageOfCircleToShow: 100,
+    circleRatio: 1,
     classes: {
       root: 'CircularProgressbar',
       trail: 'CircularProgressbar-trail',
@@ -125,10 +125,6 @@ class CircularProgressbar extends React.Component<
     return FULL_RADIUS - this.props.strokeWidth / 2 - this.getBackgroundPadding();
   }
 
-  getPercentageOfCircleToShow() {
-    return this.props.percentageOfCircleToShow / 100;
-  }
-
   render() {
     const {
       className,
@@ -138,6 +134,7 @@ class CircularProgressbar extends React.Component<
       styles,
       strokeWidth,
       text,
+      circleRatio,
     } = this.props;
 
     const pathRadius = this.getPathRadius();
@@ -162,7 +159,7 @@ class CircularProgressbar extends React.Component<
           className={classes.trail}
           counterClockwise={counterClockwise}
           pathRadius={pathRadius}
-          percentage={100}
+          percentage={100 * circleRatio}
           strokeWidth={strokeWidth}
           style={styles.trail}
         />
@@ -171,7 +168,7 @@ class CircularProgressbar extends React.Component<
           className={classes.path}
           counterClockwise={counterClockwise}
           pathRadius={pathRadius}
-          percentage={percentage}
+          percentage={percentage * circleRatio}
           strokeWidth={strokeWidth}
           style={styles.path}
         />

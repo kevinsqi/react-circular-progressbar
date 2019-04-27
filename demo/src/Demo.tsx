@@ -98,11 +98,11 @@ function Demo() {
         </Example>
 
         <Example description="Dashboard style.">
-          <CircularProgressbar percentage={50} percentageOfCircleToShow={70} />
+          <CircularProgressbar percentage={50} circleRatio={0.7} />
         </Example>
 
         <Example description="Dashboard style, counterclockwise.">
-          <CircularProgressbar percentage={50} percentageOfCircleToShow={70} counterClockwise />
+          <CircularProgressbar percentage={50} circleRatio={0.7} counterClockwise />
         </Example>
       </div>
 
