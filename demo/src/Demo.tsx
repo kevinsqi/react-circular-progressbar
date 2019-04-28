@@ -14,6 +14,8 @@ const Example: React.FunctionComponent<{ description: string }> = ({ description
 );
 
 function Demo() {
+  const [showAllExamples, setShowAllExamples] = React.useState(false);
+
   return (
     <div className="container">
       <div className="row mt-5">
@@ -97,13 +99,25 @@ function Demo() {
           </div>
         </Example>
 
-        <Example description="Dashboard style.">
-          <CircularProgressbar percentage={50} circleRatio={0.7} />
-        </Example>
-
-        <Example description="Dashboard style, counterclockwise.">
-          <CircularProgressbar percentage={50} circleRatio={0.7} counterClockwise />
-        </Example>
+        {showAllExamples ? (
+          <React.Fragment>
+            <Example description="Dashboard style.">
+              <CircularProgressbar percentage={50} circleRatio={0.7} />
+            </Example>
+            <Example description="Dashboard style, counterclockwise.">
+              <CircularProgressbar percentage={50} circleRatio={0.7} counterClockwise />
+            </Example>
+          </React.Fragment>
+        ) : (
+          <div className="col-12 text-center">
+            <button
+              className="btn btn-link text-secondary"
+              onClick={() => setShowAllExamples(true)}
+            >
+              <small>Show more examples</small>
+            </button>
+          </div>
+        )}
       </div>
 
       <hr />
