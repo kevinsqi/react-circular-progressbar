@@ -16,6 +16,7 @@ type CircularProgressbarDefaultProps = {
   backgroundPadding: number;
   initialAnimation: boolean;
   counterClockwise: boolean;
+  circleRatio: number;
   classes: {
     root: string;
     trail: string;
@@ -55,6 +56,7 @@ class CircularProgressbar extends React.Component<
     backgroundPadding: 0,
     initialAnimation: false,
     counterClockwise: false,
+    circleRatio: 1,
     classes: {
       root: 'CircularProgressbar',
       trail: 'CircularProgressbar-trail',
@@ -117,36 +119,6 @@ class CircularProgressbar extends React.Component<
     return 0;
   }
 
-  getPathDescription() {
-    const radius = this.getPathRadius();
-    const rotation = this.props.counterClockwise ? 1 : 0;
-
-    // Move to center of canvas
-    // Relative move to top canvas
-    // Relative arc to bottom of canvas
-    // Relative arc to top of canvas
-    return `
-      M ${CENTER_X},${CENTER_Y}
-      m 0,-${radius}
-      a ${radius},${radius} ${rotation} 1 1 0,${2 * radius}
-      a ${radius},${radius} ${rotation} 1 1 0,-${2 * radius}
-    `;
-  }
-
-  getPathStyles() {
-    const diameter = Math.PI * 2 * this.getPathRadius();
-    const truncatedPercentage = Math.min(
-      Math.max(this.state.percentage, MIN_PERCENTAGE),
-      MAX_PERCENTAGE,
-    );
-    const dashoffset = ((100 - truncatedPercentage) / 100) * diameter;
-
-    return {
-      strokeDasharray: `${diameter}px ${diameter}px`,
-      strokeDashoffset: `${this.props.counterClockwise ? -dashoffset : dashoffset}px`,
-    };
-  }
-
   getPathRadius() {
     // the radius of the path is defined to be in the middle, so in order for the path to
     // fit perfectly inside the 100x100 viewBox, need to subtract half the strokeWidth
@@ -154,8 +126,18 @@ class CircularProgressbar extends React.Component<
   }
 
   render() {
-    const { percentage, className, classes, styles, strokeWidth, text } = this.props;
-    const pathDescription = this.getPathDescription();
+    const {
+      className,
+      classes,
+      counterClockwise,
+      percentage,
+      styles,
+      strokeWidth,
+      text,
+      circleRatio,
+    } = this.props;
+
+    const pathRadius = this.getPathRadius();
 
     return (
       <svg
@@ -173,20 +155,22 @@ class CircularProgressbar extends React.Component<
           />
         ) : null}
 
-        <path
+        <Path
           className={classes.trail}
-          style={styles.trail}
-          d={pathDescription}
+          counterClockwise={counterClockwise}
+          pathRadius={pathRadius}
+          percentage={100 * circleRatio}
           strokeWidth={strokeWidth}
-          fillOpacity={0}
+          style={styles.trail}
         />
 
-        <path
+        <Path
           className={classes.path}
-          d={pathDescription}
+          counterClockwise={counterClockwise}
+          pathRadius={pathRadius}
+          percentage={percentage * circleRatio}
           strokeWidth={strokeWidth}
-          fillOpacity={0}
-          style={Object.assign({}, styles.path, this.getPathStyles())}
+          style={styles.path}
         />
 
         {text ? (
@@ -197,6 +181,76 @@ class CircularProgressbar extends React.Component<
       </svg>
     );
   }
+}
+
+function Path({
+  className,
+  counterClockwise,
+  pathRadius,
+  percentage,
+  strokeWidth,
+  style,
+}: {
+  className?: string;
+  counterClockwise: boolean;
+  pathRadius: number;
+  percentage: number;
+  strokeWidth: number;
+  style?: object;
+}) {
+  return (
+    <path
+      className={className}
+      style={Object.assign({}, style, getDashStyle({ pathRadius, percentage, counterClockwise }))}
+      d={getPathDescription({
+        pathRadius,
+        counterClockwise,
+      })}
+      strokeWidth={strokeWidth}
+      fillOpacity={0}
+    />
+  );
+}
+
+function getPathDescription({
+  pathRadius,
+  counterClockwise,
+}: {
+  pathRadius: number;
+  counterClockwise: boolean;
+}) {
+  const radius = pathRadius;
+  const rotation = counterClockwise ? 1 : 0;
+
+  // Move to center of canvas
+  // Relative move to top canvas
+  // Relative arc to bottom of canvas
+  // Relative arc to top of canvas
+  return `
+      M ${CENTER_X},${CENTER_Y}
+      m 0,-${radius}
+      a ${radius},${radius} ${rotation} 1 1 0,${2 * radius}
+      a ${radius},${radius} ${rotation} 1 1 0,-${2 * radius}
+    `;
+}
+
+function getDashStyle({
+  pathRadius,
+  percentage,
+  counterClockwise,
+}: {
+  pathRadius: number;
+  percentage: number;
+  counterClockwise: boolean;
+}) {
+  const diameter = Math.PI * 2 * pathRadius;
+  const truncatedPercentage = Math.min(Math.max(percentage, MIN_PERCENTAGE), MAX_PERCENTAGE);
+  const gapLength = (1 - truncatedPercentage / 100) * diameter;
+
+  return {
+    strokeDasharray: `${diameter}px ${diameter}px`,
+    strokeDashoffset: `${counterClockwise ? -gapLength : gapLength}px`,
+  };
 }
 
 export default CircularProgressbar;

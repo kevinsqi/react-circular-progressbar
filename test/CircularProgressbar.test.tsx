@@ -1,7 +1,20 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount, shallow, ReactWrapper } from 'enzyme';
 
 import CircularProgressbar from '../src/index';
+
+function getExpectedStrokeDashoffset({
+  percentage,
+  strokeWidth,
+}: {
+  percentage: number;
+  strokeWidth: number;
+}) {
+  const radius = 50 - strokeWidth / 2;
+  const diameter = 2 * radius * Math.PI;
+  const expectedGapLength = (1 - percentage / 100) * diameter;
+  return `${expectedGapLength}px`;
+}
 
 describe('<CircularProgressbar />', () => {
   test('SVG rendered to DOM', () => {
@@ -36,29 +49,91 @@ describe('<CircularProgressbar />', () => {
   describe('props.percentage', () => {
     test('Renders correct path', () => {
       const percentage = 30;
-      const wrapper = shallow(
+      const wrapper = mount(
         <CircularProgressbar percentage={percentage} strokeWidth={0} className="my-custom-class" />,
       );
 
-      const dashoffset = wrapper.find('.CircularProgressbar-path').prop('style')!.strokeDashoffset;
-      const expectedRadius = 50;
-      const expectedDiameter = 2 * expectedRadius * Math.PI;
-      const expectedOffset = ((100 - percentage) / 100) * expectedDiameter;
-      expect(dashoffset).toEqual(`${expectedOffset}px`);
+      expect(
+        wrapper
+          .find('.CircularProgressbar-path')
+          .hostNodes()
+          .prop('style')!.strokeDashoffset,
+      ).toEqual(getExpectedStrokeDashoffset({ percentage, strokeWidth: 0 }));
 
+      const expectedRadius = 50;
       const expectedArcto = `a ${expectedRadius},${expectedRadius}`;
-      expect(wrapper.find('.CircularProgressbar-path').prop('d')).toContain(expectedArcto);
+      expect(
+        wrapper
+          .find('.CircularProgressbar-path')
+          .hostNodes()
+          .prop('d'),
+      ).toContain(expectedArcto);
     });
   });
   describe('props.counterClockwise', () => {
     test('Reverses dashoffset', () => {
-      const clockwise = shallow(<CircularProgressbar percentage={50} />);
-      const counterClockwise = shallow(<CircularProgressbar percentage={50} counterClockwise />);
+      const clockwise = mount(<CircularProgressbar percentage={50} />);
+      const counterClockwise = mount(<CircularProgressbar percentage={50} counterClockwise />);
 
       // Counterclockwise should have the negative dashoffset of clockwise
       expect(
-        `-${clockwise.find('.CircularProgressbar-path').prop('style')!.strokeDashoffset}`,
-      ).toEqual(counterClockwise.find('.CircularProgressbar-path').prop('style')!.strokeDashoffset);
+        `-${
+          clockwise
+            .find('.CircularProgressbar-path')
+            .hostNodes()
+            .prop('style')!.strokeDashoffset
+        }`,
+      ).toEqual(
+        counterClockwise
+          .find('.CircularProgressbar-path')
+          .hostNodes()
+          .prop('style')!.strokeDashoffset,
+      );
+    });
+  });
+  describe('props.circleRatio', () => {
+    test('Default full diameter', () => {
+      const percentage = 25;
+      const strokeWidth = 5;
+      const wrapper = mount(
+        <CircularProgressbar percentage={percentage} strokeWidth={strokeWidth} circleRatio={1} />,
+      );
+
+      expect(
+        wrapper
+          .find('.CircularProgressbar-path')
+          .hostNodes()
+          .prop('style')!.strokeDashoffset,
+      ).toEqual(getExpectedStrokeDashoffset({ percentage, strokeWidth }));
+    });
+
+    test('Correct path and trail lengths', () => {
+      const percentage = 25;
+      const strokeWidth = 5;
+      const circleRatio = 0.8;
+      const wrapper = mount(
+        <CircularProgressbar
+          percentage={percentage}
+          strokeWidth={strokeWidth}
+          circleRatio={circleRatio}
+        />,
+      );
+
+      // Path offset should be scaled
+      expect(
+        wrapper
+          .find('.CircularProgressbar-path')
+          .hostNodes()
+          .prop('style')!.strokeDashoffset,
+      ).toEqual(getExpectedStrokeDashoffset({ percentage: percentage * circleRatio, strokeWidth }));
+
+      // Trail offset should be scaled
+      expect(
+        wrapper
+          .find('.CircularProgressbar-trail')
+          .hostNodes()
+          .prop('style')!.strokeDashoffset,
+      ).toEqual(getExpectedStrokeDashoffset({ percentage: 100 * circleRatio, strokeWidth }));
     });
   });
   describe('props.styles', () => {
@@ -101,14 +176,34 @@ describe('<CircularProgressbar />', () => {
   });
   describe('props.classes', () => {
     test('Has default values', () => {
-      const wrapper = shallow(<CircularProgressbar percentage={50} text="50" />);
-      expect(wrapper.find('.CircularProgressbar').type()).toEqual('svg');
-      expect(wrapper.find('.CircularProgressbar-path').type()).toEqual('path');
-      expect(wrapper.find('.CircularProgressbar-trail').type()).toEqual('path');
-      expect(wrapper.find('.CircularProgressbar-text').type()).toEqual('text');
+      const wrapper = mount(<CircularProgressbar percentage={50} text="50" />);
+      expect(
+        wrapper
+          .find('.CircularProgressbar')
+          .hostNodes()
+          .type(),
+      ).toEqual('svg');
+      expect(
+        wrapper
+          .find('.CircularProgressbar-path')
+          .hostNodes()
+          .type(),
+      ).toEqual('path');
+      expect(
+        wrapper
+          .find('.CircularProgressbar-trail')
+          .hostNodes()
+          .type(),
+      ).toEqual('path');
+      expect(
+        wrapper
+          .find('.CircularProgressbar-text')
+          .hostNodes()
+          .type(),
+      ).toEqual('text');
     });
     test('Prop overrides work', () => {
-      const wrapper = shallow(
+      const wrapper = mount(
         <CircularProgressbar
           percentage={50}
           text="50"
@@ -131,11 +226,36 @@ describe('<CircularProgressbar />', () => {
       expect(wrapper.find('.CircularProgressbar-background').exists()).toBe(false);
 
       // Assert override classes do exist
-      expect(wrapper.find('.someRootClass').type()).toEqual('svg');
-      expect(wrapper.find('.somePathClass').type()).toEqual('path');
-      expect(wrapper.find('.someTrailClass').type()).toEqual('path');
-      expect(wrapper.find('.someTextClass').type()).toEqual('text');
-      expect(wrapper.find('.someBackgroundClass').type()).toEqual('circle');
+      expect(
+        wrapper
+          .find('.someRootClass')
+          .hostNodes()
+          .type(),
+      ).toEqual('svg');
+      expect(
+        wrapper
+          .find('.somePathClass')
+          .hostNodes()
+          .type(),
+      ).toEqual('path');
+      expect(
+        wrapper
+          .find('.someTrailClass')
+          .hostNodes()
+          .type(),
+      ).toEqual('path');
+      expect(
+        wrapper
+          .find('.someTextClass')
+          .hostNodes()
+          .type(),
+      ).toEqual('text');
+      expect(
+        wrapper
+          .find('.someBackgroundClass')
+          .hostNodes()
+          .type(),
+      ).toEqual('circle');
     });
   });
 });
