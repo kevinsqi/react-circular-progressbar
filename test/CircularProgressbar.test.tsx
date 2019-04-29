@@ -1,7 +1,20 @@
 import React from 'react';
-import { mount, shallow } from 'enzyme';
+import { mount, shallow, ReactWrapper } from 'enzyme';
 
 import CircularProgressbar from '../src/index';
+
+function getExpectedStrokeDashoffset({
+  percentage,
+  strokeWidth,
+}: {
+  percentage: number;
+  strokeWidth: number;
+}) {
+  const radius = 50 - strokeWidth / 2;
+  const diameter = 2 * radius * Math.PI;
+  const expectedGapLength = (1 - percentage / 100) * diameter;
+  return `${expectedGapLength}px`;
+}
 
 describe('<CircularProgressbar />', () => {
   test('SVG rendered to DOM', () => {
@@ -40,15 +53,14 @@ describe('<CircularProgressbar />', () => {
         <CircularProgressbar percentage={percentage} strokeWidth={0} className="my-custom-class" />,
       );
 
-      const dashoffset = wrapper
-        .find('.CircularProgressbar-path')
-        .hostNodes()
-        .prop('style')!.strokeDashoffset;
-      const expectedRadius = 50;
-      const expectedDiameter = 2 * expectedRadius * Math.PI;
-      const expectedOffset = ((100 - percentage) / 100) * expectedDiameter;
-      expect(dashoffset).toEqual(`${expectedOffset}px`);
+      expect(
+        wrapper
+          .find('.CircularProgressbar-path')
+          .hostNodes()
+          .prop('style')!.strokeDashoffset,
+      ).toEqual(getExpectedStrokeDashoffset({ percentage, strokeWidth: 0 }));
 
+      const expectedRadius = 50;
       const expectedArcto = `a ${expectedRadius},${expectedRadius}`;
       expect(
         wrapper
@@ -77,6 +89,51 @@ describe('<CircularProgressbar />', () => {
           .hostNodes()
           .prop('style')!.strokeDashoffset,
       );
+    });
+  });
+  describe('props.circleRatio', () => {
+    test('Default full diameter', () => {
+      const percentage = 25;
+      const strokeWidth = 5;
+      const wrapper = mount(
+        <CircularProgressbar percentage={percentage} strokeWidth={strokeWidth} circleRatio={1} />,
+      );
+
+      expect(
+        wrapper
+          .find('.CircularProgressbar-path')
+          .hostNodes()
+          .prop('style')!.strokeDashoffset,
+      ).toEqual(getExpectedStrokeDashoffset({ percentage, strokeWidth }));
+    });
+
+    test('Correct path and trail lengths', () => {
+      const percentage = 25;
+      const strokeWidth = 5;
+      const circleRatio = 0.8;
+      const wrapper = mount(
+        <CircularProgressbar
+          percentage={percentage}
+          strokeWidth={strokeWidth}
+          circleRatio={circleRatio}
+        />,
+      );
+
+      // Path offset should be scaled
+      expect(
+        wrapper
+          .find('.CircularProgressbar-path')
+          .hostNodes()
+          .prop('style')!.strokeDashoffset,
+      ).toEqual(getExpectedStrokeDashoffset({ percentage: percentage * circleRatio, strokeWidth }));
+
+      // Trail offset should be scaled
+      expect(
+        wrapper
+          .find('.CircularProgressbar-trail')
+          .hostNodes()
+          .prop('style')!.strokeDashoffset,
+      ).toEqual(getExpectedStrokeDashoffset({ percentage: 100 * circleRatio, strokeWidth }));
     });
   });
   describe('props.styles', () => {
