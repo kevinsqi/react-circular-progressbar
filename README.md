@@ -188,6 +188,7 @@ const needDominantBaselineFix = ...
 * [Applying a gradient to the progressbar](https://github.com/kevinsqi/react-circular-progressbar/issues/31#issuecomment-338216925)
 * [Customizing the background](https://github.com/kevinsqi/react-circular-progressbar/issues/21#issuecomment-336613160)
 * [Creating a countdown timer](https://github.com/kevinsqi/react-circular-progressbar/issues/52)
+* [Creating a dashboard/speedometer style progressbar](https://github.com/kevinsqi/react-circular-progressbar/issues/49)
 
 
 ## Supported platforms

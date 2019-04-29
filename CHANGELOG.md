@@ -1,3 +1,8 @@
+## 1.2.0
+
+* Add props.circleRatio to enable partial diameter "car speedometer" style [#80]
+
+
 ## 1.1.0
 
 * Convert project to Typescript and improve demo setup [#77]
