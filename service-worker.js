@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/react-circular-progressbar/precache-manifest.766ce7305bc0a79042e912818954d250.js"
+  "/react-circular-progressbar/precache-manifest.a5e0fb33cb6276d9317c2ac659e27769.js"
 );
 
 workbox.clientsClaim();
