@@ -108,19 +108,19 @@ class CircularProgressbar extends React.Component<
 
   getBackgroundPadding() {
     if (this.props.background) {
-      // default padding to be the same as strokeWidth
-      // compare to null because 0 is falsy
+      // Default padding to be the same as strokeWidth
+      // Compare to null because 0 is falsy
       if (this.props.backgroundPadding == null) {
         return this.props.strokeWidth;
       }
       return this.props.backgroundPadding;
     }
-    // don't add padding if not displaying background
+    // Don't add padding if not displaying background
     return 0;
   }
 
   getPathRadius() {
-    // the radius of the path is defined to be in the middle, so in order for the path to
+    // The radius of the path is defined to be in the middle, so in order for the path to
     // fit perfectly inside the 100x100 viewBox, need to subtract half the strokeWidth
     return FULL_RADIUS - this.props.strokeWidth / 2 - this.getBackgroundPadding();
   }
@@ -212,6 +212,7 @@ function Path({
   );
 }
 
+// SVG path description specifies how the path should be drawn
 function getPathDescription({
   pathRadius,
   counterClockwise,
@@ -244,11 +245,15 @@ function getDashStyle({
   counterClockwise: boolean;
 }) {
   const diameter = Math.PI * 2 * pathRadius;
+
+  // Keep percentage within range (MIN_PERCENTAGE, MAX_PERCENTAGE)
   const truncatedPercentage = Math.min(Math.max(percentage, MIN_PERCENTAGE), MAX_PERCENTAGE);
   const gapLength = (1 - truncatedPercentage / 100) * diameter;
 
   return {
+    // Have dash be full diameter, and gap be full diameter
     strokeDasharray: `${diameter}px ${diameter}px`,
+    // Shift dash backward by gapLength, so gap starts appearing at correct distance
     strokeDashoffset: `${counterClockwise ? -gapLength : gapLength}px`,
   };
 }
