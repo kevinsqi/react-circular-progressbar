@@ -1,3 +1,9 @@
+## 1.2.1
+
+* Use Rollup to build package [#83]
+* Extract Path component into separate file [#84]
+
+
 ## 1.2.0
 
 * Add props.circleRatio to enable partial diameter "car speedometer" style [#80]
