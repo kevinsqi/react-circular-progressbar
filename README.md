@@ -36,7 +36,7 @@ If you have a CSS loader configured, you can import the stylesheet:
 import 'react-circular-progressbar/dist/styles.css';
 ```
 
-If not, you can copy [styles.css](dist/styles.css) into your project instead, and include `<link rel="stylesheet" href="styles.css" />` in your `<head>`.
+If not, you can copy [styles.css](src/styles.css) into your project instead, and include `<link rel="stylesheet" href="styles.css" />` in your `<head>`.
 
 Now you can use the component:
 
