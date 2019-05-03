@@ -44,6 +44,8 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "rimraf": "^2.3.4",
+    "rollup": "^1.10.1",
+    "rollup-plugin-typescript2": "^0.21.0",
     "ts-jest": "^24.0.2",
     "typescript": "^3.4.4"
   },
