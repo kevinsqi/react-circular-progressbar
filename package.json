@@ -4,6 +4,7 @@
   "description": "A circular progress indicator component",
   "author": "Kevin Qi <iqnivek@gmail.com>",
   "main": "dist/index.js",
+  "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
   "style": "dist/styles.css",
   "files": [
@@ -20,13 +21,13 @@
   "scripts": {
     "build": "npm-run-all clean build:css build:js",
     "build:css": "postcss src/styles.css --use autoprefixer -d dist/ --no-map",
-    "build:js": "tsc",
+    "build:js": "rollup -c",
     "clean": "rimraf dist",
     "format": "prettier --write 'src/**/*' 'demo/src/**/*'",
     "prepare": "npm-run-all clean build",
     "start": "npm-run-all --parallel start:css start:js",
     "start:css": "postcss src/styles.css --use autoprefixer -d dist/ --no-map --watch",
-    "start:js": "tsc -w",
+    "start:js": "rollup -c -w",
     "test": "jest --config jest.config.json --coverage"
   },
   "devDependencies": {
