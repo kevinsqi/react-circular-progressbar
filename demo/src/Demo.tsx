@@ -1,5 +1,5 @@
 import React from 'react';
-import CircularProgressbar, { buildStyles } from 'react-circular-progressbar';
+import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import classNames from 'classnames';
 import { easeSinOut, easeQuadIn, easeQuadInOut, easeLinear, easeCubicInOut } from 'd3-ease';
 

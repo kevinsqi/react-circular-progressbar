@@ -1,6 +1,6 @@
 import React from 'react';
 import { Animate } from 'react-move';
-import CircularProgressbar from 'react-circular-progressbar';
+import { CircularProgressbar } from 'react-circular-progressbar';
 
 type Props = {
   duration: number;
