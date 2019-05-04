@@ -1,5 +1,5 @@
 import React from 'react';
-import CircularProgressbar from 'react-circular-progressbar';
+import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import classNames from 'classnames';
 import { easeSinOut, easeQuadIn, easeQuadInOut, easeLinear, easeCubicInOut } from 'd3-ease';
 
@@ -41,17 +41,7 @@ function Demo() {
 
       <div className="row mt-5 mb-5">
         <div className="col-6 offset-3 col-md-2 offset-md-5">
-          <ChangingProgressbar
-            percentages={[0, 20, 40, 60, 80, 100]}
-            stylesForPercentage={(percentage: number) => {
-              const alpha = (100 + percentage) / 200;
-              return {
-                path: {
-                  stroke: `rgba(62, 152, 199, ${alpha})`,
-                },
-              };
-            }}
-          />
+          <ChangingProgressbar percentages={[0, 20, 40, 60, 80, 100]} />
         </div>
       </div>
 
@@ -64,8 +54,8 @@ function Demo() {
         <Example
           description={
             <span>
-              Customize <Code>props.text</Code> and <Code>props.className</Code> based on
-              percentage.
+              Customize <Code>props.text</Code>, <Code>props.styles</Code>, and{' '}
+              <Code>props.className</Code> based on percentage.
             </span>
           }
         >
@@ -76,6 +66,11 @@ function Demo() {
             }}
             textForPercentage={(percentage: number) => {
               return percentage === 100 ? `${percentage}!!` : `${percentage}...`;
+            }}
+            stylesForPercentage={(percentage: number) => {
+              return buildStyles({
+                strokeLinecap: 'butt',
+              });
             }}
           />
         </Example>
@@ -88,7 +83,18 @@ function Demo() {
             </span>
           }
         >
-          <ChangingProgressbar percentages={[0, 80]} strokeWidth={5} counterClockwise />
+          <ChangingProgressbar
+            percentages={[20, 80]}
+            strokeWidth={5}
+            counterClockwise
+            stylesForPercentage={(percentage: number) => {
+              const alpha = (100 + percentage) / 200;
+              return buildStyles({
+                pathColor: `rgba(62, 152, 199, ${alpha})`,
+                pathTransitionDuration: 0.2,
+              });
+            }}
+          />
         </Example>
 
         <Example
@@ -143,18 +149,12 @@ function Demo() {
             percentage={66}
             text={`${66}%`}
             circleRatio={0.75}
-            styles={{
-              trail: {
-                strokeLinecap: 'butt',
-                transform: 'rotate(-135deg)',
-                transformOrigin: 'center center',
-              },
-              path: {
-                strokeLinecap: 'butt',
-                transform: 'rotate(-135deg)',
-                transformOrigin: 'center center',
-              },
-            }}
+            styles={buildStyles({
+              rotation: 1 / 2 + 1 / 8,
+              strokeLinecap: 'butt',
+              pathColor: 'orange',
+              trailColor: '#eee',
+            })}
           />
         </Example>
 

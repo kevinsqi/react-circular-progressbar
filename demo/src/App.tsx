@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import CircularProgressbar from 'react-circular-progressbar';
 import Demo from './Demo';
 
 // Stylesheets

@@ -1,5 +1,5 @@
 import React from 'react';
-import CircularProgressbar from 'react-circular-progressbar';
+import { CircularProgressbar } from 'react-circular-progressbar';
 
 type CircularProgressbarProps = {
   counterClockwise?: boolean;
