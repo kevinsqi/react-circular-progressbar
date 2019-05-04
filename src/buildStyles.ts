@@ -10,12 +10,12 @@ export default function buildStyles({
   trailColor,
   backgroundColor,
 }: {
-  rotation?: number;  // Number of turns, 0-1
+  rotation?: number; // Number of turns, 0-1
   strokeLinecap?: any;
   textColor?: string;
   textSize?: string | number;
   pathColor?: string;
-  pathTransitionDuration?: number;  // Measured in seconds
+  pathTransitionDuration?: number; // Measured in seconds
   trailColor?: string;
   backgroundColor?: string;
 }): CircularProgressbarStyles {
@@ -24,25 +24,34 @@ export default function buildStyles({
 
   return {
     root: {},
-    path: {
+    path: removeUndefinedValues({
       stroke: pathColor,
       strokeLinecap: strokeLinecap,
       transform: rotationTransform,
       transformOrigin: rotationTransformOrigin,
-      transitionDuration: `${pathTransitionDuration}s`,
-    },
-    trail: {
+      transitionDuration: pathTransitionDuration == null ? undefined : `${pathTransitionDuration}s`,
+    }),
+    trail: removeUndefinedValues({
       stroke: trailColor,
       strokeLinecap: strokeLinecap,
       transform: rotationTransform,
       transformOrigin: rotationTransformOrigin,
-    },
-    text: {
+    }),
+    text: removeUndefinedValues({
       fill: textColor,
       fontSize: textSize,
-    },
-    background: {
+    }),
+    background: removeUndefinedValues({
       fill: backgroundColor,
-    },
+    }),
   };
+}
+
+function removeUndefinedValues(obj: { [key: string]: any }) {
+  Object.keys(obj).forEach((key: string) => {
+    if (obj[key] == null) {
+      delete obj[key];
+    }
+  });
+  return obj;
 }

@@ -38,29 +38,26 @@ Now you can use the component:
 ```jsx
 const percentage = 66;
 
-<CircularProgressbar
-  percentage={percentage}
-  text={`${percentage}%`}
-/>
+<CircularProgressbar percentage={percentage} text={`${percentage}%`} />;
 ```
 
 ## Props
 
 [**Take a look at the CodeSandbox**](https://codesandbox.io/s/vymm4oln6y) for interactive examples on how to use these props.
 
-| Name | Description |
-| ---- | ----------- |
-| `percentage` | Numeric percentage to display, from 0-100. Required. |
-| `className` | Classes to apply to the svg element. Default: `''`. |
-| `text` | Text to display inside progressbar. Default: `null`. |
-| `strokeWidth` | Width of circular line as a percentage relative to total width of component. Default: `8`. |
-| `background` | Whether to display background color. Default: `false`. |
-| `backgroundPadding` | Padding between background and edge of svg as a percentage relative to total width of component. Default: `null`. |
-| `initialAnimation` | Toggle whether to animate progress starting from 0% on initial mount. Default: `false`. |
-| `counterClockwise` | Toggle whether to rotate progressbar in counterclockwise direction. Default: `false`. |
-| `circleRatio` | Number from 0-1 representing ratio of the full circle diameter the progressbar should use. Default: `1`. |
-| `classes` | Object allowing overrides of classNames of each svg subcomponent (root, trail, path, text, background). Enables styling with react-jss. See [this PR](https://github.com/kevinsqi/react-circular-progressbar/pull/25) for more detail. |
-| `styles` | Object allowing customization of styles of each svg subcomponent (root, trail, path, text, background). |
+| Name                | Description                                                                                                                                                                                                                            |
+| ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `percentage`        | Numeric percentage to display, from 0-100. Required.                                                                                                                                                                                   |
+| `className`         | Classes to apply to the svg element. Default: `''`.                                                                                                                                                                                    |
+| `text`              | Text to display inside progressbar. Default: `null`.                                                                                                                                                                                   |
+| `strokeWidth`       | Width of circular line as a percentage relative to total width of component. Default: `8`.                                                                                                                                             |
+| `background`        | Whether to display background color. Default: `false`.                                                                                                                                                                                 |
+| `backgroundPadding` | Padding between background and edge of svg as a percentage relative to total width of component. Default: `null`.                                                                                                                      |
+| `initialAnimation`  | Toggle whether to animate progress starting from 0% on initial mount. Default: `false`.                                                                                                                                                |
+| `counterClockwise`  | Toggle whether to rotate progressbar in counterclockwise direction. Default: `false`.                                                                                                                                                  |
+| `circleRatio`       | Number from 0-1 representing ratio of the full circle diameter the progressbar should use. Default: `1`.                                                                                                                               |
+| `classes`           | Object allowing overrides of classNames of each svg subcomponent (root, trail, path, text, background). Enables styling with react-jss. See [this PR](https://github.com/kevinsqi/react-circular-progressbar/pull/25) for more detail. |
+| `styles`            | Object allowing customization of styles of each svg subcomponent (root, trail, path, text, background).                                                                                                                                |
 
 Version 1.0.0 removed the `classForPercentage` and `textForPercentage` props in favor of the newer `className` and `text` props. Take a look at the [migration guide](/CHANGELOG.md) for instructions on how to migrate.
 
@@ -80,28 +77,26 @@ import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 <CircularProgressbar
   percentage={percentage}
   text={`${percentage}%`}
-  styles={
-    buildStyles({
-      // Rotation of path and trail, in number of turns (0-1)
-      rotation: 0.25,
+  styles={buildStyles({
+    // Rotation of path and trail, in number of turns (0-1)
+    rotation: 0.25,
 
-      // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
-      strokeLinecap: 'butt',
+    // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
+    strokeLinecap: 'butt',
 
-      // Text size
-      textSize: '16px',
+    // Text size
+    textSize: '16px',
 
-      // How long animation takes to go from one percentage to another, in seconds
-      pathTransitionDuration: 0.5,
+    // How long animation takes to go from one percentage to another, in seconds
+    pathTransitionDuration: 0.5,
 
-      // Colors
-      pathColor: `rgba(62, 152, 199, ${percentage / 100})`,
-      textColor: '#f88',
-      trailColor: '#d6d6d6',
-      backgroundColor: '#3e98c7',
-    })
-  }
-/>
+    // Colors
+    pathColor: `rgba(62, 152, 199, ${percentage / 100})`,
+    textColor: '#f88',
+    trailColor: '#d6d6d6',
+    backgroundColor: '#3e98c7',
+  })}
+/>;
 ```
 
 `buildStyles` transforms that into this equivalent set of CSS properties:
@@ -122,15 +117,17 @@ import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
       // Customize transition animation
       transition: 'stroke-dashoffset 0.5s ease 0s',
       // Rotate the path
-      transform: 'rotate(90deg)',
+      transform: 'rotate(0.25turn)',
       transformOrigin: 'center center',
     },
     // Customize the circle behind the path, i.e. the "total progress"
     trail: {
       // Trail color
       stroke: '#d6d6d6',
+      // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
+      strokeLinecap: 'butt',
       // Rotate the trail
-      transform: 'rotate(90deg)',
+      transform: 'rotate(0.25turn)',
       transformOrigin: 'center center',
     },
     // Customize the text
@@ -165,10 +162,18 @@ import './custom.css';
 
 ```css
 // custom.css
-.CircularProgressbar-path       { stroke: red;  }
-.CircularProgressbar-trail      { stroke: gray; }
-.CircularProgressbar-text       { fill: yellow; }
-.CircularProgressbar-background { fill: green;  }
+.CircularProgressbar-path {
+  stroke: red;
+}
+.CircularProgressbar-trail {
+  stroke: gray;
+}
+.CircularProgressbar-text {
+  fill: yellow;
+}
+.CircularProgressbar-background {
+  fill: green;
+}
 ```
 
 ## Customizing the text/content inside progressbar
@@ -219,24 +224,21 @@ const needDominantBaselineFix = ...
 
 ## Advanced usage
 
-* [Delaying the animation until the progressbar is visible](https://github.com/kevinsqi/react-circular-progressbar/issues/64)
-* [Using a different value range than 0-100](https://codesandbox.io/s/6z64omwv3n)
-* [Rotating the progressbar by some degree](https://github.com/kevinsqi/react-circular-progressbar/issues/38)
-* [Applying a gradient to the progressbar](https://github.com/kevinsqi/react-circular-progressbar/issues/31#issuecomment-338216925)
-* [Customizing the background](https://github.com/kevinsqi/react-circular-progressbar/issues/21#issuecomment-336613160)
-* [Creating a countdown timer](https://github.com/kevinsqi/react-circular-progressbar/issues/52)
-* [Creating a dashboard/speedometer style progressbar](https://github.com/kevinsqi/react-circular-progressbar/issues/49)
-
+- [Delaying the animation until the progressbar is visible](https://github.com/kevinsqi/react-circular-progressbar/issues/64)
+- [Using a different value range than 0-100](https://codesandbox.io/s/6z64omwv3n)
+- [Rotating the progressbar by some degree](https://github.com/kevinsqi/react-circular-progressbar/issues/38)
+- [Applying a gradient to the progressbar](https://github.com/kevinsqi/react-circular-progressbar/issues/31#issuecomment-338216925)
+- [Customizing the background](https://github.com/kevinsqi/react-circular-progressbar/issues/21#issuecomment-336613160)
+- [Creating a countdown timer](https://github.com/kevinsqi/react-circular-progressbar/issues/52)
+- [Creating a dashboard/speedometer style progressbar](https://github.com/kevinsqi/react-circular-progressbar/issues/49)
 
 ## Supported platforms
 
 react-circular-progressbar does not work with React Native, because React Native does not support `<svg>` out of the box.
 
-
 ## Contributing
 
 Take a look at [CONTRIBUTING.md](/CONTRIBUTING.md) to see how to help contribute to react-circular-progressbar.
-
 
 ## License
 
