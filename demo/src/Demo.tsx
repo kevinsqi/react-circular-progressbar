@@ -67,6 +67,11 @@ function Demo() {
             textForPercentage={(percentage: number) => {
               return percentage === 100 ? `${percentage}!!` : `${percentage}...`;
             }}
+            stylesForPercentage={(percentage: number) => {
+              return buildStyles({
+                strokeLinecap: 'butt',
+              });
+            }}
           />
         </Example>
 
