@@ -1,4 +1,5 @@
 import React from 'react';
+
 import {
   VIEWBOX_WIDTH,
   VIEWBOX_HEIGHT,
@@ -7,39 +8,11 @@ import {
   VIEWBOX_CENTER_Y,
 } from './constants';
 import Path from './Path';
-
-type CircularProgressbarDefaultProps = {
-  strokeWidth: number;
-  className: string;
-  text: string;
-  background: boolean;
-  backgroundPadding: number;
-  initialAnimation: boolean;
-  counterClockwise: boolean;
-  circleRatio: number;
-  classes: {
-    root: string;
-    trail: string;
-    path: string;
-    text: string;
-    background: string;
-  };
-  styles: {
-    root?: object;
-    trail?: object;
-    path?: object;
-    text?: object;
-    background?: object;
-  };
-};
-
-type CircularProgressbarProps = CircularProgressbarDefaultProps & {
-  percentage: number;
-};
-
-type CircularProgressbarState = {
-  percentage: number;
-};
+import {
+  CircularProgressbarDefaultProps,
+  CircularProgressbarProps,
+  CircularProgressbarState,
+} from './types';
 
 class CircularProgressbar extends React.Component<
   CircularProgressbarProps,
