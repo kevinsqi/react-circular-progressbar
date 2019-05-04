@@ -84,11 +84,10 @@ function Demo() {
             counterClockwise
             stylesForPercentage={(percentage: number) => {
               const alpha = (100 + percentage) / 200;
-              return {
-                path: {
-                  stroke: `rgba(62, 152, 199, ${alpha})`,
-                },
-              };
+              return buildStyles({
+                pathColor: `rgba(62, 152, 199, ${alpha})`,
+                pathTransitionDuration: 0.2,
+              });
             }}
           />
         </Example>

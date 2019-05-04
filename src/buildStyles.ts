@@ -10,12 +10,12 @@ export default function buildStyles({
   trailColor,
   backgroundColor,
 }: {
-  rotation?: number;
+  rotation?: number;  // Number of turns, 0-1
   strokeLinecap?: any;
   textColor?: string;
   textSize?: string | number;
   pathColor?: string;
-  pathTransitionDuration?: string;
+  pathTransitionDuration?: number;  // Measured in seconds
   trailColor?: string;
   backgroundColor?: string;
 }): CircularProgressbarStyles {
@@ -29,7 +29,7 @@ export default function buildStyles({
       strokeLinecap: strokeLinecap,
       transform: rotationTransform,
       transformOrigin: rotationTransformOrigin,
-      transitionDuration: pathTransitionDuration,
+      transitionDuration: `${pathTransitionDuration}s`,
     },
     trail: {
       stroke: trailColor,
