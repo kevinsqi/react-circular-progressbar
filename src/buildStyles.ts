@@ -1,3 +1,5 @@
+import { CircularProgressbarStyles } from './types';
+
 export default function buildStyles({
   rotation,
   strokeLinecap,
@@ -9,14 +11,14 @@ export default function buildStyles({
   backgroundColor,
 }: {
   rotation?: number;
-  strokeLinecap?: string;
+  strokeLinecap?: any;
   textColor?: string;
   textSize?: string | number;
-  pathColor?: string | number;
-  pathTransitionDuration?: string | number;
-  trailColor?: string | number;
-  backgroundColor?: string | number;
-}) {
+  pathColor?: string;
+  pathTransitionDuration?: string;
+  trailColor?: string;
+  backgroundColor?: string;
+}): CircularProgressbarStyles {
   const rotationTransform = rotation == null ? undefined : `rotate(${rotation}turn)`;
   const rotationTransformOrigin = rotation == null ? undefined : 'center center';
 

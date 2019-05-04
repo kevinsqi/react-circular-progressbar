@@ -1,3 +1,13 @@
+import React from 'react';
+
+export type CircularProgressbarStyles = {
+  root?: React.CSSProperties;
+  trail?: React.CSSProperties;
+  path?: React.CSSProperties;
+  text?: React.CSSProperties;
+  background?: React.CSSProperties;
+};
+
 export type CircularProgressbarDefaultProps = {
   strokeWidth: number;
   className: string;
@@ -14,13 +24,7 @@ export type CircularProgressbarDefaultProps = {
     text: string;
     background: string;
   };
-  styles: {
-    root?: object;
-    trail?: object;
-    path?: object;
-    text?: object;
-    background?: object;
-  };
+  styles: CircularProgressbarStyles;
 };
 
 export type CircularProgressbarProps = CircularProgressbarDefaultProps & {
