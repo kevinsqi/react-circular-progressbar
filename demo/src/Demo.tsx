@@ -1,5 +1,9 @@
 import React from 'react';
-import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
+import {
+  CircularProgressbar,
+  CircularProgressbarWithChildren,
+  buildStyles,
+} from 'react-circular-progressbar';
 import classNames from 'classnames';
 import { easeSinOut, easeQuadIn, easeQuadInOut, easeLinear, easeCubicInOut } from 'd3-ease';
 
@@ -159,14 +163,11 @@ function Demo() {
         </Example>
 
         <Example description="Need multiple lines of text or custom content? With a bit of CSS you can do whatever you want.">
-          <div style={{ position: 'relative', width: '100%', height: '100%' }}>
-            <div style={{ position: 'absolute', width: '100%' }}>
-              <CircularProgressbar percentage={66} />
-            </div>
+          <CircularProgressbarWithChildren percentage={66}>
             <div style={{ width: '100%', padding: '20%' }}>
               <img style={{ width: '100%' }} src="https://i.imgur.com/b9NyUGm.png" alt="doge" />
             </div>
-          </div>
+          </CircularProgressbarWithChildren>
         </Example>
 
         {showAllExamples ? (
