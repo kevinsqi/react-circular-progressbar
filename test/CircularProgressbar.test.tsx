@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount, shallow, ReactWrapper } from 'enzyme';
 
-import CircularProgressbar from '../src/index';
+import { CircularProgressbar } from '../src/index';
 
 function getExpectedStrokeDashoffset({
   percentage,
