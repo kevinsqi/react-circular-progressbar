@@ -19,7 +19,7 @@ function getExpectedStrokeDashoffset({
 describe('<CircularProgressbar />', () => {
   test('SVG rendered to DOM', () => {
     const wrapper = shallow(<CircularProgressbar percentage={50} />);
-    expect(wrapper.find('svg').length).toBe(1);
+    expect(wrapper.find('svg').exists()).toBe(true);
   });
   describe('props.strokeWidth', () => {
     test('Applies to path', () => {
