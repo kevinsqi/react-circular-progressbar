@@ -162,10 +162,19 @@ function Demo() {
           />
         </Example>
 
-        <Example description="Need multiple lines of text or custom content? With a bit of CSS you can do whatever you want.">
+        <Example
+          description={
+            <span>Need custom content? Use a wrapper component to add arbitrary HTML.</span>
+          }
+        >
           <CircularProgressbarWithChildren percentage={66}>
-            <div style={{ width: '100%', padding: '20%' }}>
-              <img style={{ width: '100%' }} src="https://i.imgur.com/b9NyUGm.png" alt="doge" />
+            <img
+              style={{ width: 40, marginTop: -5 }}
+              src="https://i.imgur.com/b9NyUGm.png"
+              alt="doge"
+            />
+            <div style={{ fontSize: 12, marginTop: -5 }}>
+              <strong>66%</strong> mate
             </div>
           </CircularProgressbarWithChildren>
         </Example>
