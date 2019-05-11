@@ -50,7 +50,3 @@ export type CircularProgressbarWrapperProps = {
 export type CircularProgressbarProps = CircularProgressbarDefaultProps & {
   percentage: number;
 };
-
-export type CircularProgressbarState = {
-  percentage: number;
-};

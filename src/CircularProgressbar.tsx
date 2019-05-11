@@ -8,16 +8,9 @@ import {
   VIEWBOX_CENTER_Y,
 } from './constants';
 import Path from './Path';
-import {
-  CircularProgressbarDefaultProps,
-  CircularProgressbarProps,
-  CircularProgressbarState,
-} from './types';
+import { CircularProgressbarDefaultProps, CircularProgressbarProps } from './types';
 
-class CircularProgressbar extends React.Component<
-  CircularProgressbarProps,
-  CircularProgressbarState
-> {
+class CircularProgressbar extends React.Component<CircularProgressbarProps> {
   static defaultProps: CircularProgressbarDefaultProps = {
     strokeWidth: 8,
     className: '',
