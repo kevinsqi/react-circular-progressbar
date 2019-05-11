@@ -95,8 +95,8 @@ class CircularProgressbar extends React.Component<
         <Path
           className={classes.trail}
           counterClockwise={counterClockwise}
+          dashRatio={circleRatio}
           pathRadius={pathRadius}
-          percentage={100 * circleRatio}
           strokeWidth={strokeWidth}
           style={styles.trail}
         />
@@ -104,8 +104,8 @@ class CircularProgressbar extends React.Component<
         <Path
           className={classes.path}
           counterClockwise={counterClockwise}
+          dashRatio={(percentage / 100) * circleRatio}
           pathRadius={pathRadius}
-          percentage={percentage * circleRatio}
           strokeWidth={strokeWidth}
           style={styles.path}
         />
