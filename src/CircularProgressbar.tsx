@@ -18,16 +18,12 @@ class CircularProgressbar extends React.Component<
   CircularProgressbarProps,
   CircularProgressbarState
 > {
-  initialTimeout: number | undefined = undefined;
-  requestAnimationFrame: number | undefined = undefined;
-
   static defaultProps: CircularProgressbarDefaultProps = {
     strokeWidth: 8,
     className: '',
     text: '',
     background: false,
     backgroundPadding: 0,
-    initialAnimation: false,
     counterClockwise: false,
     circleRatio: 1,
     classes: {
@@ -45,39 +41,6 @@ class CircularProgressbar extends React.Component<
       background: {},
     },
   };
-
-  constructor(props: CircularProgressbarProps) {
-    super(props);
-
-    this.state = {
-      percentage: props.initialAnimation ? 0 : props.percentage,
-    };
-  }
-
-  componentDidMount() {
-    if (this.props.initialAnimation) {
-      this.initialTimeout = window.setTimeout(() => {
-        this.requestAnimationFrame = window.requestAnimationFrame(() => {
-          this.setState({
-            percentage: this.props.percentage,
-          });
-        });
-      }, 0);
-    }
-  }
-
-  componentWillReceiveProps(nextProps: CircularProgressbarProps) {
-    this.setState({
-      percentage: nextProps.percentage,
-    });
-  }
-
-  componentWillUnmount() {
-    clearTimeout(this.initialTimeout);
-    if (this.requestAnimationFrame) {
-      window.cancelAnimationFrame(this.requestAnimationFrame);
-    }
-  }
 
   getBackgroundPadding() {
     if (this.props.background) {

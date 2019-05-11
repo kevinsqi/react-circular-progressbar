@@ -14,7 +14,6 @@ export type CircularProgressbarDefaultProps = {
   text: string;
   background: boolean;
   backgroundPadding: number;
-  initialAnimation: boolean;
   counterClockwise: boolean;
   circleRatio: number;
   classes: {
@@ -36,7 +35,6 @@ export type CircularProgressbarWrapperProps = {
   text?: string;
   background?: boolean;
   backgroundPadding?: number;
-  initialAnimation?: boolean;
   counterClockwise?: boolean;
   circleRatio?: number;
   classes?: {
