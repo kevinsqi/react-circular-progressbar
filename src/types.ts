@@ -9,12 +9,8 @@ export type CircularProgressbarStyles = {
 };
 
 export type CircularProgressbarDefaultProps = {
-  strokeWidth: number;
-  className: string;
-  text: string;
   background: boolean;
   backgroundPadding: number;
-  counterClockwise: boolean;
   circleRatio: number;
   classes: {
     root: string;
@@ -23,19 +19,18 @@ export type CircularProgressbarDefaultProps = {
     text: string;
     background: string;
   };
+  className: string;
+  counterClockwise: boolean;
+  strokeWidth: number;
   styles: CircularProgressbarStyles;
+  text: string;
 };
 
 // These are used for any CircularProgressbar wrapper components that can safely
 // ignore default props.
 export type CircularProgressbarWrapperProps = {
-  percentage: number;
-  strokeWidth?: number;
-  className?: string;
-  text?: string;
   background?: boolean;
   backgroundPadding?: number;
-  counterClockwise?: boolean;
   circleRatio?: number;
   classes?: {
     root: string;
@@ -44,7 +39,12 @@ export type CircularProgressbarWrapperProps = {
     text: string;
     background: string;
   };
+  className?: string;
+  counterClockwise?: boolean;
+  percentage: number;
+  strokeWidth?: number;
   styles?: CircularProgressbarStyles;
+  text?: string;
 };
 
 export type CircularProgressbarProps = CircularProgressbarDefaultProps & {

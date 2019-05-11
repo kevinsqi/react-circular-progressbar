@@ -4,15 +4,15 @@ import { VIEWBOX_CENTER_X, VIEWBOX_CENTER_Y } from './constants';
 function Path({
   className,
   counterClockwise,
-  pathRadius,
   dashRatio,
+  pathRadius,
   strokeWidth,
   style,
 }: {
   className?: string;
   counterClockwise: boolean;
-  pathRadius: number;
   dashRatio: number;
+  pathRadius: number;
   strokeWidth: number;
   style?: object;
 }) {
@@ -54,13 +54,13 @@ function getPathDescription({
 }
 
 function getDashStyle({
-  pathRadius,
-  dashRatio,
   counterClockwise,
+  dashRatio,
+  pathRadius,
 }: {
-  pathRadius: number;
-  dashRatio: number;
   counterClockwise: boolean;
+  dashRatio: number;
+  pathRadius: number;
 }) {
   const diameter = Math.PI * 2 * pathRadius;
 

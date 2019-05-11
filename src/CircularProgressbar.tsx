@@ -12,12 +12,8 @@ import { CircularProgressbarDefaultProps, CircularProgressbarProps } from './typ
 
 class CircularProgressbar extends React.Component<CircularProgressbarProps> {
   static defaultProps: CircularProgressbarDefaultProps = {
-    strokeWidth: 8,
-    className: '',
-    text: '',
     background: false,
     backgroundPadding: 0,
-    counterClockwise: false,
     circleRatio: 1,
     classes: {
       root: 'CircularProgressbar',
@@ -26,6 +22,9 @@ class CircularProgressbar extends React.Component<CircularProgressbarProps> {
       text: 'CircularProgressbar-text',
       background: 'CircularProgressbar-background',
     },
+    counterClockwise: false,
+    className: '',
+    strokeWidth: 8,
     styles: {
       root: {},
       trail: {},
@@ -33,6 +32,7 @@ class CircularProgressbar extends React.Component<CircularProgressbarProps> {
       text: {},
       background: {},
     },
+    text: '',
   };
 
   getBackgroundPadding() {
@@ -56,6 +56,7 @@ class CircularProgressbar extends React.Component<CircularProgressbarProps> {
 
   render() {
     const {
+      circleRatio,
       className,
       classes,
       counterClockwise,
@@ -63,7 +64,6 @@ class CircularProgressbar extends React.Component<CircularProgressbarProps> {
       styles,
       strokeWidth,
       text,
-      circleRatio,
     } = this.props;
 
     const pathRadius = this.getPathRadius();
