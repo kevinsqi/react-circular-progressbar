@@ -71,7 +71,8 @@ class CircularProgressbar extends React.Component<CircularProgressbarProps> {
     } = this.props;
 
     const pathRadius = this.getPathRadius();
-    const pathRatio = value / (maxValue - minValue);
+    const boundedValue = Math.min(Math.max(value, minValue), maxValue);
+    const pathRatio = boundedValue / (maxValue - minValue);
 
     return (
       <svg

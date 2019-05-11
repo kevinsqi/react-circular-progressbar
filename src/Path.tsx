@@ -63,10 +63,7 @@ function getDashStyle({
   pathRadius: number;
 }) {
   const diameter = Math.PI * 2 * pathRadius;
-
-  // Keep dashRatio between [0, 1]
-  const boundedDashRatio = Math.min(Math.max(dashRatio, 0), 1);
-  const gapLength = (1 - boundedDashRatio) * diameter;
+  const gapLength = (1 - dashRatio) * diameter;
 
   return {
     // Have dash be full diameter, and gap be full diameter

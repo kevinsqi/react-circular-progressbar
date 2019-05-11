@@ -44,7 +44,7 @@ describe('<CircularProgressbar />', () => {
       expect(wrapper.find('.CircularProgressbar-text').text()).toEqual('50%');
     });
   });
-  describe('props.percentage', () => {
+  describe('props.value', () => {
     test('Renders correct path', () => {
       const percentage = 30;
       const wrapper = mount(
