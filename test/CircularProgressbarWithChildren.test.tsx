@@ -5,7 +5,7 @@ import { CircularProgressbarWithChildren } from '../src/index';
 
 describe('<CircularProgressbarWithChildren />', () => {
   test('SVG rendered to DOM', () => {
-    const wrapper = mount(<CircularProgressbarWithChildren percentage={50} />);
+    const wrapper = mount(<CircularProgressbarWithChildren value={50} />);
 
     expect(wrapper.find('svg').exists()).toEqual(true);
     expect(wrapper.find('[data-test-id="CircularProgressbar"]').exists()).toEqual(true);
@@ -26,7 +26,9 @@ describe('<CircularProgressbarWithChildren />', () => {
       },
       className: 'johnny',
       counterClockwise: false,
-      percentage: 50,
+      minValue: 0,
+      maxValue: 100,
+      value: 50,
       strokeWidth: 2,
       styles: {},
       text: '50%',
@@ -42,7 +44,7 @@ describe('<CircularProgressbarWithChildren />', () => {
 
   describe('props.children', () => {
     test('No children', () => {
-      const wrapper = mount(<CircularProgressbarWithChildren percentage={50} />);
+      const wrapper = mount(<CircularProgressbarWithChildren value={50} />);
 
       expect(
         wrapper.find('[data-test-id="CircularProgressbarWithChildren__children"]').exists(),
@@ -51,7 +53,7 @@ describe('<CircularProgressbarWithChildren />', () => {
 
     test('Renders child content', () => {
       const wrapper = mount(
-        <CircularProgressbarWithChildren percentage={50}>
+        <CircularProgressbarWithChildren value={50}>
           <div id="hello">Hello</div>
         </CircularProgressbarWithChildren>,
       );

@@ -18,31 +18,29 @@ function getExpectedStrokeDashoffset({
 
 describe('<CircularProgressbar />', () => {
   test('SVG rendered to DOM', () => {
-    const wrapper = shallow(<CircularProgressbar percentage={50} />);
+    const wrapper = shallow(<CircularProgressbar value={50} />);
     expect(wrapper.find('svg').exists()).toBe(true);
   });
   describe('props.strokeWidth', () => {
     test('Applies to path', () => {
-      const wrapper = shallow(<CircularProgressbar percentage={50} strokeWidth={2} />);
+      const wrapper = shallow(<CircularProgressbar value={50} strokeWidth={2} />);
       expect(wrapper.find('.CircularProgressbar-path').prop('strokeWidth')).toEqual(2);
     });
   });
   describe('props.className', () => {
     test('Applies to SVG', () => {
-      const wrapper = shallow(<CircularProgressbar percentage={50} className="my-custom-class" />);
+      const wrapper = shallow(<CircularProgressbar value={50} className="my-custom-class" />);
       expect(wrapper.find('svg').prop('className')).toContain('my-custom-class');
     });
   });
   describe('props.text', () => {
     test('Does not render when blank', () => {
-      const wrapper = shallow(<CircularProgressbar percentage={50} />);
+      const wrapper = shallow(<CircularProgressbar value={50} />);
       expect(wrapper.find('.CircularProgressbar-text').exists()).toEqual(false);
     });
     test('Renders the correct string', () => {
       const percentage = 50;
-      const wrapper = shallow(
-        <CircularProgressbar percentage={percentage} text={`${percentage}%`} />,
-      );
+      const wrapper = shallow(<CircularProgressbar value={percentage} text={`${percentage}%`} />);
       expect(wrapper.find('.CircularProgressbar-text').text()).toEqual('50%');
     });
   });
@@ -50,7 +48,7 @@ describe('<CircularProgressbar />', () => {
     test('Renders correct path', () => {
       const percentage = 30;
       const wrapper = mount(
-        <CircularProgressbar percentage={percentage} strokeWidth={0} className="my-custom-class" />,
+        <CircularProgressbar value={percentage} strokeWidth={0} className="my-custom-class" />,
       );
 
       expect(
@@ -72,8 +70,8 @@ describe('<CircularProgressbar />', () => {
   });
   describe('props.counterClockwise', () => {
     test('Reverses dashoffset', () => {
-      const clockwise = mount(<CircularProgressbar percentage={50} />);
-      const counterClockwise = mount(<CircularProgressbar percentage={50} counterClockwise />);
+      const clockwise = mount(<CircularProgressbar value={50} />);
+      const counterClockwise = mount(<CircularProgressbar value={50} counterClockwise />);
 
       // Counterclockwise should have the negative dashoffset of clockwise
       expect(
@@ -96,7 +94,7 @@ describe('<CircularProgressbar />', () => {
       const percentage = 25;
       const strokeWidth = 5;
       const wrapper = mount(
-        <CircularProgressbar percentage={percentage} strokeWidth={strokeWidth} circleRatio={1} />,
+        <CircularProgressbar value={percentage} strokeWidth={strokeWidth} circleRatio={1} />,
       );
 
       expect(
@@ -113,7 +111,7 @@ describe('<CircularProgressbar />', () => {
       const circleRatio = 0.8;
       const wrapper = mount(
         <CircularProgressbar
-          percentage={percentage}
+          value={percentage}
           strokeWidth={strokeWidth}
           circleRatio={circleRatio}
         />,
@@ -141,7 +139,7 @@ describe('<CircularProgressbar />', () => {
       const percentage = 50;
       const wrapper = shallow(
         <CircularProgressbar
-          percentage={percentage}
+          value={percentage}
           text={`${percentage}%`}
           background
           styles={{
@@ -164,11 +162,11 @@ describe('<CircularProgressbar />', () => {
   });
   describe('props.background', () => {
     test('Background does not render when prop is false', () => {
-      const wrapper = shallow(<CircularProgressbar percentage={50} background={false} />);
+      const wrapper = shallow(<CircularProgressbar value={50} background={false} />);
       expect(wrapper.find('.CircularProgressbar-background').exists()).toEqual(false);
     });
     test('Renders a <circle> with correct radius', () => {
-      const wrapper = shallow(<CircularProgressbar percentage={50} background />);
+      const wrapper = shallow(<CircularProgressbar value={50} background />);
       expect(wrapper.find('.CircularProgressbar-background').exists()).toBe(true);
       expect(wrapper.find('.CircularProgressbar-background').type()).toEqual('circle');
       expect(wrapper.find('.CircularProgressbar-background').prop('r')).toEqual(50);
@@ -176,7 +174,7 @@ describe('<CircularProgressbar />', () => {
   });
   describe('props.classes', () => {
     test('Has default values', () => {
-      const wrapper = mount(<CircularProgressbar percentage={50} text="50" />);
+      const wrapper = mount(<CircularProgressbar value={50} text="50" />);
       expect(
         wrapper
           .find('.CircularProgressbar')
@@ -205,7 +203,7 @@ describe('<CircularProgressbar />', () => {
     test('Prop overrides work', () => {
       const wrapper = mount(
         <CircularProgressbar
-          percentage={50}
+          value={50}
           text="50"
           background
           classes={{
