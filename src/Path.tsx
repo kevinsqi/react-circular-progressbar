@@ -1,28 +1,25 @@
 import React from 'react';
 import { VIEWBOX_CENTER_X, VIEWBOX_CENTER_Y } from './constants';
 
-const MIN_PERCENTAGE = 0;
-const MAX_PERCENTAGE = 100;
-
 function Path({
   className,
   counterClockwise,
+  dashRatio,
   pathRadius,
-  percentage,
   strokeWidth,
   style,
 }: {
   className?: string;
   counterClockwise: boolean;
+  dashRatio: number;
   pathRadius: number;
-  percentage: number;
   strokeWidth: number;
   style?: object;
 }) {
   return (
     <path
       className={className}
-      style={Object.assign({}, style, getDashStyle({ pathRadius, percentage, counterClockwise }))}
+      style={Object.assign({}, style, getDashStyle({ pathRadius, dashRatio, counterClockwise }))}
       d={getPathDescription({
         pathRadius,
         counterClockwise,
@@ -57,19 +54,16 @@ function getPathDescription({
 }
 
 function getDashStyle({
-  pathRadius,
-  percentage,
   counterClockwise,
+  dashRatio,
+  pathRadius,
 }: {
-  pathRadius: number;
-  percentage: number;
   counterClockwise: boolean;
+  dashRatio: number;
+  pathRadius: number;
 }) {
   const diameter = Math.PI * 2 * pathRadius;
-
-  // Keep percentage within range (MIN_PERCENTAGE, MAX_PERCENTAGE)
-  const truncatedPercentage = Math.min(Math.max(percentage, MIN_PERCENTAGE), MAX_PERCENTAGE);
-  const gapLength = (1 - truncatedPercentage / 100) * diameter;
+  const gapLength = (1 - dashRatio) * diameter;
 
   return {
     // Have dash be full diameter, and gap be full diameter

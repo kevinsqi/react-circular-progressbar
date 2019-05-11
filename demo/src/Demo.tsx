@@ -114,7 +114,7 @@ function Demo() {
             background
             backgroundPadding={5}
             strokeWidth={6}
-            percentage={66}
+            value={66}
             text={`${66}%`}
             classes={{
               root: 'CircularProgressbar',
@@ -153,7 +153,7 @@ function Demo() {
           <PercentageProvider percentageStart={10} percentageEnd={66}>
             {(percentage) => (
               <CircularProgressbar
-                percentage={percentage}
+                value={percentage}
                 text={`${percentage}%`}
                 circleRatio={0.75}
                 styles={buildStyles({
@@ -172,7 +172,7 @@ function Demo() {
             <span>Need custom content? Use a wrapper component to add arbitrary HTML.</span>
           }
         >
-          <CircularProgressbarWithChildren percentage={66}>
+          <CircularProgressbarWithChildren value={66}>
             <img
               style={{ width: 40, marginTop: -5 }}
               src="https://i.imgur.com/b9NyUGm.png"
@@ -196,7 +196,7 @@ function Demo() {
               }
             >
               <CircularProgressbar
-                percentage={50}
+                value={50}
                 circleRatio={0.7}
                 counterClockwise
                 background
