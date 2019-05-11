@@ -56,23 +56,26 @@ class CircularProgressbar extends React.Component<CircularProgressbarProps> {
     return VIEWBOX_HEIGHT_HALF - this.props.strokeWidth / 2 - this.getBackgroundPadding();
   }
 
+  // Ratio of path length to trail length, as a value between 0 and 1
+  getPathRatio() {
+    const { value, minValue, maxValue } = this.props;
+    const boundedValue = Math.min(Math.max(value, minValue), maxValue);
+    return (boundedValue - minValue) / (maxValue - minValue);
+  }
+
   render() {
     const {
       circleRatio,
       className,
       classes,
       counterClockwise,
-      maxValue,
-      minValue,
       styles,
       strokeWidth,
       text,
-      value,
     } = this.props;
 
     const pathRadius = this.getPathRadius();
-    const boundedValue = Math.min(Math.max(value, minValue), maxValue);
-    const pathRatio = boundedValue / (maxValue - minValue);
+    const pathRatio = this.getPathRatio();
 
     return (
       <svg

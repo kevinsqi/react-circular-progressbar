@@ -47,9 +47,7 @@ describe('<CircularProgressbar />', () => {
   describe('props.value', () => {
     test('Renders correct path', () => {
       const percentage = 30;
-      const wrapper = mount(
-        <CircularProgressbar value={percentage} strokeWidth={0} className="my-custom-class" />,
-      );
+      const wrapper = mount(<CircularProgressbar value={percentage} strokeWidth={0} />);
 
       expect(
         wrapper
@@ -66,6 +64,70 @@ describe('<CircularProgressbar />', () => {
           .hostNodes()
           .prop('d'),
       ).toContain(expectedArcto);
+    });
+    test('Value is bounded by minValue', () => {
+      const percentage = -30;
+      const wrapper = mount(
+        <CircularProgressbar value={percentage} minValue={0} maxValue={100} strokeWidth={0} />,
+      );
+
+      expect(
+        wrapper
+          .find('.CircularProgressbar-path')
+          .hostNodes()
+          .prop('style')!.strokeDashoffset,
+      ).toEqual(getExpectedStrokeDashoffset({ percentage: 0, strokeWidth: 0 }));
+    });
+    test('Value is bounded by maxValue', () => {
+      const percentage = 130;
+      const wrapper = mount(
+        <CircularProgressbar value={percentage} minValue={0} maxValue={100} strokeWidth={0} />,
+      );
+
+      expect(
+        wrapper
+          .find('.CircularProgressbar-path')
+          .hostNodes()
+          .prop('style')!.strokeDashoffset,
+      ).toEqual(getExpectedStrokeDashoffset({ percentage: 100, strokeWidth: 0 }));
+    });
+  });
+  describe('props.minValue, props.maxValue', () => {
+    test('Positive min/max', () => {
+      const wrapper = mount(
+        <CircularProgressbar minValue={1} value={2} maxValue={5} strokeWidth={0} />,
+      );
+
+      expect(
+        wrapper
+          .find('.CircularProgressbar-path')
+          .hostNodes()
+          .prop('style')!.strokeDashoffset,
+      ).toEqual(getExpectedStrokeDashoffset({ percentage: 25, strokeWidth: 0 }));
+    });
+    test('Negative to positive min/max', () => {
+      const wrapper = mount(
+        <CircularProgressbar minValue={-15} value={-5} maxValue={5} strokeWidth={0} />,
+      );
+
+      expect(
+        wrapper
+          .find('.CircularProgressbar-path')
+          .hostNodes()
+          .prop('style')!.strokeDashoffset,
+      ).toEqual(getExpectedStrokeDashoffset({ percentage: 50, strokeWidth: 0 }));
+    });
+    test('Negative min/max', () => {
+      const wrapper = mount(
+        <CircularProgressbar minValue={-30} value={-20} maxValue={-10} strokeWidth={0} />,
+      );
+
+      expect(
+        wrapper
+          .find('.CircularProgressbar-path')
+          .hostNodes()
+          .prop('style')!.strokeDashoffset,
+      ).toEqual(getExpectedStrokeDashoffset({ percentage: 50, strokeWidth: 0 }));
     });
   });
   describe('props.counterClockwise', () => {
