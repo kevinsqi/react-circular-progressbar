@@ -24,7 +24,7 @@ class CircularProgressbar extends React.Component<CircularProgressbarProps> {
     },
     counterClockwise: false,
     className: '',
-    maxValue: 1,
+    maxValue: 100,
     minValue: 0,
     strokeWidth: 8,
     styles: {

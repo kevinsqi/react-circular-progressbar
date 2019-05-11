@@ -115,7 +115,6 @@ function Demo() {
             backgroundPadding={5}
             strokeWidth={6}
             value={66}
-            maxValue={100}
             text={`${66}%`}
             classes={{
               root: 'CircularProgressbar',
@@ -155,7 +154,6 @@ function Demo() {
             {(percentage) => (
               <CircularProgressbar
                 value={percentage}
-                maxValue={100}
                 text={`${percentage}%`}
                 circleRatio={0.75}
                 styles={buildStyles({
@@ -174,7 +172,7 @@ function Demo() {
             <span>Need custom content? Use a wrapper component to add arbitrary HTML.</span>
           }
         >
-          <CircularProgressbarWithChildren value={66} maxValue={100}>
+          <CircularProgressbarWithChildren value={66}>
             <img
               style={{ width: 40, marginTop: -5 }}
               src="https://i.imgur.com/b9NyUGm.png"
@@ -199,7 +197,6 @@ function Demo() {
             >
               <CircularProgressbar
                 value={50}
-                maxValue={100}
                 circleRatio={0.7}
                 counterClockwise
                 background
