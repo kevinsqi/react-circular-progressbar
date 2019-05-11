@@ -24,6 +24,8 @@ class CircularProgressbar extends React.Component<CircularProgressbarProps> {
     },
     counterClockwise: false,
     className: '',
+    maxValue: 1,
+    minValue: 0,
     strokeWidth: 8,
     styles: {
       root: {},
@@ -60,13 +62,16 @@ class CircularProgressbar extends React.Component<CircularProgressbarProps> {
       className,
       classes,
       counterClockwise,
-      percentage,
+      maxValue,
+      minValue,
       styles,
       strokeWidth,
       text,
+      value,
     } = this.props;
 
     const pathRadius = this.getPathRadius();
+    const pathRatio = value / (maxValue - minValue);
 
     return (
       <svg
@@ -97,7 +102,7 @@ class CircularProgressbar extends React.Component<CircularProgressbarProps> {
         <Path
           className={classes.path}
           counterClockwise={counterClockwise}
-          dashRatio={(percentage / 100) * circleRatio}
+          dashRatio={pathRatio * circleRatio}
           pathRadius={pathRadius}
           strokeWidth={strokeWidth}
           style={styles.path}

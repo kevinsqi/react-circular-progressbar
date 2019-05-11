@@ -41,7 +41,7 @@ class AnimatedProgressbar extends React.Component<Props, State> {
           const roundedPercentage = Math.round(percentage);
           return (
             <CircularProgressbar
-              percentage={roundedPercentage}
+              value={percentage / 100}
               text={`${roundedPercentage}%`}
               styles={{
                 path: {

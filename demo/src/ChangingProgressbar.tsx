@@ -60,7 +60,8 @@ class ChangingProgressbar extends React.Component<Props, State> {
       <CircularProgressbar
         {...this.props}
         className={this.getClassName()}
-        percentage={this.getCurrentPercentage()}
+        value={this.getCurrentPercentage()}
+        maxValue={100}
         text={this.getText()}
         styles={this.getStyles()}
       />

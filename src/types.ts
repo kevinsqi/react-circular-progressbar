@@ -21,6 +21,8 @@ export type CircularProgressbarDefaultProps = {
   };
   className: string;
   counterClockwise: boolean;
+  maxValue: number;
+  minValue: number;
   strokeWidth: number;
   styles: CircularProgressbarStyles;
   text: string;
@@ -41,12 +43,14 @@ export type CircularProgressbarWrapperProps = {
   };
   className?: string;
   counterClockwise?: boolean;
-  percentage: number;
+  maxValue?: number;
+  minValue?: number;
   strokeWidth?: number;
   styles?: CircularProgressbarStyles;
   text?: string;
+  value: number;
 };
 
 export type CircularProgressbarProps = CircularProgressbarDefaultProps & {
-  percentage: number;
+  value: number;
 };
