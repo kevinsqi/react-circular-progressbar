@@ -61,7 +61,6 @@ const percentage = 66;
 | `strokeWidth` | Width of circular line as a percentage relative to total width of component. Default: `8`. |
 | `background` | Whether to display background color. Default: `false`. |
 | `backgroundPadding` | Padding between background and edge of svg as a percentage relative to total width of component. Default: `null`. |
-| `initialAnimation` | Toggle whether to animate progress starting from 0% on initial mount. Default: `false`. |
 | `counterClockwise` | Toggle whether to rotate progressbar in counterclockwise direction. Default: `false`. |
 | `circleRatio` | Number from 0-1 representing ratio of the full circle diameter the progressbar should use. Default: `1`. |
 | `classes` | Object allowing overrides of classNames of each svg subcomponent (root, trail, path, text, background). Enables styling with react-jss. See [this PR](https://github.com/kevinsqi/react-circular-progressbar/pull/25) for more detail. |

@@ -26,7 +26,6 @@ describe('<CircularProgressbarWithChildren />', () => {
       },
       className: 'johnny',
       counterClockwise: false,
-      initialAnimation: true,
       percentage: 50,
       strokeWidth: 2,
       styles: {},
