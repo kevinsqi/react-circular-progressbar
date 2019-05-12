@@ -1,8 +1,8 @@
-# Migration guide for major versions
+# Migration guide
 
 ## 1.x.x to 2.0.0
 
-**Use a named import to import CircularProgressbar**
+**Use a named import to import `CircularProgressbar`**
 
 Before:
 
@@ -30,7 +30,7 @@ After:
 <CircularProgressbar value={66} />
 ```
 
-**Replace `props.initialAnimation` with a wrapper component**
+**Replace `props.initialAnimation` with a setTimeout value transition**
 
 This is only applicable if you're using `props.initialAnimation`, which is removed in v2.0.0. Instead, you must trigger the animation by changing `value` from one value to another yourself.
 
@@ -42,7 +42,7 @@ Before:
 
 After:
 
-You'll need a wrapper component to help manage the value transition. See [ProgressProvider.tsx](demo/src/ProgressProvider.tsx) for an example. Once you have that, you can do:
+You'll need to change `props.value` from 0 to 66 with a `setTimeout`. You can use a wrapper component to help manage this - [ProgressProvider.tsx](demo/src/ProgressProvider.tsx) is an implementation you can use. With that, you can do:
 
 ```jsx
 <ProgressProvider valueStart={0} valueEnd={66}>

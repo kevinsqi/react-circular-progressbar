@@ -242,6 +242,22 @@ import { easeQuadInOut } from 'd3-ease';
 </AnimatedProgressProvider>;
 ```
 
+## Animating progressbar upon component mount or upon visible
+
+**Upon component mount**
+
+In order to trigger the default CSS animation on mount, you'll need to change `props.value` from 0 to your desired value with a `setTimeout` in `componentDidMount`. You can use a wrapper component to help manage this - for example, [ProgressProvider.tsx](demo/src/ProgressProvider.tsx). Then you can do:
+
+```jsx
+<ProgressProvider valueStart={0} valueEnd={66}>
+  {(value) => <CircularProgressbar value={value} />}
+</ProgressProvider>
+```
+
+**Upon visible**
+
+To animate the progressbar only when it becomes visible (e.g. if it's below the fold), you can use something like `react-visibility-sensor` which detects whether the component is visible or not. [Here's a Codesandbox example](https://codesandbox.io/s/81wzmm8n00).
+
 ## Fixing text centering in Internet Explorer (IE)
 
 Because the `dominant-baseline` CSS property does not work in IE, the text may not be centered in IE.
