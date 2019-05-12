@@ -152,8 +152,7 @@ function Demo() {
         <Example
           description={
             <span>
-              "Give me that car speedometer look?" Use <Code>props.circleRatio</Code> and CSS
-              rotation.
+              Want that car speedometer look? Use <Code>props.circleRatio</Code> and CSS rotation.
             </span>
           }
         >
@@ -176,7 +175,10 @@ function Demo() {
 
         <Example
           description={
-            <span>Need custom content? Use a wrapper component to add arbitrary HTML.</span>
+            <span>
+              Need custom content? Use <Code>CircularProgressbarWithChildren</Code> to add arbitrary
+              centered HTML.
+            </span>
           }
         >
           <CircularProgressbarWithChildren value={66}>

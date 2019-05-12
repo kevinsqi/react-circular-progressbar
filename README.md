@@ -98,7 +98,7 @@ import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 />;
 ```
 
-`buildStyles` transforms that into this equivalent set of CSS properties:
+`buildStyles` is a shorthand, but you can also build the `styles` object yourself. It's an object with `root`, `path`, `trail`, `text`, and `background` properties, which are each a set of inline styles to apply to the relevant SVG subcomponent. Here's the equivalent set of styles as above, without using `buildStyles`:
 
 ```jsx
 <CircularProgressbar
