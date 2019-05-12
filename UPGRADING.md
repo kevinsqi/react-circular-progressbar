@@ -1,3 +1,55 @@
+# Migration guide for major versions
+
+## 1.x.x to 2.0.0
+
+**Use a named import to import CircularProgressbar**
+
+Before:
+
+```jsx
+import CircularProgressbar from 'react-circular-progressbar';
+```
+
+After:
+
+```jsx
+import { CircularProgressbar } from 'react-circular-progressbar';
+```
+
+**Use `props.value` instead of `props.percentage`**
+
+Before:
+
+```jsx
+<CircularProgressbar percentage={66} />
+```
+
+After:
+
+```jsx
+<CircularProgressbar value={66} />
+```
+
+**Replace `props.initialAnimation` with a wrapper component**
+
+This is only applicable if you're using `props.initialAnimation`, which is removed in v2.0.0. Instead, you must trigger the animation by changing `value` from one value to another yourself.
+
+Before:
+
+```jsx
+<CircularProgressbar percentage={66} initialAnimation />
+```
+
+After:
+
+You'll need a wrapper component to help manage the value transition. See [ProgressProvider.tsx](demo/src/ProgressProvider.tsx) for an example. Once you have that, you can do:
+
+```jsx
+<ProgressProvider valueStart={0} valueEnd={66}>
+  {(value) => <CircularProgressbar value={value} />}
+</ProgressProvider>
+```
+
 ## 0.x.x to 1.0.0
 
 The main breaking change is the replacement of the `classForPercentage` prop with `className`, and the `textForPercentage` prop with `text` [#61].

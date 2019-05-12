@@ -172,11 +172,11 @@ function Demo() {
             </span>
           }
         >
-          <ProgressProvider percentageStart={10} percentageEnd={66}>
-            {(percentage) => (
+          <ProgressProvider valueStart={10} valueEnd={66}>
+            {(value) => (
               <CircularProgressbar
-                value={percentage}
-                text={`${percentage}%`}
+                value={value}
+                text={`${value}%`}
                 circleRatio={0.75}
                 styles={buildStyles({
                   rotation: 1 / 2 + 1 / 8,
