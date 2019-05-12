@@ -190,13 +190,25 @@ import './custom.css';
 }
 ```
 
-## Customizing the text/content inside progressbar
+## Adding arbitrary text or content inside the progressbar
 
-If you want to add images or multiple lines of text within the progressbar, the suggested approach is to overlay it on top of a regular `<CircularProgressbar />` using absolute positioning - this gives you the ability to put arbitrary HTML content in there. You can create your own wrapper component to make this easy to work with.
+If you want to add multiple lines of text or images within the progressbar, you can overlay it on top of a regular `<CircularProgressbar />` using absolute positioning. `react-circular-progressbar` ships with a `CircularProgressbarWithChildren` component which makes it easy to do that by using JSX children:
 
-[**Here's a Codesandbox demo**](https://codesandbox.io/s/qlr7w0rm29)
+```jsx
+import { CircularProgressbarWithChildren } from 'react-circular-progressbar';
 
-<a href="https://codesandbox.io/s/qlr7w0rm29"><img src="/demo/public/images/custom-content-progressbar.png?raw=true" alt="custom content progressbar" /></a>
+<CircularProgressbarWithChildren value={66}>
+  {/* Put any JSX content in here that you'd like. It'll be vertically and horizonally centered. */}
+  <img style={{ width: 40, marginTop: -5 }} src="https://i.imgur.com/b9NyUGm.png" alt="doge" />
+  <div style={{ fontSize: 12, marginTop: -5 }}>
+    <strong>66%</strong> mate
+  </div>
+</CircularProgressbarWithChildren>;
+```
+
+<a href="https://codesandbox.io/s/qlr7w0rm29"><img src="/demo/public/images/custom-content-progressbar.png?raw=true" alt="custom content progressbar" width="150" /></a>
+
+`CircularProgressbarWithChildren` has all the same props as `CircularProgressbar` - you can use it the exact same way otherwise.
 
 ## Animating text
 
