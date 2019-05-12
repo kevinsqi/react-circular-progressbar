@@ -8,7 +8,7 @@ import classNames from 'classnames';
 import { easeSinOut, easeQuadIn, easeQuadInOut, easeLinear, easeCubicInOut } from 'd3-ease';
 
 // Custom progressbar wrappers
-import AnimatedProgressbar from './AnimatedProgressbar';
+import AnimatedProgressProvider from './AnimatedProgressProvider';
 import ChangingProgressProvider from './ChangingProgressProvider';
 import ProgressProvider from './ProgressProvider';
 
@@ -146,7 +146,22 @@ function Demo() {
             </span>
           }
         >
-          <AnimatedProgressbar percentage={66} duration={1.4} easingFunction={easeQuadInOut} />
+          <AnimatedProgressProvider
+            percentageEnd={66}
+            duration={1.4}
+            easingFunction={easeQuadInOut}
+          >
+            {(percentage) => {
+              const roundedPercentage = Math.round(percentage);
+              return (
+                <CircularProgressbar
+                  value={percentage}
+                  text={`${roundedPercentage}%`}
+                  styles={buildStyles({ pathTransition: 'none' })}
+                />
+              );
+            }}
+          </AnimatedProgressProvider>
         </Example>
 
         <Example
