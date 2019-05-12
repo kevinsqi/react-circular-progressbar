@@ -6,6 +6,8 @@
 
 A circular progressbar component, built with SVG and extensively customizable. [**Try it out on CodeSandbox**](https://codesandbox.io/s/vymm4oln6y).
 
+🙌 **v2.0.0 is out** and has a bunch of new features to make it easier to use the component! There are a few breaking changes though - take a look at [UPGRADING.md](/UPGRADING.md) for instructions on how to migrate.
+
 <a href="https://codesandbox.io/s/vymm4oln6y"><img height="120" src="/demo/public/images/animated-progressbar.gif?raw=true" alt="animated progressbar" /></a> <a href="https://codesandbox.io/s/vymm4oln6y"><img height="120" src="/demo/public/images/circular-progressbar-examples.png?raw=true" alt="progressbar examples" /></a>
 
 ## Installation
@@ -53,6 +55,8 @@ const value = 0.66;
 
 [**Take a look at the CodeSandbox**](https://codesandbox.io/s/vymm4oln6y) for interactive examples on how to use these props.
 
+ℹ️ Version 1.0.0 removed the `classForPercentage` and `textForPercentage` props in favor of `className` and `text` props. Version 2.0.0 replaces `percentage` with `value` and removes the `initialAnimation` prop. Take a look at [UPGRADING.md](/UPGRADING.md) for instructions on how to migrate.
+
 | Name                | Description                                                                                                                                                                                                                            |
 | ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `value`             | Completion value of the progressbar, from `minValue` to `maxValue`. Required.                                                                                                                                                          |
@@ -67,8 +71,6 @@ const value = 0.66;
 | `circleRatio`       | Number from 0-1 representing ratio of the full circle diameter the progressbar should use. Default: `1`.                                                                                                                               |
 | `classes`           | Object allowing overrides of classNames of each svg subcomponent (root, trail, path, text, background). Enables styling with react-jss. See [this PR](https://github.com/kevinsqi/react-circular-progressbar/pull/25) for more detail. |
 | `styles`            | Object allowing customization of styles of each svg subcomponent (root, trail, path, text, background).                                                                                                                                |
-
-Version 1.0.0 removed the `classForPercentage` and `textForPercentage` props in favor of the newer `className` and `text` props. Take a look at the [migration guide](/CHANGELOG.md) for instructions on how to migrate.
 
 ## Theming (customizing styles)
 
