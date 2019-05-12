@@ -6,7 +6,11 @@
 
 A circular progressbar component, built with SVG and extensively customizable. [**Try it out on CodeSandbox**](https://codesandbox.io/s/vymm4oln6y).
 
-🙌 **v2.0.0 is out** and has a bunch of new features to make it easier to use the component! There are a few breaking changes though - take a look at [UPGRADING.md](/UPGRADING.md) for instructions on how to migrate.
+🎊 **Version 2.0.0 is out!**
+
+**New features:** you can `import { CircularProgressbarWithChildren }` in order to [put arbitrary JSX inside the component](/README.md#adding-arbitrary-text-or-content-inside-the-progressbar), and you can `import { buildStyles }` to make it easier to [customize styles](/README.md#using-the-styles-prop).
+
+**Breaking changes:** if you're upgrading from an older version, take a look at [UPGRADING.md](/UPGRADING.md) for instructions on how to migrate.
 
 <a href="https://codesandbox.io/s/vymm4oln6y"><img height="120" src="/demo/public/images/animated-progressbar.gif?raw=true" alt="animated progressbar" /></a> <a href="https://codesandbox.io/s/vymm4oln6y"><img height="120" src="/demo/public/images/circular-progressbar-examples.png?raw=true" alt="progressbar examples" /></a>
 
