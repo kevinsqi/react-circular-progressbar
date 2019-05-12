@@ -38,7 +38,15 @@ Now you can use the component:
 ```jsx
 const percentage = 66;
 
-<CircularProgressbar percentage={percentage} text={`${percentage}%`} />;
+<CircularProgressbar value={percentage} text={`${percentage}%`} />;
+```
+
+If your values are not in percentages, you can adjust `minValue` and `maxValue` to select the scale you want:
+
+```jsx
+const value = 0.66;
+
+<CircularProgressbar value={value} maxValue={1} text={`${value * 100}%`} />;
 ```
 
 ## Props
@@ -47,13 +55,15 @@ const percentage = 66;
 
 | Name                | Description                                                                                                                                                                                                                            |
 | ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `percentage`        | Numeric percentage to display, from 0-100. Required.                                                                                                                                                                                   |
+| `value`             | Completion value of the progressbar, from `minValue` to `maxValue`. Required.                                                                                                                                                          |
+| `minValue`          | Minimum value of the progressbar. Default: `0`.                                                                                                                                                                                        |
+| `maxValue`          | Maximum value of the progressbar. Default: `0`.                                                                                                                                                                                        |
 | `className`         | Classes to apply to the svg element. Default: `''`.                                                                                                                                                                                    |
 | `text`              | Text to display inside progressbar. Default: `null`.                                                                                                                                                                                   |
-| `strokeWidth`       | Width of circular line as a percentage relative to total width of component. Default: `8`.                                                                                                                                             |
+| `strokeWidth`       | Width of circular line relative to total width of component, a value from 0-100. Default: `8`.                                                                                                                                         |
 | `background`        | Whether to display background color. Default: `false`.                                                                                                                                                                                 |
 | `backgroundPadding` | Padding between background and edge of svg as a percentage relative to total width of component. Default: `null`.                                                                                                                      |
-| `counterClockwise`  | Toggle whether to rotate progressbar in counterclockwise direction. Default: `false`.                                                                                                                                                  |
+| `counterClockwise`  | Whether to rotate progressbar in counterclockwise direction. Default: `false`.                                                                                                                                                         |
 | `circleRatio`       | Number from 0-1 representing ratio of the full circle diameter the progressbar should use. Default: `1`.                                                                                                                               |
 | `classes`           | Object allowing overrides of classNames of each svg subcomponent (root, trail, path, text, background). Enables styling with react-jss. See [this PR](https://github.com/kevinsqi/react-circular-progressbar/pull/25) for more detail. |
 | `styles`            | Object allowing customization of styles of each svg subcomponent (root, trail, path, text, background).                                                                                                                                |
@@ -73,8 +83,10 @@ As a convenience, you can use `buildStyles` to configure the most common style c
 ```jsx
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 
+const percentage = 66;
+
 <CircularProgressbar
-  percentage={percentage}
+  value={percentage}
   text={`${percentage}%`}
   styles={buildStyles({
     // Rotation of path and trail, in number of turns (0-1)
@@ -105,7 +117,7 @@ import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 
 ```jsx
 <CircularProgressbar
-  percentage={percentage}
+  value={percentage}
   text={`${percentage}%`}
   styles={{
     // Customize the root svg element
@@ -218,7 +230,7 @@ import { easeQuadInOut } from 'd3-ease';
 
 ## Fixing text centering in Internet Explorer (IE)
 
-Because the `dominant-baseline` CSS property does not work in IE, the percentage text may not be centered.
+Because the `dominant-baseline` CSS property does not work in IE, the text may not be centered in IE.
 
 A solid cross-browser way to fix this is to use [this approach for overlaying arbitrary content inside the progressbar](https://github.com/kevinsqi/react-circular-progressbar#customizing-the-textcontent-inside-progressbar).
 
@@ -229,7 +241,7 @@ However, if you don't want to do that, you can also work around this by setting 
 const needDominantBaselineFix = ...
 
 <CircularProgressbar
-  percentage={percentage}
+  value={percentage}
   text={<tspan dy={needDominantBaselineFix ? -10 : 0}>{percentage}</tspan>}
 />
 ```
