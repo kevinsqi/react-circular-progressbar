@@ -11,7 +11,7 @@ type State = {
   percentage: number;
 };
 
-class PercentageProvider extends React.Component<Props, State> {
+class ProgressProvider extends React.Component<Props, State> {
   timeout: number | undefined = undefined;
 
   state = {
@@ -39,4 +39,4 @@ class PercentageProvider extends React.Component<Props, State> {
   }
 }
 
-export default PercentageProvider;
+export default ProgressProvider;

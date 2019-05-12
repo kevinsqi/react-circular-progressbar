@@ -10,7 +10,7 @@ import { easeSinOut, easeQuadIn, easeQuadInOut, easeLinear, easeCubicInOut } fro
 // Custom progressbar wrappers
 import AnimatedProgressbar from './AnimatedProgressbar';
 import ChangingProgressbar from './ChangingProgressbar';
-import PercentageProvider from './PercentageProvider';
+import ProgressProvider from './ProgressProvider';
 
 const githubURL = 'https://github.com/kevinsqi/react-circular-progressbar';
 
@@ -150,7 +150,7 @@ function Demo() {
             </span>
           }
         >
-          <PercentageProvider percentageStart={10} percentageEnd={66}>
+          <ProgressProvider percentageStart={10} percentageEnd={66}>
             {(percentage) => (
               <CircularProgressbar
                 value={percentage}
@@ -164,7 +164,7 @@ function Demo() {
                 })}
               />
             )}
-          </PercentageProvider>
+          </ProgressProvider>
         </Example>
 
         <Example
