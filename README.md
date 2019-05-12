@@ -206,7 +206,7 @@ import { CircularProgressbarWithChildren } from 'react-circular-progressbar';
 </CircularProgressbarWithChildren>;
 ```
 
-<a href="https://codesandbox.io/s/qlr7w0rm29"><img src="/demo/public/images/custom-content-progressbar.png?raw=true" alt="custom content progressbar" width="150" /></a>
+<img src="/demo/public/images/CircularProgressbarWithChildren.png?raw=true" alt="CircularProgressbarWithChildren example" />
 
 `CircularProgressbarWithChildren` has all the same props as `CircularProgressbar` - you can use it the exact same way otherwise.
 
