@@ -147,6 +147,7 @@ function Demo() {
           }
         >
           <AnimatedProgressProvider
+            percentageStart={5}
             percentageEnd={66}
             duration={1.4}
             easingFunction={easeQuadInOut}

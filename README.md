@@ -186,23 +186,35 @@ If you want to add images or multiple lines of text within the progressbar, the 
 
 <a href="https://codesandbox.io/s/qlr7w0rm29"><img src="/demo/public/images/custom-content-progressbar.png?raw=true" alt="custom content progressbar" /></a>
 
-## Customizing animation and animating text
+## Animating text
 
-You can adjust the animation characteristics using CSS or the `styles` prop:
+If you want to animate the text as well as the path, you'll need to transition the `value` prop from one value to another using a third-party animation library like `react-move` and an easing library like `d3-ease`.
 
-```
-<CircularProgressbar
-  styles={{
-    path: {
-      transition: 'stroke-dashoffset 0.5s ease 0s',
-    }
+You can use a render prop wrapper like **[AnimatedProgressProvider.tsx](demo/src/AnimatedProgressProvider.tsx)** to help manage the transitioning value, and use it like this:
+
+```jsx
+import { easeQuadInOut } from 'd3-ease';
+
+<AnimatedProgressProvider
+  percentageStart={0}
+  percentageEnd={66}
+  duration={1.4}
+  easingFunction={easeQuadInOut}
+>
+  {(percentage) => {
+    const roundedPercentage = Math.round(percentage);
+    return (
+      <CircularProgressbar
+        value={percentage}
+        text={`${roundedPercentage}%`}
+        {/* This is important to include, because if you're fully managing the
+        animation yourself, you'll want to disable the CSS animation. */}
+        styles={buildStyles({ pathTransition: 'none' })}
+      />
+    );
   }}
-/>
+</AnimatedProgressProvider>;
 ```
-
-[See this Codesandbox example](https://codesandbox.io/s/x29rxrr4kw) to see how the transition can be customized.
-
-If you want to animate the text as well, you can! You'll instead control the `percentage` prop using a third-party animation library, like react-move. [**See a Codesandbox example here on how to do that**](https://codesandbox.io/s/m5xq9ozo3j).
 
 ## Fixing text centering in Internet Explorer (IE)
 
