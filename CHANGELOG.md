@@ -1,3 +1,11 @@
+## 2.0.0
+
+- Add buildStyles utility, and make CircularProgressbar a named import [#86]
+- Add <CircularProgressbarWithChildren /> wrapper component [#87]
+- Remove initialAnimation prop in favor of percentage being controlled externally [#88]
+- Replace props.percentage with props.value, and add minValue and maxValue [#89]
+- Update docs for v2.0.0 [#90]
+
 ## 1.2.1
 
 - Use Rollup to build package [#83]
