@@ -274,9 +274,9 @@ To animate the progressbar only when it becomes visible (e.g. if it's below the 
 
 Because the `dominant-baseline` CSS property does not work in IE, the text may not be centered in IE.
 
-A solid cross-browser way to fix this is to use [this approach for overlaying arbitrary content inside the progressbar](https://github.com/kevinsqi/react-circular-progressbar#customizing-the-textcontent-inside-progressbar).
+The **recommended way to fix this** is to instead of using `props.text`, use `CircularProgressbarWithChildren` and put your text in `props.children`, [as described here](/README.md#adding-arbitrary-text-or-content-inside-the-progressbar).
 
-However, if you don't want to do that, you can also work around this by setting the `text` prop to be a `<tspan>` element and then adjusting the `dy` vertical offset, like so:
+However, you can also work around this by setting the `text` prop to be a `<tspan>` element and then adjusting the `dy` vertical offset, like so:
 
 ```jsx
 // Use feature or browser detection to determine if IE
