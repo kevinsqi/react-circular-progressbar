@@ -4,23 +4,21 @@
 [![Build Status](https://travis-ci.org/kevinsqi/react-circular-progressbar.svg?branch=master)](https://travis-ci.org/kevinsqi/react-circular-progressbar)
 [![Bundle size](https://img.shields.io/bundlephobia/min/react-circular-progressbar.svg)](https://bundlephobia.com/result?p=react-circular-progressbar)
 
-<a href="https://codesandbox.io/s/vymm4oln6y"><img height="100" src="/demo/public/images/animated-progressbar.gif?raw=true" alt="animated progressbar" /></a> <a href="https://codesandbox.io/s/vymm4oln6y"><img height="100" src="/demo/public/images/circular-progressbar-examples.png?raw=true" alt="progressbar examples" /></a>
-
----
-
 A circular progressbar component, built with SVG and extensively customizable. [**Try it out on CodeSandbox**](https://codesandbox.io/s/vymm4oln6y).
 
-## 🎊 Version 2.0.0
+<a href="https://codesandbox.io/s/vymm4oln6y"><img height="100" src="/demo/public/images/animated-progressbar.gif?raw=true" alt="animated progressbar" /></a> <a href="https://codesandbox.io/s/vymm4oln6y"><img height="100" src="/demo/public/images/circular-progressbar-examples.png?raw=true" alt="progressbar examples" /></a>
+
+## Version 2.0.0 is out! 👋
 
 **New features:**
 
-- `import { CircularProgressbarWithChildren }` in order to [put arbitrary JSX inside the component](/README.md#adding-arbitrary-text-or-content-inside-the-progressbar).
-- `import { buildStyles }` to make it easier to [customize styles](/README.md#using-the-styles-prop).
+- Use `import { CircularProgressbarWithChildren }` in order to [put arbitrary JSX inside the component](/README.md#adding-arbitrary-text-or-content-inside-the-progressbar).
+- Use `import { buildStyles }` to make it easier to [customize styles](/README.md#using-the-styles-prop).
 - Use `props.minValue` and `props.maxValue` to specify a range other than 0-100.
 
 **Breaking changes:** if you're upgrading from an older version, take a look at [UPGRADING.md](/UPGRADING.md) for instructions on how to migrate.
 
-**v1 documentation** will still be available at [README_v1.md](/README_v1.md).
+Documentation for v1.x.x will still be available at [README_v1.md](/README_v1.md).
 
 ## Installation
 
