@@ -4,9 +4,9 @@ import { Animate } from 'react-move';
 type Props = {
   duration: number;
   easingFunction: Function;
-  percentageStart: number;
-  percentageEnd: number;
-  children: (percentage: number) => React.ReactElement;
+  valueStart: number;
+  valueEnd: number;
+  children: (value: number) => React.ReactElement;
 };
 
 type State = {
@@ -19,7 +19,7 @@ class AnimatedProgressProvider extends React.Component<Props, State> {
   };
 
   static defaultProps = {
-    percentageStart: 0,
+    valueStart: 0,
   };
 
   componentDidMount() {
@@ -32,19 +32,17 @@ class AnimatedProgressProvider extends React.Component<Props, State> {
     return (
       <Animate
         start={() => ({
-          percentage: this.props.percentageStart,
+          value: this.props.valueStart,
         })}
         update={() => ({
-          percentage: [
-            this.state.isAnimated ? this.props.percentageEnd : this.props.percentageStart,
-          ],
+          value: [this.state.isAnimated ? this.props.valueEnd : this.props.valueStart],
           timing: {
             duration: this.props.duration * 1000,
             ease: this.props.easingFunction,
           },
         })}
       >
-        {({ percentage }) => this.props.children(percentage)}
+        {({ value }) => this.props.children(value)}
       </Animate>
     );
   }

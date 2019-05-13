@@ -6,13 +6,17 @@
 
 <a href="https://codesandbox.io/s/vymm4oln6y"><img height="100" src="/demo/public/images/animated-progressbar.gif?raw=true" alt="animated progressbar" /></a> <a href="https://codesandbox.io/s/vymm4oln6y"><img height="100" src="/demo/public/images/circular-progressbar-examples.png?raw=true" alt="progressbar examples" /></a>
 
-----
+---
 
 A circular progressbar component, built with SVG and extensively customizable. [**Try it out on CodeSandbox**](https://codesandbox.io/s/vymm4oln6y).
 
 ## 🎊 Version 2.0.0
 
-**New features:** you can `import { CircularProgressbarWithChildren }` in order to [put arbitrary JSX inside the component](/README.md#adding-arbitrary-text-or-content-inside-the-progressbar), and you can `import { buildStyles }` to make it easier to [customize styles](/README.md#using-the-styles-prop).
+**New features:**
+
+- `import { CircularProgressbarWithChildren }` in order to [put arbitrary JSX inside the component](/README.md#adding-arbitrary-text-or-content-inside-the-progressbar).
+- `import { buildStyles }` to make it easier to [customize styles](/README.md#using-the-styles-prop).
+- Use `props.minValue` and `props.maxValue` to specify a range other than 0-100.
 
 **Breaking changes:** if you're upgrading from an older version, take a look at [UPGRADING.md](/UPGRADING.md) for instructions on how to migrate.
 
@@ -69,12 +73,12 @@ const value = 0.66;
 | ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `value`             | Completion value of the progressbar, from `minValue` to `maxValue`. Required.                                                                                                                                                          |
 | `minValue`          | Minimum value of the progressbar. Default: `0`.                                                                                                                                                                                        |
-| `maxValue`          | Maximum value of the progressbar. Default: `0`.                                                                                                                                                                                        |
+| `maxValue`          | Maximum value of the progressbar. Default: `100`.                                                                                                                                                                                      |
 | `className`         | Classes to apply to the svg element. Default: `''`.                                                                                                                                                                                    |
-| `text`              | Text to display inside progressbar. Default: `null`.                                                                                                                                                                                   |
+| `text`              | Text to display inside progressbar. Default: `''`.                                                                                                                                                                                     |
 | `strokeWidth`       | Width of circular line relative to total width of component, a value from 0-100. Default: `8`.                                                                                                                                         |
 | `background`        | Whether to display background color. Default: `false`.                                                                                                                                                                                 |
-| `backgroundPadding` | Padding between background and edge of svg as a percentage relative to total width of component. Default: `null`.                                                                                                                      |
+| `backgroundPadding` | Padding between background circle and path/trail relative to total width of component. Only used if `background` is `true`. Default: `0`.                                                                                              |
 | `counterClockwise`  | Whether to rotate progressbar in counterclockwise direction. Default: `false`.                                                                                                                                                         |
 | `circleRatio`       | Number from 0-1 representing ratio of the full circle diameter the progressbar should use. Default: `1`.                                                                                                                               |
 | `classes`           | Object allowing overrides of classNames of each svg subcomponent (root, trail, path, text, background). Enables styling with react-jss. See [this PR](https://github.com/kevinsqi/react-circular-progressbar/pull/25) for more detail. |
@@ -230,17 +234,17 @@ You can use a render prop wrapper like **[AnimatedProgressProvider.tsx](demo/src
 import { easeQuadInOut } from 'd3-ease';
 
 <AnimatedProgressProvider
-  percentageStart={0}
-  percentageEnd={66}
+  valueStart={0}
+  valueEnd={66}
   duration={1.4}
   easingFunction={easeQuadInOut}
 >
-  {(percentage) => {
-    const roundedPercentage = Math.round(percentage);
+  {(value) => {
+    const roundedValue = Math.round(value);
     return (
       <CircularProgressbar
-        value={percentage}
-        text={`${roundedPercentage}%`}
+        value={value}
+        text={`${roundedValue}%`}
         {/* This is important to include, because if you're fully managing the
         animation yourself, you'll want to disable the CSS animation. */}
         styles={buildStyles({ pathTransition: 'none' })}

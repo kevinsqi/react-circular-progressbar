@@ -147,17 +147,17 @@ function Demo() {
           }
         >
           <AnimatedProgressProvider
-            percentageStart={5}
-            percentageEnd={66}
+            valueStart={5}
+            valueEnd={66}
             duration={1.4}
             easingFunction={easeQuadInOut}
           >
-            {(percentage) => {
-              const roundedPercentage = Math.round(percentage);
+            {(value) => {
+              const roundedValue = Math.round(value);
               return (
                 <CircularProgressbar
-                  value={percentage}
-                  text={`${roundedPercentage}%`}
+                  value={value}
+                  text={`${roundedValue}%`}
                   styles={buildStyles({ pathTransition: 'none' })}
                 />
               );

@@ -38,16 +38,11 @@ class CircularProgressbar extends React.Component<CircularProgressbarProps> {
   };
 
   getBackgroundPadding() {
-    if (this.props.background) {
-      // Default padding to be the same as strokeWidth
-      // Compare to null because 0 is falsy
-      if (this.props.backgroundPadding == null) {
-        return this.props.strokeWidth;
-      }
-      return this.props.backgroundPadding;
+    if (!this.props.background) {
+      // Don't add padding if not displaying background
+      return 0;
     }
-    // Don't add padding if not displaying background
-    return 0;
+    return this.props.backgroundPadding;
   }
 
   getPathRadius() {
