@@ -6,6 +6,7 @@ export default function buildStyles({
   textColor,
   textSize,
   pathColor,
+  pathTransition,
   pathTransitionDuration,
   trailColor,
   backgroundColor,
@@ -15,6 +16,7 @@ export default function buildStyles({
   textColor?: string;
   textSize?: string | number;
   pathColor?: string;
+  pathTransition?: string;
   pathTransitionDuration?: number; // Measured in seconds
   trailColor?: string;
   backgroundColor?: string;
@@ -29,6 +31,7 @@ export default function buildStyles({
       strokeLinecap: strokeLinecap,
       transform: rotationTransform,
       transformOrigin: rotationTransformOrigin,
+      transition: pathTransition,
       transitionDuration: pathTransitionDuration == null ? undefined : `${pathTransitionDuration}s`,
     }),
     trail: removeUndefinedValues({

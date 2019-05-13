@@ -8,9 +8,9 @@ import classNames from 'classnames';
 import { easeSinOut, easeQuadIn, easeQuadInOut, easeLinear, easeCubicInOut } from 'd3-ease';
 
 // Custom progressbar wrappers
-import AnimatedProgressbar from './AnimatedProgressbar';
-import ChangingProgressbar from './ChangingProgressbar';
-import PercentageProvider from './PercentageProvider';
+import AnimatedProgressProvider from './AnimatedProgressProvider';
+import ChangingProgressProvider from './ChangingProgressProvider';
+import ProgressProvider from './ProgressProvider';
 
 const githubURL = 'https://github.com/kevinsqi/react-circular-progressbar';
 
@@ -46,7 +46,17 @@ function Demo() {
 
       <div className="row mt-5 mb-5">
         <div className="col-6 offset-3 col-md-2 offset-md-5">
-          <ChangingProgressbar percentages={[0, 20, 40, 60, 80, 100]} />
+          <ChangingProgressProvider percentages={[0, 20, 40, 60, 80, 100]}>
+            {(percentage) => (
+              <CircularProgressbar
+                value={percentage}
+                text={`${percentage}%`}
+                styles={buildStyles({
+                  strokeLinecap: 'butt',
+                })}
+              />
+            )}
+          </ChangingProgressProvider>
         </div>
       </div>
 
@@ -64,20 +74,15 @@ function Demo() {
             </span>
           }
         >
-          <ChangingProgressbar
-            percentages={[75, 100]}
-            classForPercentage={(percentage: number) => {
-              return percentage === 100 ? 'complete' : 'incomplete';
-            }}
-            textForPercentage={(percentage: number) => {
-              return percentage === 100 ? `${percentage}!!` : `${percentage}...`;
-            }}
-            stylesForPercentage={(percentage: number) => {
-              return buildStyles({
-                strokeLinecap: 'butt',
-              });
-            }}
-          />
+          <ChangingProgressProvider percentages={[75, 100]}>
+            {(percentage) => (
+              <CircularProgressbar
+                value={percentage}
+                className={percentage === 100 ? 'complete' : 'incomplete'}
+                text={percentage === 100 ? `${percentage}!!` : `${percentage}...`}
+              />
+            )}
+          </ChangingProgressProvider>
         </Example>
 
         <Example
@@ -88,18 +93,20 @@ function Demo() {
             </span>
           }
         >
-          <ChangingProgressbar
-            percentages={[20, 80]}
-            strokeWidth={5}
-            counterClockwise
-            stylesForPercentage={(percentage: number) => {
-              const alpha = (100 + percentage) / 200;
-              return buildStyles({
-                pathColor: `rgba(62, 152, 199, ${alpha})`,
-                pathTransitionDuration: 0.2,
-              });
-            }}
-          />
+          <ChangingProgressProvider percentages={[20, 80]}>
+            {(percentage) => (
+              <CircularProgressbar
+                value={percentage}
+                text={`${percentage}%`}
+                strokeWidth={5}
+                counterClockwise
+                styles={buildStyles({
+                  pathColor: `rgba(62, 152, 199, ${(100 + percentage) / 200})`,
+                  pathTransitionDuration: 0.2,
+                })}
+              />
+            )}
+          </ChangingProgressProvider>
         </Example>
 
         <Example
@@ -139,22 +146,37 @@ function Demo() {
             </span>
           }
         >
-          <AnimatedProgressbar percentage={66} duration={1.4} easingFunction={easeQuadInOut} />
+          <AnimatedProgressProvider
+            valueStart={5}
+            valueEnd={66}
+            duration={1.4}
+            easingFunction={easeQuadInOut}
+          >
+            {(value) => {
+              const roundedValue = Math.round(value);
+              return (
+                <CircularProgressbar
+                  value={value}
+                  text={`${roundedValue}%`}
+                  styles={buildStyles({ pathTransition: 'none' })}
+                />
+              );
+            }}
+          </AnimatedProgressProvider>
         </Example>
 
         <Example
           description={
             <span>
-              "Give me that car speedometer look?" Use <Code>props.circleRatio</Code> and CSS
-              rotation.
+              Want that car speedometer look? Use <Code>props.circleRatio</Code> and CSS rotation.
             </span>
           }
         >
-          <PercentageProvider percentageStart={10} percentageEnd={66}>
-            {(percentage) => (
+          <ProgressProvider valueStart={10} valueEnd={66}>
+            {(value) => (
               <CircularProgressbar
-                value={percentage}
-                text={`${percentage}%`}
+                value={value}
+                text={`${value}%`}
                 circleRatio={0.75}
                 styles={buildStyles({
                   rotation: 1 / 2 + 1 / 8,
@@ -164,12 +186,15 @@ function Demo() {
                 })}
               />
             )}
-          </PercentageProvider>
+          </ProgressProvider>
         </Example>
 
         <Example
           description={
-            <span>Need custom content? Use a wrapper component to add arbitrary HTML.</span>
+            <span>
+              Need custom content? Use <Code>CircularProgressbarWithChildren</Code> to add arbitrary
+              centered HTML.
+            </span>
           }
         >
           <CircularProgressbarWithChildren value={66}>

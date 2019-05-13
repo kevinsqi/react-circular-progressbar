@@ -2,30 +2,30 @@ import React from 'react';
 import { CircularProgressbar } from 'react-circular-progressbar';
 
 type Props = {
-  percentageStart: number;
-  percentageEnd: number;
-  children: (percentage: number) => React.ReactNode;
+  valueStart: number;
+  valueEnd: number;
+  children: (value: number) => React.ReactNode;
 };
 
 type State = {
-  percentage: number;
+  value: number;
 };
 
-class PercentageProvider extends React.Component<Props, State> {
+class ProgressProvider extends React.Component<Props, State> {
   timeout: number | undefined = undefined;
 
   state = {
-    percentage: this.props.percentageStart,
+    value: this.props.valueStart,
   };
 
   static defaultProps = {
-    percentageStart: 0,
+    valueStart: 0,
   };
 
   componentDidMount() {
     this.timeout = window.setTimeout(() => {
       this.setState({
-        percentage: this.props.percentageEnd,
+        value: this.props.valueEnd,
       });
     }, 0);
   }
@@ -35,8 +35,8 @@ class PercentageProvider extends React.Component<Props, State> {
   }
 
   render() {
-    return this.props.children(this.state.percentage);
+    return this.props.children(this.state.value);
   }
 }
 
-export default PercentageProvider;
+export default ProgressProvider;
