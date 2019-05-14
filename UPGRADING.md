@@ -42,7 +42,7 @@ Before:
 
 After:
 
-You'll need to change `props.value` from 0 to 66 with a `setTimeout`. You can use a wrapper component to help manage this - [ProgressProvider.tsx](demo/src/ProgressProvider.tsx) is an implementation you can use. With that, you can do:
+In order to trigger the default CSS animation on mount, you'll need to change `props.value` from 0 to your desired value with a `setTimeout` in `componentDidMount`. You can use a wrapper component to help manage this like [ProgressProvider.js in this Codesandbox](https://codesandbox.io/s/0zk372m7l). Then you can do:
 
 ```jsx
 <ProgressProvider valueStart={0} valueEnd={66}>

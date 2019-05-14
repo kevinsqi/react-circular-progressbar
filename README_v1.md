@@ -4,7 +4,7 @@
 [![Build Status](https://travis-ci.org/kevinsqi/react-circular-progressbar.svg?branch=master)](https://travis-ci.org/kevinsqi/react-circular-progressbar)
 [![Bundle size](https://img.shields.io/bundlephobia/min/react-circular-progressbar.svg)](https://bundlephobia.com/result?p=react-circular-progressbar)
 
-A circular progressbar component, built with SVG and extensively customizable. [**Try it out on CodeSandbox**](https://codesandbox.io/s/vymm4oln6y).
+A circular progressbar component, built with SVG and extensively customizable. [**Try it out on CodeSandbox**](https://codesandbox.io/s/3023r61611).
 
 <a href="https://codesandbox.io/s/vymm4oln6y"><img height="120" src="/demo/public/images/animated-progressbar.gif?raw=true" alt="animated progressbar" /></a> <a href="https://codesandbox.io/s/vymm4oln6y"><img height="120" src="/demo/public/images/circular-progressbar-examples.png?raw=true" alt="progressbar examples" /></a>
 
@@ -48,7 +48,7 @@ const percentage = 66;
 
 ## Props
 
-[**Take a look at the CodeSandbox**](https://codesandbox.io/s/vymm4oln6y) for interactive examples on how to use these props.
+[**Take a look at the CodeSandbox**](https://codesandbox.io/s/3023r61611) for interactive examples on how to use these props.
 
 | Name                | Description                                                                                                                                                                                                                            |
 | ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -64,7 +64,7 @@ const percentage = 66;
 | `classes`           | Object allowing overrides of classNames of each svg subcomponent (root, trail, path, text, background). Enables styling with react-jss. See [this PR](https://github.com/kevinsqi/react-circular-progressbar/pull/25) for more detail. |
 | `styles`            | Object allowing customization of styles of each svg subcomponent (root, trail, path, text, background).                                                                                                                                |
 
-Version 1.0.0 removed the `classForPercentage` and `textForPercentage` props in favor of the newer `className` and `text` props. Take a look at the [migration guide](/CHANGELOG.md) for instructions on how to migrate.
+Version 1.0.0 removed the `classForPercentage` and `textForPercentage` props in favor of the newer `className` and `text` props. Take a look at the [migration guide](/UPGRADING.md) for instructions on how to migrate.
 
 ## Theming (customizing styles)
 
@@ -110,7 +110,7 @@ You can use the `styles` prop to customize the inline styles of each subcomponen
 />
 ```
 
-See the [CodeSandbox examples](https://codesandbox.io/s/vymm4oln6y) for a live example on how to customize styles.
+See the [CodeSandbox examples](https://codesandbox.io/s/3023r61611) for a live example on how to customize styles.
 
 #### Using CSS
 

@@ -226,7 +226,7 @@ import { CircularProgressbarWithChildren } from 'react-circular-progressbar';
 
 If you want to animate the text as well as the path, you'll need to transition the `value` prop from one value to another using a third-party animation library like `react-move` and an easing library like `d3-ease`.
 
-You can use a render prop wrapper like **[AnimatedProgressProvider.tsx](demo/src/AnimatedProgressProvider.tsx)** to help manage the transitioning value, and use it like this:
+You can use a render prop wrapper like **[AnimatedProgressProvider.js inside this Codesandbox](https://codesandbox.io/s/vymm4oln6y)** to help manage the transitioning value, and use it like this:
 
 ```jsx
 import { easeQuadInOut } from 'd3-ease';
@@ -243,8 +243,8 @@ import { easeQuadInOut } from 'd3-ease';
       <CircularProgressbar
         value={value}
         text={`${roundedValue}%`}
-        {/* This is important to include, because if you're fully managing the
-        animation yourself, you'll want to disable the CSS animation. */}
+        /* This is important to include, because if you're fully managing the
+        animation yourself, you'll want to disable the CSS animation. */
         styles={buildStyles({ pathTransition: 'none' })}
       />
     );
@@ -256,7 +256,7 @@ import { easeQuadInOut } from 'd3-ease';
 
 **Upon component mount**
 
-In order to trigger the default CSS animation on mount, you'll need to change `props.value` from 0 to your desired value with a `setTimeout` in `componentDidMount`. You can use a wrapper component to help manage this - for example, [ProgressProvider.tsx](demo/src/ProgressProvider.tsx). Then you can do:
+In order to trigger the default CSS animation on mount, you'll need to change `props.value` from 0 to your desired value with a `setTimeout` in `componentDidMount`. You can use a wrapper component to help manage this like [ProgressProvider.js in this Codesandbox](https://codesandbox.io/s/0zk372m7l). Then you can do:
 
 ```jsx
 <ProgressProvider valueStart={0} valueEnd={66}>
@@ -290,12 +290,7 @@ const needDominantBaselineFix = ...
 
 ## Advanced usage
 
-- [Delaying the animation until the progressbar is visible](https://github.com/kevinsqi/react-circular-progressbar/issues/64)
-- [Using a different value range than 0-100](https://codesandbox.io/s/6z64omwv3n)
-- [Rotating the progressbar by some degree](https://github.com/kevinsqi/react-circular-progressbar/issues/38)
 - [Applying a gradient to the progressbar](https://github.com/kevinsqi/react-circular-progressbar/issues/31#issuecomment-338216925)
-- [Customizing the background](https://github.com/kevinsqi/react-circular-progressbar/issues/21#issuecomment-336613160)
-- [Creating a countdown timer](https://github.com/kevinsqi/react-circular-progressbar/issues/52)
 - [Creating a dashboard/speedometer style progressbar](https://github.com/kevinsqi/react-circular-progressbar/issues/49)
 
 ## Supported platforms
