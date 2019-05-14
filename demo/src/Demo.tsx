@@ -46,11 +46,11 @@ function Demo() {
 
       <div className="row mt-5 mb-5">
         <div className="col-6 offset-3 col-md-2 offset-md-5">
-          <ChangingProgressProvider percentages={[0, 20, 40, 60, 80, 100]}>
-            {(percentage) => (
+          <ChangingProgressProvider values={[0, 20, 40, 60, 80, 100]}>
+            {(value) => (
               <CircularProgressbar
-                value={percentage}
-                text={`${percentage}%`}
+                value={value}
+                text={`${value}%`}
                 styles={buildStyles({
                   strokeLinecap: 'butt',
                 })}
@@ -70,16 +70,16 @@ function Demo() {
           description={
             <span>
               Customize <Code>props.text</Code>, <Code>props.styles</Code>, and{' '}
-              <Code>props.className</Code> based on percentage.
+              <Code>props.className</Code> based on value.
             </span>
           }
         >
-          <ChangingProgressProvider percentages={[75, 100]}>
-            {(percentage) => (
+          <ChangingProgressProvider values={[75, 100]}>
+            {(value) => (
               <CircularProgressbar
-                value={percentage}
-                className={percentage === 100 ? 'complete' : 'incomplete'}
-                text={percentage === 100 ? `${percentage}!!` : `${percentage}...`}
+                value={value}
+                className={value === 100 ? 'complete' : 'incomplete'}
+                text={value === 100 ? `${value}!!` : `${value}...`}
               />
             )}
           </ChangingProgressProvider>
@@ -93,15 +93,15 @@ function Demo() {
             </span>
           }
         >
-          <ChangingProgressProvider percentages={[20, 80]}>
-            {(percentage) => (
+          <ChangingProgressProvider values={[20, 80]}>
+            {(value) => (
               <CircularProgressbar
-                value={percentage}
-                text={`${percentage}%`}
+                value={value}
+                text={`${value}%`}
                 strokeWidth={5}
                 counterClockwise
                 styles={buildStyles({
-                  pathColor: `rgba(62, 152, 199, ${(100 + percentage) / 200})`,
+                  pathColor: `rgba(62, 152, 199, ${(100 + value) / 200})`,
                   pathTransitionDuration: 0.2,
                 })}
               />
@@ -141,8 +141,8 @@ function Demo() {
         <Example
           description={
             <span>
-              Use a library like react-move to ease <Code>props.percentage</Code> if you want to
-              animate text.
+              Use a library like react-move to ease <Code>props.value</Code> if you want to animate
+              text.
             </span>
           }
         >

@@ -2,13 +2,13 @@ import React from 'react';
 import { CircularProgressbar } from 'react-circular-progressbar';
 
 type Props = {
-  percentages: number[];
+  values: number[];
   interval: number;
-  children: (percentage: number) => React.ReactNode;
+  children: (value: number) => React.ReactNode;
 };
 
 type State = {
-  percentagesIndex: number;
+  valuesIndex: number;
 };
 
 class ChangingProgressProvider extends React.Component<Props, State> {
@@ -17,19 +17,19 @@ class ChangingProgressProvider extends React.Component<Props, State> {
   };
 
   state = {
-    percentagesIndex: 0,
+    valuesIndex: 0,
   };
 
   componentDidMount() {
     setInterval(() => {
       this.setState({
-        percentagesIndex: (this.state.percentagesIndex + 1) % this.props.percentages.length,
+        valuesIndex: (this.state.valuesIndex + 1) % this.props.values.length,
       });
     }, this.props.interval);
   }
 
   render() {
-    return this.props.children(this.props.percentages[this.state.percentagesIndex]);
+    return this.props.children(this.props.values[this.state.valuesIndex]);
   }
 }
 
