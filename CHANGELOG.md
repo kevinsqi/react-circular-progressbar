@@ -1,3 +1,7 @@
+## 2.0.1
+
+- Fix vertical centering of CircularProgressbarWithChildren [#96]
+
 ## 2.0.0
 
 - Add buildStyles utility, and make CircularProgressbar a named import [#86]
