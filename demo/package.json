@@ -13,6 +13,7 @@
     "classnames": "^2.2.6",
     "d3-ease": "^1.0.5",
     "gh-pages": "^2.0.1",
+    "lodash": "4.17.14",
     "react": "^16.8.6",
     "react-circular-progressbar": "file:./../",
     "react-dom": "^16.8.6",
