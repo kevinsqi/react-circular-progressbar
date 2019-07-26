@@ -5,7 +5,7 @@ import {
   buildStyles,
 } from 'react-circular-progressbar';
 import classNames from 'classnames';
-import { easeSinOut, easeQuadIn, easeQuadInOut, easeLinear, easeCubicInOut } from 'd3-ease';
+import { easeQuadInOut } from 'd3-ease';
 
 // Custom progressbar wrappers
 import AnimatedProgressProvider from './AnimatedProgressProvider';

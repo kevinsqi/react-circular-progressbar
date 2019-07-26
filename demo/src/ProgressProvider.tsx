@@ -1,5 +1,4 @@
 import React from 'react';
-import { CircularProgressbar } from 'react-circular-progressbar';
 
 type Props = {
   valueStart: number;
