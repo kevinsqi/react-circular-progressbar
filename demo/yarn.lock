@@ -7977,8 +7977,8 @@ react-app-polyfill@^1.0.1:
     regenerator-runtime "0.13.2"
     whatwg-fetch "3.0.0"
 
-"react-circular-progressbar@file:./..":
-  version "2.0.1"
+react-circular-progressbar@../:
+  version "2.0.2"
 
 react-dev-utils@^9.0.1:
   version "9.0.1"

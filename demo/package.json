@@ -15,7 +15,7 @@
     "gh-pages": "^2.0.1",
     "lodash": "^4.17.15",
     "react": "^16.8.6",
-    "react-circular-progressbar": "file:./../",
+    "react-circular-progressbar": "../",
     "react-dom": "^16.8.6",
     "react-move": "^5.2.1",
     "react-scripts": "3.0.1",
