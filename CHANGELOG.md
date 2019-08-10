@@ -1,3 +1,7 @@
+## 2.0.2
+
+- Import react with "\* as React" to prevent the need to use allowSyntheticDefaultExports/esModuleInterop in consumers (issue #110) #112
+
 ## 2.0.1
 
 - Fix vertical centering of CircularProgressbarWithChildren [#96]
