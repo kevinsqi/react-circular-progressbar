@@ -12,7 +12,8 @@ import AnimatedProgressProvider from './AnimatedProgressProvider';
 import ChangingProgressProvider from './ChangingProgressProvider';
 import ProgressProvider from './ProgressProvider';
 
-const githubURL = 'https://github.com/kevinsqi/react-circular-progressbar';
+const GITHUB_URL = 'https://github.com/kevinsqi/react-circular-progressbar';
+const CODESANDBOX_EXAMPLES_URL = 'https://codesandbox.io/s/vymm4oln6y';
 
 const Code: React.FunctionComponent<React.HTMLProps<HTMLSpanElement>> = (props) => (
   <code className={classNames('p-1 bg-yellow text-dark', props.className)} {...props} />
@@ -240,13 +241,19 @@ function Demo() {
               className="btn btn-link text-secondary"
               onClick={() => setShowAllExamples(true)}
             >
-              <small>Show more examples</small>
+              <small>Show more</small>
             </button>
           </div>
         )}
+
+        <div className="col-12 text-center mt-3">
+          <a className="btn btn-outline-info" href={CODESANDBOX_EXAMPLES_URL}>
+            See more examples on CodeSandbox
+          </a>
+        </div>
       </div>
 
-      <hr />
+      <hr className="mt-5" />
       <div className="mt-5 mb-5">
         <h2 className="text-center">Installation</h2>
         <div className="text-center mt-5">
@@ -254,7 +261,7 @@ function Demo() {
           <p className="mb-5">
             <Code>yarn add react-circular-progressbar</Code>
           </p>
-          <a className="btn btn-info btn-lg" href={githubURL}>
+          <a className="btn btn-info btn-lg" href={GITHUB_URL}>
             View docs on Github
           </a>
         </div>
