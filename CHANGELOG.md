@@ -1,6 +1,11 @@
+## 2.0.3
+
+- Remove other synthetic react imports (i.e. "import React from 'React'") [#124]
+- Upgrade React to 16.9.0 in /demo [#113]
+
 ## 2.0.2
 
-- Import react with "\* as React" to prevent the need to use allowSyntheticDefaultExports/esModuleInterop in consumers (issue #110) #112
+- Import react with "\* as React" to prevent the need to use allowSyntheticDefaultExports/esModuleInterop in consumers (issue #110) [#112]
 
 ## 2.0.1
 
