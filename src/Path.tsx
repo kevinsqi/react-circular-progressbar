@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { VIEWBOX_CENTER_X, VIEWBOX_CENTER_Y } from './constants';
 
 function Path({
