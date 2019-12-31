@@ -18,7 +18,7 @@
     "react-circular-progressbar": "../",
     "react-dom": "^16.9.0",
     "react-move": "^5.2.1",
-    "react-scripts": "3.0.1",
+    "react-scripts": "3.3.0",
     "typescript": "3.4.4"
   },
   "scripts": {
