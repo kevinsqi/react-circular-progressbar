@@ -1,15 +1,22 @@
 {
   "files": {
     "main.css": "/react-circular-progressbar/static/css/main.ba436296.chunk.css",
-    "main.js": "/react-circular-progressbar/static/js/main.8160e630.chunk.js",
-    "main.js.map": "/react-circular-progressbar/static/js/main.8160e630.chunk.js.map",
-    "runtime~main.js": "/react-circular-progressbar/static/js/runtime~main.3915c496.js",
-    "runtime~main.js.map": "/react-circular-progressbar/static/js/runtime~main.3915c496.js.map",
-    "static/js/2.0a7b7f8e.chunk.js": "/react-circular-progressbar/static/js/2.0a7b7f8e.chunk.js",
-    "static/js/2.0a7b7f8e.chunk.js.map": "/react-circular-progressbar/static/js/2.0a7b7f8e.chunk.js.map",
+    "main.js": "/react-circular-progressbar/static/js/main.cde692ea.chunk.js",
+    "main.js.map": "/react-circular-progressbar/static/js/main.cde692ea.chunk.js.map",
+    "runtime-main.js": "/react-circular-progressbar/static/js/runtime-main.7e2c7020.js",
+    "runtime-main.js.map": "/react-circular-progressbar/static/js/runtime-main.7e2c7020.js.map",
+    "static/js/2.8fb511bd.chunk.js": "/react-circular-progressbar/static/js/2.8fb511bd.chunk.js",
+    "static/js/2.8fb511bd.chunk.js.map": "/react-circular-progressbar/static/js/2.8fb511bd.chunk.js.map",
     "index.html": "/react-circular-progressbar/index.html",
-    "precache-manifest.100805417f250edad5b96972949c439b.js": "/react-circular-progressbar/precache-manifest.100805417f250edad5b96972949c439b.js",
+    "precache-manifest.98bfb3a66eb25f476d93f3749dbcfe70.js": "/react-circular-progressbar/precache-manifest.98bfb3a66eb25f476d93f3749dbcfe70.js",
     "service-worker.js": "/react-circular-progressbar/service-worker.js",
-    "static/css/main.ba436296.chunk.css.map": "/react-circular-progressbar/static/css/main.ba436296.chunk.css.map"
-  }
+    "static/css/main.ba436296.chunk.css.map": "/react-circular-progressbar/static/css/main.ba436296.chunk.css.map",
+    "static/js/2.8fb511bd.chunk.js.LICENSE": "/react-circular-progressbar/static/js/2.8fb511bd.chunk.js.LICENSE"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.7e2c7020.js",
+    "static/js/2.8fb511bd.chunk.js",
+    "static/css/main.ba436296.chunk.css",
+    "static/js/main.cde692ea.chunk.js"
+  ]
 }
