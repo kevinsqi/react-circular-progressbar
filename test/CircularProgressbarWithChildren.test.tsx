@@ -8,8 +8,8 @@ describe('<CircularProgressbarWithChildren />', () => {
     const wrapper = mount(<CircularProgressbarWithChildren value={50} />);
 
     expect(wrapper.find('svg').exists()).toEqual(true);
-    expect(wrapper.find('[data-test-id="CircularProgressbar"]').exists()).toEqual(true);
-    expect(wrapper.find('[data-test-id="CircularProgressbarWithChildren"]').exists()).toEqual(true);
+    expect(wrapper.find('[data-testid="CircularProgressbar"]').exists()).toEqual(true);
+    expect(wrapper.find('[data-testid="CircularProgressbarWithChildren"]').exists()).toEqual(true);
   });
 
   test('Forwards all CircularProgressbar props except children', () => {
@@ -47,7 +47,7 @@ describe('<CircularProgressbarWithChildren />', () => {
       const wrapper = mount(<CircularProgressbarWithChildren value={50} />);
 
       expect(
-        wrapper.find('[data-test-id="CircularProgressbarWithChildren__children"]').exists(),
+        wrapper.find('[data-testid="CircularProgressbarWithChildren__children"]').exists(),
       ).toEqual(false);
     });
 
@@ -59,7 +59,7 @@ describe('<CircularProgressbarWithChildren />', () => {
       );
 
       expect(
-        wrapper.find('[data-test-id="CircularProgressbarWithChildren__children"]').exists(),
+        wrapper.find('[data-testid="CircularProgressbarWithChildren__children"]').exists(),
       ).toEqual(true);
       expect(wrapper.find('#hello').exists()).toEqual(true);
     });

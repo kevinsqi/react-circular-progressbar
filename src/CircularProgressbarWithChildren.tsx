@@ -13,7 +13,7 @@ function CircularProgressbarWithChildren(props: CircularProgressbarWithChildrenP
   const { children, ...circularProgressbarProps } = props;
 
   return (
-    <div data-test-id="CircularProgressbarWithChildren">
+    <div data-testid="CircularProgressbarWithChildren">
       {/* Has an extra div wrapper because otherwise, adding content after
       this progressbar is spaced weirdly. */}
       <div style={{ position: 'relative', width: '100%', height: '100%' }}>
@@ -26,7 +26,7 @@ function CircularProgressbarWithChildren(props: CircularProgressbarWithChildrenP
       but negative margin moves it back up. */}
         {props.children ? (
           <div
-            data-test-id="CircularProgressbarWithChildren__children"
+            data-testid="CircularProgressbarWithChildren__children"
             style={{
               position: 'absolute',
               width: '100%',

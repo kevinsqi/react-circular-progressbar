@@ -77,7 +77,7 @@ class CircularProgressbar extends React.Component<CircularProgressbarProps> {
         className={`${classes.root} ${className}`}
         style={styles.root}
         viewBox={`0 0 ${VIEWBOX_WIDTH} ${VIEWBOX_HEIGHT}`}
-        data-test-id="CircularProgressbar"
+        data-testid="CircularProgressbar"
       >
         {this.props.background ? (
           <circle
