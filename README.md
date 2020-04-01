@@ -61,6 +61,17 @@ const value = 0.66;
 <CircularProgressbar value={value} maxValue={1} text={`${value * 100}%`} />;
 ```
 
+The progressbar is designed to fill the width of its container. You can size the progressbar by sizing its container:
+
+```jsx
+<div style={{ width: 200, height: 200 }}>
+  <CircularProgressbar value={66} />
+</div>
+```
+
+This makes the progressbar work well with responsive designs and grid systems.
+
+
 ## Props
 
 [**Take a look at the CodeSandbox**](https://codesandbox.io/s/vymm4oln6y) for interactive examples on how to use these props.
