@@ -11,8 +11,8 @@ assignees: ''
 
 ### Problem description
 
-_Describe what you'd like to be able to accomplish. Including a rough sketch or screenshot can be helpful._
+Describe what you'd like to be able to accomplish. Including a rough sketch or screenshot can be helpful.
 
 ### Suggested solution (optional)
 
-_Suggest a solution that would solve the problem you have. For example, this may involve adding a new prop, changing an existing prop, or adding a new exported component._
+Suggest a solution that would solve the problem you have. For example, this may involve adding a new prop, changing an existing prop, or adding a new exported component.

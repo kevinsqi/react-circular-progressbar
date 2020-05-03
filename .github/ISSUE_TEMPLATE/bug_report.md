@@ -11,14 +11,13 @@ assignees: ''
 
 ### Summary of issue
 
-_Please describe what the problem is._
-
-_If applicable, add screenshots to help explain your problem._
+Please describe what the problem is - this will help me be able to track down the issue. If applicable, add screenshots to help explain your problem.
 
 ### Reproducible example
 
-_[Fork this Codesandbox](_https://codesandbox.io/s/reactcircularprogressbar-issue-template-3zm3j_) and modify it to demonstrate the issue you're having._
+[Fork this Codesandbox](_https://codesandbox.io/s/reactcircularprogressbar-issue-template-3zm3j_) and modify it to demonstrate the issue you're having.
 
 ### Your environment
 
-_What browser version were you using?_
+* What browser version were you using?
+* What version of react-circular-progressbar are you using?
