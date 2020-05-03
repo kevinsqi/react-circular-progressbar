@@ -15,7 +15,7 @@ Please describe what the problem is - this will help me be able to track down th
 
 ### Reproducible example
 
-[Fork this Codesandbox](_https://codesandbox.io/s/reactcircularprogressbar-issue-template-3zm3j_) and modify it to demonstrate the issue you're having.
+Fork this Codesandbox and modify it to demonstrate the issue you're having: https://codesandbox.io/s/reactcircularprogressbar-issue-template-3zm3j
 
 ### Your environment
 
