@@ -25,7 +25,7 @@ export type CircularProgressbarDefaultProps = {
   minValue: number;
   strokeWidth: number;
   styles: CircularProgressbarStyles;
-  text: string;
+  text: React.ReactNode;
 };
 
 // These are used for any CircularProgressbar wrapper components that can safely
@@ -47,7 +47,7 @@ export type CircularProgressbarWrapperProps = {
   minValue?: number;
   strokeWidth?: number;
   styles?: CircularProgressbarStyles;
-  text?: string;
+  text?: React.ReactNode;
   value: number;
 };
 
