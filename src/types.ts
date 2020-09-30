@@ -49,6 +49,12 @@ export type CircularProgressbarWrapperProps = {
   styles?: CircularProgressbarStyles;
   text?: string;
   value: number;
+  alt?: string;
+  aria?: {
+    live: string;
+    min: string;
+    max: string;
+  }
 };
 
 export type CircularProgressbarProps = CircularProgressbarDefaultProps & {
