@@ -1,3 +1,7 @@
+## 2.0.4 (2021-03-26)
+
+- Support React 17.x in package.json 
+
 ## 2.0.3
 
 - Remove other synthetic react imports (i.e. "import React from 'React'") [#124]
