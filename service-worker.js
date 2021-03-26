@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/react-circular-progressbar/precache-manifest.98bfb3a66eb25f476d93f3749dbcfe70.js"
+  "/react-circular-progressbar/precache-manifest.bfc6c2ffb01a57eff6fb7fe129612efc.js"
 );
 
 self.addEventListener('message', (event) => {
