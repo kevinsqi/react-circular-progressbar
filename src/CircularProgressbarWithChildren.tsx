@@ -16,7 +16,7 @@ function CircularProgressbarWithChildren(props: CircularProgressbarWithChildrenP
     <div data-test-id="CircularProgressbarWithChildren">
       {/* Has an extra div wrapper because otherwise, adding content after
       this progressbar is spaced weirdly. */}
-      <div style={{ position: 'relative', width: '100%', height: '100%' }}>
+      <div style={{ position: 'relative', width: '100%', height: '100%', display: 'flex' }}>
         {/* Progressbar is not positioned absolutely, so that it can establish
       intrinsic size for props.children's content. */}
         <CircularProgressbar {...circularProgressbarProps} />
@@ -31,7 +31,6 @@ function CircularProgressbarWithChildren(props: CircularProgressbarWithChildrenP
               position: 'absolute',
               width: '100%',
               height: '100%',
-              marginTop: '-100%',
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'center',
