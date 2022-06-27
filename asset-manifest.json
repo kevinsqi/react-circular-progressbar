@@ -1,22 +1,13 @@
 {
   "files": {
-    "main.css": "/react-circular-progressbar/static/css/main.7853a7a0.chunk.css",
-    "main.js": "/react-circular-progressbar/static/js/main.2b354543.chunk.js",
-    "main.js.map": "/react-circular-progressbar/static/js/main.2b354543.chunk.js.map",
-    "runtime-main.js": "/react-circular-progressbar/static/js/runtime-main.77369184.js",
-    "runtime-main.js.map": "/react-circular-progressbar/static/js/runtime-main.77369184.js.map",
-    "static/js/2.ee58b4a7.chunk.js": "/react-circular-progressbar/static/js/2.ee58b4a7.chunk.js",
-    "static/js/2.ee58b4a7.chunk.js.map": "/react-circular-progressbar/static/js/2.ee58b4a7.chunk.js.map",
+    "main.css": "/react-circular-progressbar/static/css/main.8e8d883e.css",
+    "main.js": "/react-circular-progressbar/static/js/main.26d34acd.js",
     "index.html": "/react-circular-progressbar/index.html",
-    "precache-manifest.bfc6c2ffb01a57eff6fb7fe129612efc.js": "/react-circular-progressbar/precache-manifest.bfc6c2ffb01a57eff6fb7fe129612efc.js",
-    "service-worker.js": "/react-circular-progressbar/service-worker.js",
-    "static/css/main.7853a7a0.chunk.css.map": "/react-circular-progressbar/static/css/main.7853a7a0.chunk.css.map",
-    "static/js/2.ee58b4a7.chunk.js.LICENSE.txt": "/react-circular-progressbar/static/js/2.ee58b4a7.chunk.js.LICENSE.txt"
+    "main.8e8d883e.css.map": "/react-circular-progressbar/static/css/main.8e8d883e.css.map",
+    "main.26d34acd.js.map": "/react-circular-progressbar/static/js/main.26d34acd.js.map"
   },
   "entrypoints": [
-    "static/js/runtime-main.77369184.js",
-    "static/js/2.ee58b4a7.chunk.js",
-    "static/css/main.7853a7a0.chunk.css",
-    "static/js/main.2b354543.chunk.js"
+    "static/css/main.8e8d883e.css",
+    "static/js/main.26d34acd.js"
   ]
 }
