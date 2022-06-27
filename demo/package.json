@@ -4,6 +4,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@babel/helper-define-map": "^7.18.0",
     "@types/classnames": "^2.2.7",
     "@types/d3-ease": "^1.0.8",
     "@types/jest": "24.0.11",
