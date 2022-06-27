@@ -19,10 +19,10 @@ const Code: React.FunctionComponent<React.HTMLProps<HTMLSpanElement>> = (props) 
   <code className={classNames('p-1 bg-yellow text-dark', props.className)} {...props} />
 );
 
-const Example: React.FunctionComponent<{ description: React.ReactNode }> = ({
-  description,
-  children,
-}) => (
+const Example: React.FunctionComponent<{
+  description: React.ReactNode;
+  children: React.ReactNode;
+}> = ({ description, children }) => (
   <div className="col-12 col-sm-6 col-md-4 mt-5">
     <div className="row">
       <div className="col-6 col-md-4 offset-3 offset-md-4">{children}</div>
