@@ -67,10 +67,16 @@ class CircularProgressbar extends React.Component<CircularProgressbarProps> {
       styles,
       strokeWidth,
       text,
+      alt,
+      aria
     } = this.props;
 
     const pathRadius = this.getPathRadius();
     const pathRatio = this.getPathRatio();
+
+    let accessibility = {};
+    if (alt) accessibility.alt = alt;
+    if (aria) accessibility = { ...accessibility, ...aria };
 
     return (
       <svg
@@ -78,6 +84,7 @@ class CircularProgressbar extends React.Component<CircularProgressbarProps> {
         style={styles.root}
         viewBox={`0 0 ${VIEWBOX_WIDTH} ${VIEWBOX_HEIGHT}`}
         data-test-id="CircularProgressbar"
+        {...accessibility}
       >
         {this.props.background ? (
           <circle
