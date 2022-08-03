@@ -50,7 +50,7 @@ Now you can use the component:
 ```jsx
 const percentage = 66;
 
-<CircularProgressbar value={percentage} text={`${percentage}%`} />;
+<CircularProgressbar value={percentage} text={`${percentage}%`} />
 ```
 
 If your values are not in percentages, you can adjust `minValue` and `maxValue` to select the scale you want:
@@ -58,7 +58,7 @@ If your values are not in percentages, you can adjust `minValue` and `maxValue` 
 ```jsx
 const value = 0.66;
 
-<CircularProgressbar value={value} maxValue={1} text={`${value * 100}%`} />;
+<CircularProgressbar value={value} maxValue={1} text={`${value * 100}%`} />
 ```
 
 The progressbar is designed to fill the width of its container. You can size the progressbar by sizing its container:
@@ -133,7 +133,7 @@ const percentage = 66;
     trailColor: '#d6d6d6',
     backgroundColor: '#3e98c7',
   })}
-/>;
+/>
 ```
 
 `buildStyles` is a shorthand, but you can also build the `styles` object yourself. It's an object with `root`, `path`, `trail`, `text`, and `background` properties, which are each a set of inline styles to apply to the relevant SVG subcomponent. Here's the equivalent set of styles as above, without using `buildStyles`:
@@ -226,7 +226,7 @@ import { CircularProgressbarWithChildren } from 'react-circular-progressbar';
   <div style={{ fontSize: 12, marginTop: -5 }}>
     <strong>66%</strong> mate
   </div>
-</CircularProgressbarWithChildren>;
+</CircularProgressbarWithChildren>
 ```
 
 <img src="/demo/public/images/CircularProgressbarWithChildren.png?raw=true" alt="CircularProgressbarWithChildren example" />
@@ -260,7 +260,7 @@ import { easeQuadInOut } from 'd3-ease';
       />
     );
   }}
-</AnimatedProgressProvider>;
+</AnimatedProgressProvider>
 ```
 
 ## Animating progressbar upon component mount or upon visible
