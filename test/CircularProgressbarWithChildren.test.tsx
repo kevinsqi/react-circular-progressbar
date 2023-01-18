@@ -29,7 +29,8 @@ describe('<CircularProgressbarWithChildren />', () => {
       minValue: 0,
       maxValue: 100,
       value: 50,
-      strokeWidth: 2,
+      strokeWidthTrail: 2,
+      strokeWidthPath:3,
       styles: {},
       text: '50%',
     };
