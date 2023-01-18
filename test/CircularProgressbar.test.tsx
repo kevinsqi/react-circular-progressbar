@@ -5,12 +5,12 @@ import { CircularProgressbar } from '../src/index';
 
 function getExpectedStrokeDashoffset({
   percentage,
-  strokeWidth,
+  strokeWidthPath,
 }: {
   percentage: number;
-  strokeWidth: number;
+  strokeWidthPath: number;
 }) {
-  const radius = 50 - strokeWidth / 2;
+  const radius = 50 - strokeWidthPath / 2;
   const diameter = 2 * radius * Math.PI;
   const expectedGapLength = (1 - percentage / 100) * diameter;
   return `${expectedGapLength}px`;
@@ -20,13 +20,14 @@ function expectPathPercentageToEqual(
   wrapper: ReactWrapper<CircularProgressbar['props']>,
   percentage: number,
 ) {
-  const strokeWidth = wrapper.props().strokeWidth;
+  const strokeWidthTrail = wrapper.props().strokeWidthTrail;
+  const strokeWidthPath = wrapper.props().strokeWidthPath;
   expect(
     wrapper
       .find('.CircularProgressbar-path')
       .hostNodes()
       .prop('style')!.strokeDashoffset,
-  ).toEqual(getExpectedStrokeDashoffset({ percentage, strokeWidth }));
+  ).toEqual(getExpectedStrokeDashoffset({ percentage, strokeWidthPath }));
 }
 
 describe('<CircularProgressbar />', () => {
@@ -36,8 +37,12 @@ describe('<CircularProgressbar />', () => {
   });
   describe('props.strokeWidth', () => {
     test('Applies to path', () => {
-      const wrapper = shallow(<CircularProgressbar value={50} strokeWidth={2} />);
+      const wrapper = shallow(<CircularProgressbar value={50} strokeWidthPath={2} />);
       expect(wrapper.find('.CircularProgressbar-path').prop('strokeWidth')).toEqual(2);
+    });
+    test('Applies to trail', () => {
+      const wrapper = shallow(<CircularProgressbar value={50} strokeWidthTrail={1} />);
+      expect(wrapper.find('.CircularProgressbar-trail').prop('strokeWidth')).toEqual(1);
     });
   });
   describe('props.className', () => {
@@ -60,7 +65,7 @@ describe('<CircularProgressbar />', () => {
   describe('props.value', () => {
     test('Renders correct path', () => {
       const percentage = 30;
-      const wrapper = mount(<CircularProgressbar value={percentage} strokeWidth={0} />);
+      const wrapper = mount(<CircularProgressbar value={percentage} strokeWidthTrail={0} strokeWidthPath={0} />);
 
       expectPathPercentageToEqual(wrapper, percentage);
 
@@ -149,7 +154,7 @@ describe('<CircularProgressbar />', () => {
       ).toEqual(
         getExpectedStrokeDashoffset({
           percentage: 100 * circleRatio,
-          strokeWidth: wrapper.props().strokeWidth,
+          strokeWidthPath: wrapper.props().strokeWidthPath,
         }),
       );
     });

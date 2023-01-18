@@ -26,7 +26,9 @@ class CircularProgressbar extends React.Component<CircularProgressbarProps> {
     className: '',
     maxValue: 100,
     minValue: 0,
-    strokeWidth: 8,
+    strokeWidthPath:8,
+    strokeWidthTrail: 3,
+    
     styles: {
       root: {},
       trail: {},
@@ -48,7 +50,7 @@ class CircularProgressbar extends React.Component<CircularProgressbarProps> {
   getPathRadius() {
     // The radius of the path is defined to be in the middle, so in order for the path to
     // fit perfectly inside the 100x100 viewBox, need to subtract half the strokeWidth
-    return VIEWBOX_HEIGHT_HALF - this.props.strokeWidth / 2 - this.getBackgroundPadding();
+    return VIEWBOX_HEIGHT_HALF - this.props.strokeWidthPath / 2 - this.getBackgroundPadding();
   }
 
   // Ratio of path length to trail length, as a value between 0 and 1
@@ -65,7 +67,8 @@ class CircularProgressbar extends React.Component<CircularProgressbarProps> {
       classes,
       counterClockwise,
       styles,
-      strokeWidth,
+      strokeWidthPath,
+      strokeWidthTrail,
       text,
     } = this.props;
 
@@ -94,7 +97,7 @@ class CircularProgressbar extends React.Component<CircularProgressbarProps> {
           counterClockwise={counterClockwise}
           dashRatio={circleRatio}
           pathRadius={pathRadius}
-          strokeWidth={strokeWidth}
+          strokeWidth={strokeWidthTrail}
           style={styles.trail}
         />
 
@@ -103,7 +106,7 @@ class CircularProgressbar extends React.Component<CircularProgressbarProps> {
           counterClockwise={counterClockwise}
           dashRatio={pathRatio * circleRatio}
           pathRadius={pathRadius}
-          strokeWidth={strokeWidth}
+          strokeWidth={strokeWidthPath}
           style={styles.path}
         />
 
