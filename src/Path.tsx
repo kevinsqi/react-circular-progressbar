@@ -67,9 +67,9 @@ function getDashStyle({
 
   return {
     // Have dash be full diameter, and gap be full diameter
-    strokeDasharray: `${diameter}px ${diameter}px`,
+    strokeDasharray: diameter,
     // Shift dash backward by gapLength, so gap starts appearing at correct distance
-    strokeDashoffset: `${counterClockwise ? -gapLength : gapLength}px`,
+    strokeDashoffset: counterClockwise ? -gapLength : gapLength,
   };
 }
 
