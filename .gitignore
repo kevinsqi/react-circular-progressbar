@@ -2,7 +2,7 @@
 /node_modules
 
 # distribution folder
-# /dist
+/dist
 
 # coverage
 /coverage
