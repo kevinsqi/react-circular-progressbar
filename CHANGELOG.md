@@ -1,3 +1,7 @@
+## 2.2.0 (2025-02-23)
+
+- Support all major versions of react
+
 ## 2.1.0 (2022-06-26)
 
 - Support React 18.x in package.json
