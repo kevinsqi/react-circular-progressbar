@@ -70,7 +70,6 @@ The progressbar is designed to fill the width of its container. You can size the
 
 This makes the progressbar work well with responsive designs and grid systems.
 
-
 ## Props
 
 [**Take a look at the CodeSandbox**](https://codesandbox.io/s/vymm4oln6y) for interactive examples on how to use these props.
@@ -84,7 +83,8 @@ This makes the progressbar work well with responsive designs and grid systems.
 | `maxValue`          | Maximum value of the progressbar. Default: `100`.                                                                                                                                                                                      |
 | `className`         | Classes to apply to the svg element. Default: `''`.                                                                                                                                                                                    |
 | `text`              | Text to display inside progressbar. Default: `''`.                                                                                                                                                                                     |
-| `strokeWidth`       | Width of circular line relative to total width of component, a value from 0-100. Default: `8`.                                                                                                                                         |
+| `strokeWidthPath`   | Width of circular path line relative to total width of component, a value from 0-100. Default: `8`.                                                                                                                                    |
+| `strokeWidthTrail`  | Width of circular trial line relative to total width of component, a value from 0-100. Default: `3`.                                                                                                                                   |
 | `background`        | Whether to display background color. Default: `false`.                                                                                                                                                                                 |
 | `backgroundPadding` | Padding between background circle and path/trail relative to total width of component. Only used if `background` is `true`. Default: `0`.                                                                                              |
 | `counterClockwise`  | Whether to rotate progressbar in counterclockwise direction. Default: `false`.                                                                                                                                                         |
